@@ -1,0 +1,192 @@
+---
+title: "Notebook 08"
+output:
+  html_document:
+    theme: cosmo
+    highlight: zenburn
+    css: "../css/note-style.css"
+---
+
+## Getting Started
+
+Before running this notebook, select "Session > Restart R and Clear Output" in
+the menu above to start a new R session. This will clear any old data sets and
+give us a blank slate to start with.
+
+After starting a new session, run the following code chunk to load the
+libraries that we will be working with today.
+
+```{r, include=FALSE, message=FALSE}
+source("../funs/funs.R")
+```
+
+I have set the options `include=FALSE` and `message=FALSE` to avoid cluttering
+the solutions with all the output from this code.
+
+## College Majors
+
+The data for today is taken from the following paper by a senior economist
+at the Federal Reserve Board:
+
+> Webber, Douglas A. "Are college costs worth it? How ability, major, and
+> debt affect the returns to schooling." *Economics of Education Review* 53
+> (2016): 296-310.
+
+He uses information from the 2014-2018 American Community Surveys (a large
+dataset compiled by the U.S. Census Bureau) to estimate the lifetime earnings
+of college graduate based on their undergraduate major. The dataset includes
+not just a single number, but instead 99 data points for each major, which 
+describes the distribution of estimated lifetime earnings for each major. 
+You can read in the dataset with the following:
+
+```{r, message=FALSE}
+majors <- read_csv("../data/majors.csv")
+majors
+```
+
+It contains three fields:
+
+- **major**        the name of the major
+- **percentile**   percentile of earnings; includes every value from 1-99
+- **earnings**     estimated lifetime earnings in millions of dollars
+
+I do not believe that the estimates account for inflation.
+
+In this notebook we will start by creating several different plots that use
+this data to try to understand the relationship between college major and
+lifetime earnings. We will then take a step back and consider how we can apply
+the Data Feminism concepts from the notes to consider the implications and
+limits of our analysis.
+
+### Density Plots
+
+To start understanding this dataset, we are going to make use of a new type of
+geometry called `geom_density`. It is a bit different than previous geometries
+we have used because rather than setting the y-aesthetic, we let the geometry
+calculate the y-values based on the distribution of the x-aesthetic values.
+
+In the code block below, take on the data points from the major "Psychology"
+and draw a ggplot graphic with `earnings` on the x-axis using a `geom_density()`
+layer.
+
+```{r, question-01}
+
+```
+
+I find density plots easier to read if we shade the area underneath them with
+a color. In the code below adapt your first plot by setting the `fill` aesthetic
+to the fixed value "black" and the `alpha` aesthetic to the fixed value `0.3`.
+
+```{r, question-02}
+
+```
+
+Let's compare the distribution of earnings from Psychology majors to two other
+majors. In the code below, take just the rows from the majors "Psychology",
+"Music" and "Art History" and draw a plot with `earnings` on the x-axis using
+a `geom_density` layer. Set the fill aesthetic to the feature `major` and the
+alpha value to 0.3.
+
+```{r, question-03}
+
+```
+
+Take note of how would you describe the differences and similarities between
+the estimated lifetime earnings of these three majors?
+
+### Plotting Percentiles
+
+Let's now look at all of the majors in the data. In the plot below, take just 
+the rows of the data corresponding to the 50th percentile of earnings. Draw a
+scatterplot with earnings on the x-axis and major on the y-axis. Order the
+majors from the smallest to the largest earnings.
+
+```{r, fig.height=8, question-04}
+
+```
+
+The point of the data we have today is to go beyond a single number in order to
+get a different picture of how major influences lifetime earnings. In the plot
+below, create a new version of the previous plot, but include two dots for 
+each major, one for the 25th percentile of earnings and another for the 75th
+percentile of earnings. Color the 25th percentile in "olivedrab" and the 75th
+percentile "navy". Order the majors based on the 75th percentile of earnings.
+
+Note: There are at least two different ways to do this task. Either is fine,
+but try to do it without creating a second dataset using `mutate` and `if_else`
+to construct a new color variable.
+
+```{r, fig.height=8, question-05}
+
+```
+
+Repeat the previous question but produce a plot showing the 10th and 90th
+percentiles of each major.
+
+```{r, fig.height=8, question-06}
+
+```
+
+The 10th percentile of earnings for Chemical Engineers is 2.63 million dollars
+over their lifetime. In the plot below, draw a scatter plot that shows the 
+percentage of people in each major that are expected to make at least 2.63
+million dollars over the course of their life. Put major on the y-axis and
+the percentage on the x-axis and order by the percentage.
+
+```{r, fig.height=8, question-07}
+
+```
+
+### Comparing Median Proportions
+
+In the final plot, let's compare the actual differences in the median earnings
+of each major. Filter to only include the 50th percentile of earnings and 
+create a new variable that measures the earnings of each major divided by the
+median earnings of all the majors. Create a plot similar to the others above
+where the majors are ordered from the lowest earnings to the highest earnings
+with the proportion of median earnings on the x-axis. 
+
+```{r, fig.height=8, question-08}
+
+```
+
+The shape won't be  much different than the previous plots, but the scale of
+the x-axis is (to me) more interpretable than the abstract idea of "lifetime
+earnings".
+
+### Reflections
+
+Data Feminism says that we should consider the values and power structures that
+are baked into the data and data analyses that we do. What values seem to be 
+expressed in the data here regarding college majors and life goals?
+**Answer**:
+
+Data Feminism also says that data is never neutral or non-political. The data
+here was an attempt to add nuance to studies focused only on a single summary
+showing the relationship between college majors and earnings. Can you think of
+another quantitative dataset that would help augment the story told by the data
+we looked at above?
+**Answer**:
+
+Can you think of a qualitative source of information that would help augment
+the story told by the quantitative data?
+**Answer**:
+
+It should be clear from these plots that while there is a relationship between
+college majors and lifetime earnings, the situation is a bit more complicated
+than the story told with a single number (say, the median earnings by major).
+Can you construct a story that would use some of the results here to encourage
+someone to major in a field that interests them rather than overly optimizing
+for major that have the highest typical salaries?
+**Answer**:
+
+It is also possible to turn the data visualizations here into a fairly negative
+story about lifetime earnings. Try to describe in the most pessimistic way 
+possible how you might summarize the data here. The goal of this exercise is to
+show how data analysis is never neutral and the same results can be interpreted
+very differently.
+**Answer**:
+
+Note that my solutions to the answers above are just some of the possible
+responses that are possible and are certainly not exhaustive of all ideas and
+reflections that you might have about the data.

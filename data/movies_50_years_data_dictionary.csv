@@ -1,0 +1,28 @@
+table,variable,description
+movies,year,Year movie was released.
+movies,title,IMDb title of the film.
+movies,mpa,Motion Piction Association film rating.
+movies,runtime,Runtime in minutes.
+movies,gross,Gross theatrical earnings in millions of USD.
+movies,rating_count,Number of IMDb ratings as of January 2020.
+movies,rating,Average of IMDb rating (1-10) as of January 2020.
+movies,metacritic,Average metacritic score (1-100)
+movies,poster_brightness,Average brightness of movie poster (0-100)
+movies,poster_saturation,Average brightness of movie poster (0-100)
+movies,poster_edgeness,Complexity of the image poster. See notes.
+movies,description,Summary of the movie plot.
+genre,year,Year movie was released.
+genre,title,IMDb title of the film.
+genre,genre,A genre tagged to the given film.
+color,year,Year movie was released.
+color,title,IMDb title of the film.
+color,color_type,Either grayscale or hue.
+color,color,Name selected from 10 different color options.
+color,percentage,Percentage of poster in specified color bucket.
+people,year,Year movie was released.
+people,title,IMDb title of the film.
+people,role,Either director or staring.
+people,rank,Order of billing on IMDb.
+people,person,Full name of the person.
+person,gender,Predicted gender base on first name.
+person,gender_conf,Confidence score for gender prediction (0.5-1).

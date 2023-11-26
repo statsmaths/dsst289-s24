@@ -1,0 +1,26 @@
+---
+title: "11. Review I"
+output:
+  html_document:
+    theme: cosmo
+    highlight: zenburn
+    css: "../css/note-style.css"
+---
+
+```{r, include=FALSE, message=FALSE}
+source("../funs/funs.R")
+
+food <- read_csv(file.path("..", "data", "food.csv"))
+food_prices <- read_csv(file.path("..", "data", "food_prices.csv"))
+diet <- read_csv(file.path("..", "data", "food_diet_restrictions.csv"))
+```
+
+This week, we are going to do some review of the material we have already
+covered in class as well as practice applying our techniques to some new
+datasets. In lieu of a specific homework task, please review the solutions
+to notebooks 7-10 and any of the related notes that you found difficult.
+
+If you want to deepen your understanding of course material, I suggest
+reading the solutions, taking a break, and then trying to answer the
+questions from scratch with a clean RMarkdown file. Try to answer the 
+questions without looking at the solutions. 

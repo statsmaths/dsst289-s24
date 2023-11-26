@@ -1,0 +1,286 @@
+---
+title: "Notebook 17 -- Solutions"
+output:
+  html_document:
+    theme: cosmo
+    highlight: zenburn
+    css: "../css/note-style.css"
+---
+
+## Getting Started
+
+Before running this notebook, select "Session > Restart R and Clear Output" in
+the menu above to start a new R session. This will clear any old data sets and
+give us a blank slate to start with.
+
+After starting a new session, run the following code chunk to load the
+libraries and data that we will be working with today.
+
+```{r, include=FALSE, message=FALSE}
+source("../funs/funs.R")
+```
+
+## Comics
+
+Today we are going to look at a dataset describing the long-running comic
+series Peanuts. I have been building this for a research project with Lauren
+Tilton and Justin Wigard and we thought it would be fun to have you all take
+a look at something we are currently working on.
+
+We have one table with one row for each Peanuts comics. The last two columns
+describe the size of the scanned image of the comic in pixels.
+
+```{r}
+comics <- read_csv("../data/comics_meta.csv.bz2")
+comics
+```
+
+We have another dataset that was automatically generated using a computer vision
+algorithm. This one describes all of the panels that were detected in each
+comic strip.
+
+```{r}
+panels <- read_csv("../data/comics_panels.csv.bz2")
+panels
+```
+
+Finally, we have another automatically created datsets of comic captions. These
+describe all of the locations in the comic where our computer vision algorithm
+detected text.
+
+```{r}
+captions <- read_csv("../data/comics_captions.csv.bz2")
+captions
+```
+
+### Understanding the data
+
+To start, take the `comics` data, filter to just include the single comic whose
+path is "8178d1c0fbb20130177f001dd8b71c47.jpg", and do an inner join to the
+`panels` data. This will show all of the detected panels for this one comic,
+of which there should be 10.
+
+```{r, question-01}
+comics |>
+  filter(image_path == "8178d1c0fbb20130177f001dd8b71c47.jpg") |>
+  inner_join(panels, by = "image_path")
+```
+
+Now, let's visualize these panels. Starting with the data you created in the
+previous code chunk, create a plot using a `geom_rect` layer. This layer 
+requires the aesthetics `xmin`, `xmax`, `ymin`, and `ymax`; these can be set
+the corresponding names in the data. Set the color of the rectangles to "blue"
+and the alpha to 0.
+
+```{r, question-02}
+comics |>
+  filter(image_path == "8178d1c0fbb20130177f001dd8b71c47.jpg") |>
+  inner_join(panels, by = "image_path") |>
+  ggplot() +
+    geom_rect(aes(
+      xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),
+      color = "blue", alpha = 0
+    )
+```
+
+The plot above should show the layout of the comic. Let's check the output and
+our understanding of the data. Open the following link in a browser to see the
+actual comic image:
+
+  https://assets.amuniversal.com/8178d1c0fbb20130177f001dd8b71c47.jpg
+
+Let's take a look also at the captions. In the block below, starting with your
+code from the previous question, also join the `captions` data and add a
+`geom_point` layer showing the `xmid` and `ymid` of the captions. Go back to
+the comic to verify that these roughly match the text in the image.
+
+```{r, question-03}
+comics |>
+  filter(image_path == "8178d1c0fbb20130177f001dd8b71c47.jpg") |>
+  inner_join(panels, by = "image_path") |>
+  inner_join(captions, by = "image_path") |>
+  ggplot() +
+    geom_rect(aes(
+      xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),
+      color = "blue", alpha = 0
+    ) +
+    geom_point(aes(xmid, ymid))
+```
+
+Finally, in the code block below, modify your previous plot by adding a
+`geom_text` layer that labels the panels with their `panel_id` by setting
+`x = (xmin + xmax) / 2` and `y = (ymin + ymax) / 2`. This will verify that our
+ordering of the panels is correct.
+
+```{r, question-04}
+comics |>
+  filter(image_path == "8178d1c0fbb20130177f001dd8b71c47.jpg") |>
+  inner_join(panels, by = "image_path") |>
+  inner_join(captions, by = "image_path") |>
+  ggplot() +
+    geom_rect(aes(
+      xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),
+      color = "blue", alpha = 0
+    ) +
+    geom_point(aes(xmid, ymid)) +
+    geom_text(aes(x = (xmin + xmax) / 2, y = (ymin + ymax) / 2, label = panel_id))
+```
+
+Now that we understand the data through a single sample, let's look at the
+collection as a whole.
+
+### Working with Dates
+
+In the interest of time (I really want everyone to get to the research questions
+today), I will help you with the next intermediate step. Here is the code to
+compute the total number of panels in each comic:
+
+```{r}
+panels_total <- panels |>
+  group_by(image_path) |>
+  summarize(n = n())
+panels_total
+```
+
+For the next question, join the `panels_total` data to the `comics` data and
+compute the day of the week of the comic. Set `label = TRUE` to see the weekday
+names. Summarize the data to determine the average number of panels for each
+day of the week. You should see that most days are indistinguishable, except
+for Sunday, which is much longer.
+
+```{r, question-05}
+panels_total |>
+  inner_join(comics, by = "image_path") |>
+  mutate(wday = wday(date, label = TRUE)) |>
+  group_by(wday) |>
+  summarize(n = mean(n))
+```
+
+Now, draw a plot with one point for each comic from the year 1995. For each
+point, set the x-aesthetic to be the date and the y-aesthetic to by the number
+of panels. Color the points by the day of the week.
+
+```{r, question-06}
+panels_total |>
+  inner_join(comics, by = "image_path") |>
+  mutate(wday = wday(date, label = TRUE)) |>
+  filter(year(date) == 1995) |>
+  ggplot(aes(date, n)) +
+    geom_point(aes(color = wday))
+```
+
+In the code block below, modify your previous plot to have one label on the
+x-axis for each month and make the label equal to the month abbreviation.
+
+```{r, question-07}
+panels |>
+  group_by(image_path) |>
+  summarize(n = n()) |>
+  inner_join(comics, by = "image_path") |>
+  mutate(wday = wday(date, label = TRUE)) |>
+  filter(year(date) == 1995) |>
+  ggplot(aes(date, n)) +
+    geom_point(aes(color = wday)) +
+    scale_x_date(breaks = "1 month", date_labels = "%b", minor_breaks = "1 month")
+```
+
+### Research Question: Last Panel Captions
+
+In this last section, we will try to look at one of the research questions we
+have about this data. Usually, the punchline of a comic comes in the last panel.
+This can be a verbal punchline, but can also be a punchline described through
+the visual message. We'd like to understand when and how often the final panel
+contains a caption in order to understand how often each type of punchline
+gets used. Let's try to do this with the techniques we've learned so far!
+
+To start, two hints to speed things along. First, notice that the following
+code (the fairly rare grouped filter) gives us all of the final panels in the
+data:
+
+```{r}
+panels |>
+  group_by(image_path) |>
+  filter(panel_id == max(panel_id)) |>
+  ungroup()
+```
+
+Secondly, the following summary function, when put into a pipe with all of the
+variable, will tell us the proportion of final panels that contain some caption
+in them. This is a bit complicated because we need to ignore "captions" at the
+bottom of the final panel, because this is often where the date or creator's
+signature appears.
+
+```
+  summarize(
+    last_caption = 100 * as.numeric(any((xmid >= xmin & xmid <= xmax) &
+                                        (ymid >= (ymin * 0.3 + ymax * 0.7) &
+                                        ymid <= ymax))))
+```
+
+For the next question, put together the two hints above to create a dataset 
+with one row for each comic with a column `last_caption` equal to 0 if the
+comic does not have a caption in the final panel and 100 if it does.
+
+```{r, question-08}
+panels |>
+  group_by(image_path) |>
+  filter(panel_id == max(panel_id)) |>
+  ungroup() |>
+  inner_join(captions, by = "image_path") |>
+  group_by(image_path) |>
+  summarize(
+    last_caption = 100 * as.numeric(any((xmid >= xmin & xmid <= xmax) &
+                                        (ymid >= (ymin * 0.3 + ymax * 0.7) &
+                                        ymid <= ymax))))
+```
+
+Now, in the next block, modify your code from before to group the data by 
+the `panel_id` and compute the average proportion of comics that have a caption
+in the final panel based on the total number of panels. Create a plot to
+visualize the relationship.
+
+```{r, question-09}
+panels |>
+  group_by(image_path) |>
+  filter(panel_id == max(panel_id)) |>
+  ungroup() |>
+  inner_join(captions, by = "image_path") |>
+  group_by(panel_id, image_path) |>
+  summarize(
+    last_caption = 100 * as.numeric(any((xmid >= xmin & xmid <= xmax) &
+                                        (ymid >= (ymin * 0.3 + ymax * 0.7) &
+                                         ymid <= ymax)))) |>
+  summarize(mu = mean(last_caption)) |>
+  ggplot(aes(panel_id, mu)) +
+    geom_point() +
+    labs(x = "Total Number of Panels",
+         y = "Percentage with Caption in Final Panel")
+```
+
+Finally, compute the proportion of comics with with a caption in the final 
+panel as a function of the year of the comic.
+
+```{r, question-10}
+panels |>
+  group_by(image_path) |>
+  filter(panel_id == max(panel_id)) |>
+  ungroup() |>
+  inner_join(captions, by = "image_path") |>
+  group_by(image_path) |>
+  summarize(
+    last_caption = 100 * as.numeric(any((xmid >= xmin & xmid <= xmax) &
+                                        (ymid >= (ymin * 0.3 + ymax * 0.7) &
+                                        ymid <= ymax)))) |>
+  inner_join(comics, by = "image_path") |>
+  mutate(year = year(date)) |>
+  group_by(year) |>
+  summarize(mu = mean(last_caption)) |>
+  ggplot(aes(year, mu)) +
+    geom_point() +
+    labs(x = "Year",
+         y = "Percentage of Comics with Caption in Final Panel")
+```
+
+
+
+

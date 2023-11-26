@@ -1,0 +1,189 @@
+---
+title: "Notebook 01"
+output:
+  html_document:
+    theme: simplex
+    highlight: pygments
+    css: "../css/note-style.css"
+---
+
+```{r, include=FALSE}
+source("../funs/funs.R")
+```
+
+## Practice: Running R Code
+
+In this notebook are some further practice questions to see how well you
+understood the material from today.
+
+In the code block below, make a variable named `fav_number` and set it
+equal to your favorite number. (Note, the quotes are not part of the
+variable name).
+
+```{r, question-01}
+fav_number <- 8
+```
+
+In the code below, apply the function `log10` to your favorite
+number. (Again, the quotes are not part of the function name).
+
+```{r, question-02}
+log10(fav_number)
+```
+
+Note that the only point of the exercises here are to familiarize
+you with running code in R, creating variables, and applying functions.
+We will get to more interesting tasks soon!
+
+## Practice: Running Functions
+
+R contains several functions for producing (pseudo)-random variables. These are
+useful, for example, when using R to run simulation models. For example the
+function `runif` selects (by default) a set of random numbers between 0 and 1.
+It takes one required argument named `n`, which indicates how many random
+numbers should be generated. In the code below, use the `runif` function to
+produce 100 random numbers. Verify that each time you run the code a different
+set of numbers is produced:
+
+```{r, question-03}
+runif(n = 100)
+```
+
+The `runif` function also has two optional parameters. These are named `min`
+and `max`; they determine the lower and upper bounds from which random numbers
+should be generated. By default these are set to 0 and 1. In the code below,
+generate 100 random numbers between 50 and 100. Here, select the number of
+random numbers *by position* (that is, without the code `n = 100`).
+
+```{r, question-04}
+runif(100, 50, 100)
+```
+
+A common concern for new R users when running the code above is the meaning
+behind the numbers in square brackets to the left of the output. These are not
+part of the output itself. Instead, they provide a counter telling you which
+result number appears just to the left of right of it. The first line will
+always start with `[1]` because it always starts with the first result. The
+second line's number will depend on the width of your screen when you ran the
+code.
+
+## Practice: Using Pipes
+
+We will make heavy use of the `|>`, called a pipe, operator this semester. It
+is a great tool for data analysis because it allows us to apply a sequence of
+functions to an input (usually a data set) without needing to create
+intermediate results.
+
+For absolutely no reason other than practice, let's assume that we want to take
+your favorite number above and apply the base-10 logarithm, followed by the
+sine (sin()) function, followed by the cosine (cos()) function. We will do
+this three different ways. To start, apply these three function in a single
+line of R code by nesting them inside one another:
+
+```{r, question-05}
+cos(sin(log10(fav_number)))
+```
+
+Next, do the same sequence of operations, with one function on each line using
+a temporary variable named `x`:
+
+```{r, question-06}
+x <- log10(fav_number)
+x <- sin(x)
+x <- cos(x)
+x
+```
+
+Finally, apply the three functions using a sequence of pipes.
+
+```{r, question-07}
+fav_number |>
+  log10() |>
+  sin() |>
+  cos()
+```
+
+Look at the previous three blocks and code and consider which is easiest to
+read and modify. Try to think about possible benefits of each approach.
+
+## Practice: Largest Cities data set
+
+We will make extensive use of a data set that has information about the largest
+cities (by population) in the world. To read in and print out this data set, run
+the following lines of code:
+
+```{r, message=FALSE}
+cities <- read_csv("../data/largest_cities.csv")
+```
+
+Looking at the data, try to answer the following questions.
+
+How many rows are in the data set?
+**Answer**:
+
+What are the observations in the data set.
+**Answer**:
+
+List three of the features in the data set.
+**Answer**:
+
+The population features are given in millions of people. How many
+people live in all of Tokyo?
+**Answer**:
+
+How people live in Atlanta (Note: you will have to open the data
+explorer to see this data)?
+**Answer**:
+
+## Practice: Formatting
+
+In the code block below, I wrote some code to add a new column to the data set
+that describes the population density for each city (1000s of people per square
+kilometer) and sorts from the most dense to the least dense. We will learn
+this code over the next 6 chapters. For now, just run the code block and see
+what happens:
+
+```{r}
+new_data<-mutate(cities,city_density=city_pop/city_area*1000)
+new_data<-arrange(new_data,desc(city_density))
+select(new_data,name,country,city_density)
+```
+
+Let's focus on formatting the code above correctly. Note I did not include any
+spaces! Copy the code above in the block below and then add the correct spaces
+into the code to make it match the style guide given in the notes.
+
+```{r, question-08}
+new_data <- mutate(cities, city_density = city_pop / city_area * 1000)
+new_data <- arrange(new_data, desc(city_density))
+select(new_data, name, country, city_density)
+```
+
+Make sure to run the code after you are done. What city in the data set has, on
+average, the most people per square kilometer?
+**Answer**:
+
+Now, take the code above and reformat it to use pipes in place of the temporary
+variable.
+
+```{r, question-09}
+cities |>
+  mutate(city_density = city_pop / city_area * 1000) |>
+  arrange(desc(city_density)) |>
+  select(name, country, city_density)
+```
+
+Verify that the results are the same as the previous code.
+
+## Practice: Food
+
+I have also given you the food data set given in the notes. In the code below,
+read this data set into R using the `read_csv` function.
+
+```{r, question-10}
+food <- read_csv(file = "../data/food.csv")
+food
+```
+
+If you have some time left in class. Take a look at all of the data columns for
+the food data and ask if you are unclear on what any of these features indicate.

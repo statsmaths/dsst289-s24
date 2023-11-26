@@ -1,0 +1,246 @@
+---
+title: "Notebook 13 -- Solutions"
+output:
+  html_document:
+    theme: cosmo
+    highlight: zenburn
+    css: "../css/note-style.css"
+---
+
+## Getting Started
+
+Before running this notebook, select "Session > Restart R and Clear Output" in
+the menu above to start a new R session. This will clear any old data sets and
+give us a blank slate to start with.
+
+After starting a new session, run the following code chunk to load the
+libraries and data that we will be working with today.
+
+```{r, include=FALSE, message=FALSE}
+source("../funs/funs.R")
+```
+
+## What We Eat in America
+
+This week we are going to look in-depth at a dataset collected jointly by the
+USDA and the CDC called *What We Eat in America*. The data is collected by 
+surveying the specific food items that several thousand people across the 
+country consume over the course of a two-day period. The main dataset we will
+use contains one row for each reported food that an individual ate. The data
+can be read in with the following code; the feature `id` gives and identifier
+for each participant, the `food_code` indicate the type of food eaten, and 
+all of the nutritional columns are given in grams (except `kcal` which is in
+kilo calories).  
+
+```{r}
+food <- read_csv("../data/wweia_food.csv.bz2")
+food
+```
+
+We also have a dataset showing demographic information about each participant.
+The educational level is given as a coded number (more details when needed).
+The `ratio_to_poverty` variable indicates the ratio of the family household 
+income to the poverty level. It's truncated from above at 5; so values over
+5 (households that make more than five times the poverty level) are pushed down
+to the value of 5.
+
+```{r}
+demo <- read_csv("../data/wweia_demo.csv.bz2")
+demo
+```
+
+Finally, we also have a set of metadata about each of the food codes above. 
+These give the specific food description, a less-granular category, and the
+least-granular food group. These can be joined with the key `food_code`.
+
+```{r}
+meta <- read_csv("../data/wweia_meta.csv.bz2")
+meta
+```
+
+We will look at some of the main features today while introducing some new 
+techniques that will help understand this data.
+
+### Total Calories
+
+Our data consists of a single day of eating patterns from each individual. 
+Create a plot that shows the distribution (hint: `geom_density`) of the total
+number of calories that individuals in the dataset consumed on this day. You'll
+see that a small number of individuals consumed a very large amount of calories.
+After creating the initial plot, try to remove some of the outliers to make the
+plot easier to read. Also, try to use some color to make the plot nicer to 
+look at.
+
+```{r, question-01}
+food |>
+  group_by(id) |>
+  summarize(kcal = sum(kcal)) |>
+  filter(kcal < 6000) |>
+  ggplot(aes(kcal)) +
+    geom_density(alpha = 0.5, fill = "olivedrab", color = NA)
+```
+
+We don't have any information about the weight or activity level of each 
+individual. We do, though, have a reported age and genders. Re-create your 
+first plot, but this time show the distribution of the male and female
+participants. Note the similarities and differences between the two groups.
+
+```{r, question-02}
+food |>
+  group_by(id) |>
+  summarize(kcal = sum(kcal)) |>
+  filter(kcal < 6000) |>
+  left_join(demo, by = "id") |>
+  ggplot(aes(kcal)) +
+    geom_density(aes(fill = gender), alpha = 0.5) +
+    scale_fill_viridis_d()
+```
+
+We also have the age of each participant. These are given in years and if we
+try to do the above plot for each individual year, things will get fairly 
+messy. Perhaps a better way would be to group the ages together. We could do
+this manually with a bunch of `if_else` functions; another approach is to use
+a version of the `cut` function. If we include this line:
+
+- `mutate(age = cut(age, breaks = seq(0, 80, by = 20), include.lowest = TRUE))`
+
+In our pipe, it will change the continuous ages into concrete groups of 20 years
+each. Use this technique to show the distribution of calories by age group.
+
+```{r, question-03}
+food |>
+  group_by(id) |>
+  summarize(kcal = sum(kcal)) |>
+  left_join(demo, by = "id") |>
+  filter(kcal < 6000) |>
+  mutate(age = cut(age, breaks = seq(0, 80, by = 20), include.lowest = TRUE)) |>
+  ggplot(aes(kcal)) +
+    geom_density(aes(fill = age), alpha = 0.5) +
+    scale_fill_viridis_d()
+```
+
+The plot you just made should be somewhat readable, but it can be slightly hard
+to see each distribution on top of one another. One solution to this is to add
+the function `facet_wrap` to our plot. This function creates a number of small
+plots all at once broken out by a new variable. For example, the following will
+facet by our age variable:
+
+- `facet_wrap(~age)`
+
+Modify your previous plot in the block below using the facet wrap. Since this
+will make more space, split the ages into 10-year buckets in lieu of 20-year
+buckets.
+
+```{r, question-04}
+food |>
+  group_by(id) |>
+  summarize(kcal = sum(kcal)) |>
+  left_join(demo, by = "id") |>
+  filter(kcal < 6000) |>
+  mutate(age = cut(age, breaks = seq(0, 80, by = 10), include.lowest = TRUE)) |>
+  ggplot(aes(kcal)) +
+    geom_density(aes(fill = age), alpha = 0.5) +
+    scale_fill_viridis_d() +
+    facet_wrap(~age)
+```
+
+Now, with all of that added space, let's add back the gender variable using the
+`fill` aesthetic. This will show the distribution of calories by age group and
+gender.
+
+```{r, question-05}
+food |>
+  group_by(id) |>
+  summarize(kcal = sum(kcal)) |>
+  left_join(demo, by = "id") |>
+  filter(kcal < 6000) |>
+  mutate(age = cut(age, breaks = seq(0, 80, by = 10), include.lowest = TRUE)) |>
+  ggplot(aes(kcal)) +
+    geom_density(aes(fill = gender), alpha = 0.5) +
+    scale_fill_viridis_d() +
+    facet_wrap(~age)
+```
+
+### Meal Times
+
+Create a bar plot showing time on the x-axis and the average number of calories
+eaten at each hour of the day. Use the function `factor` to convert the numeric
+time feature to a categorical feature; this will make the plot easier to read.
+
+Make sure your plot is reasonable before you move it on. Your initial approach
+here will likely result in a subtle error that makes the plot look incorrect.
+
+```{r, question-06}
+# My guess is that most students will start by grouping by time and using the
+# summarize  function with mean; that's not a bad first idea. However, it 
+# ignores anyone that has zero calories for that hour. As another option, you
+# could divide by the number of rows in the demo table (`nrow(demo)`).
+food |>
+  mutate(total_people = n_distinct(id)) |>    
+  group_by(time) |>
+  summarize(kcal = sum(kcal) / first(total_people)) |>
+  ggplot(aes(factor(time), kcal)) +
+    geom_col()
+```
+
+The data includes information about mealtime names. Filter the data to include
+only Breakfast, Lunch, and Dinner. Repeat the previous plot you had, but color
+the bars based on the name of the meal. You should see that the bar plot stacks
+the categories on top of one another.
+
+```{r, question-07}
+food |>
+  mutate(total_people = n_distinct(id)) |>
+  group_by(time, meal_name) |>
+  summarize(kcal = sum(kcal) / first(total_people)) |>
+  filter(meal_name %in% c("Breakfast", "Lunch", "Dinner")) |>
+  ggplot(aes(time, kcal, fill = meal_name)) +
+    geom_col() +
+    scale_fill_viridis_d()
+```
+
+The geometry `geom_col` has a parameter called `position` that we can set to
+describe how the intersecting bars, as above, are dealt with. The default is to
+stack the bars; we can change this by setting a different position. Below,
+remake your plot with `position = "dodge"` and note what happens.
+
+```{r, question-08}
+food |>
+  mutate(total_people = n_distinct(id)) |>
+  filter(meal_name %in% c("Breakfast", "Lunch", "Dinner")) |>
+  group_by(time, meal_name) |>
+  summarize(kcal = sum(kcal) / first(total_people)) |>
+  ggplot(aes(time, kcal, fill = meal_name)) +
+    geom_col(position = "dodge") +
+    scale_fill_viridis_d()
+```
+
+I think the dodge method looks better than the stack one in the above example.
+However, I think there is any even better option: setting the position to 
+"identity". This plots the bars right on top of one another, which are first 
+seems like a terrible idea. However, if we also set `alpha = 0.7`, we can
+see the plot just as we did with the density plots in the previous section.
+Try this below:
+
+```{r, question-09}
+food |>
+  mutate(total_people = n_distinct(id)) |>
+  filter(meal_name %in% c("Breakfast", "Lunch", "Dinner")) |>
+  group_by(time, meal_name) |>
+  summarize(kcal = sum(kcal) / first(total_people)) |>
+  ggplot(aes(time, kcal, fill = meal_name)) +
+    geom_col(position = "identity", alpha = 0.7) +
+    scale_fill_viridis_d()
+```
+
+Can you see the distribution of the meals across the hours of the day? Are the
+what you might expect from your own meal times?
+
+If you finish with the questions, above take a moment to consider the principles
+from our Data Feminism notes and how they might apply to this dataset. How are
+the ways that the data are organized making non-neutral decisions about what
+we can do with it? What are the consequences of not providing names or locations
+for the individuals? What are some possible negative ways that this data might
+be abused? What could be some ways we could use this information for social 
+good. Note that while we have not looked at them yet, the data includes 
+information about race, language, and income.

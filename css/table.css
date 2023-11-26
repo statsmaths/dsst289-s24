@@ -1,0 +1,23 @@
+table {
+  left: 25%;
+  width: 50%;
+  border-collapse: collapse;
+}
+
+td {
+  border: thin solid #aaa;
+  padding: 0.3em 0.4em;
+  text-align: center;
+}
+
+th {
+  border: thin none #aaa;
+  padding: 0.3em 0.4em;
+  text-align: center;
+}
+
+a:link, a:visited {
+  text-decoration: none;
+  color: #9d0006;
+  transition: 0.4s color;
+}

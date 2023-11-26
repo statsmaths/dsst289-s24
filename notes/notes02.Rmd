@@ -1,0 +1,170 @@
+---
+title: "02. Grammar of Graphics"
+output:
+  html_document:
+    theme: simplex
+    highlight: pygments
+    css: "../css/note-style.css"
+---
+
+```{r, include=FALSE, message=FALSE}
+source("../funs/funs.R")
+
+food <- read_csv(file.path("..", "data", "food.csv"))
+```
+
+### Elements
+
+Data visualization is an incredibly important skill and a task that R is
+particularly well-designed for. We are going to learn and use the **ggplot2**
+package for building beautiful and informative graphics. The package makes it
+easy to build fairly complex graphics in a way that is guided by a general
+theory of data visualization. The only downside is that, because it is built
+around a theoretical model rather than many one-off solutions for different
+tasks, it has a steep initial learning curve. These notes will, hopefully,
+make this as painless as possible.
+
+The core idea of the grammar of graphics is that visualizations are composed
+of independent *layers*. To describe a specific layer, we need to specify
+several elements:
+
+- *data*: the data set from which data will be taken to construct the plot
+- *geom*: a description of what kinds of objects to plot (i.e., points, labels,
+or boxes)
+- *aes*: a mapping from elements of the plot to columns in our data set (i.e.,
+the position on the x-axis or the color of our points); it stands for aesthetics
+
+You can describe virtually any type of visualization by putting together these
+elements.
+
+To show how to use the grammar of graphics, we will start by using the food
+data set introduced in the previous notes, with each row describing a particular
+item of food along with various nutritional information. The first plot we will
+make is a scatter plot that investigates the relationship between calories and
+the total fat (in grams) that are in a 100g portion of each food item. In the
+language of the grammar of graphics we can describe this with the following
+elements:
+
+- *data*: our data set is called `food`
+- *geom*: we will build a plot with a points geometry; each row of data is
+represented by a point
+- *aes*: the x-axis will be associated with `calories` and the y-axis with
+`total_fat`
+
+### Scatter plot example
+
+The easiest way to understand how we specify these elements within **ggplot**
+is by seeing an example. Here is the code to specify the data, geom, and aes:
+
+```{r}
+food |>
+  ggplot() +
+    geom_point(aes(x = calories, y = total_fat))
+```
+
+In the first line we specify the data set (`food`), which is then piped (`|>`)
+into the function `ggplot`, which instructs R to start a new plot. Next, we add
+(`+`) a layer to the plot. This layer uses a points geom (`geom_point`) and
+describes two aes values, `x = calories` and `y = total_fat`.
+
+In order to make a similar plot with different features, or a different
+data set, you can copy this code and change the associated feature names
+(`food`, `calories`, and `total_fat`). In the code below create another
+scatterplot from the food data set, choosing any two featuress for the two
+axes:
+
+```{r}
+food |>
+  ggplot() +
+    geom_point(aes(x = vitamin_a, y = iron))
+```
+
+In the next few classes we will see how to modify and build on this basic
+structure to create more complex graphics.
+
+### Text Geometries
+
+Let's go through several other choices of geometries that we could have in the
+plot. There are many of these, but in general you can create most plots with
+only a small number of geometry types. To start, we will use the geometry
+`geom_text`, which puts a small label in place of the points in our previous
+example.
+
+The text geometry needs an additional aes called `label` to describe what
+feature in the data set should be used as the label. Here, we use the feature
+called `item` to label each point with the name of the specific food item in
+question (the column is called `item`):
+
+```{r}
+food |>
+  ggplot() +
+    geom_text(aes(x = calories, y = total_fat, label = item))
+```
+
+Can you now identify what food has the highest amount of fat? Or the highest
+calorie count? Hopefully!
+
+You likely cannot, however, figure out what foods have the lowest amount of fat
+because the labels become too clumped together. In order to try to address this
+issue, we can use a slightly different geometry called `geom_text_repel`. It
+also places labels on the plot, but has logic that avoids intersecting labels.
+Instead, labels are moved away from the data points and connected (when needed)
+by a line segment:
+
+```{r}
+food |>
+  ggplot() +
+    geom_text_repel(aes(x = calories, y = total_fat, label = item))
+```
+
+This is still a bit busy in the lower left-hand corner, but should be slightly
+easier to read in the middle of the plot.
+
+We can make the plot a bit more readable by adding two *layers*, one with
+the text and another with the points. To do this, just add the two geometries
+together like this:
+
+```{r}
+food |>
+  ggplot() +
+    geom_text_repel(aes(x = calories, y = total_fat, label = item)) +
+    geom_point(aes(x = calories, y = total_fat))
+```
+
+Next class we will see how to further improve this plot.
+
+### Formatting code
+
+The first notebook stress the importance of following a few style guidelines
+about your code. Here are three additional formatting rules that apply
+specifically to building graphics in R:
+
+- indent every line that follows a pipe with two extra spaces
+- indent every line below `ggplot` by an additional two spaces (four total)
+
+As with our original set of style guidelines, you will make your life a lot
+easier if you get used to these rules right from the start. Note that hitting
+TAB should give you two spaces in the RStudio Cloud editor.
+
+## Homework Questions
+
+At at then end of each set of notes, such as this one, will be a short set of
+questions or activities to complete before the next class. Bring written
+solutions with you to class.
+
+1. On a piece of paper, create a tabular dataset describing five animals of your
+choosing. The table should have three columns: `name`, `height`, and `weight`.
+Using any unit of measurement you would like, pick five animals, guess their
+typical height and weight, and fill in the data.
+2. Assume that the data you created above was read into R as an object called
+`animals`. Write, on a piece of paper, the R code that would create a labelled
+scatterplot from your dataset with height and weight on the x- and y-axes and
+the labels giving the name of the animal.
+3. Hand-sketch what your scatterplot should look like.
+4. In these notes we described how the grammar of graphics describes elements
+of a plot. List three things about the images in these notes that were NOT
+directly described by the aesthetics, data, and geometries. Do your best with
+this; we will discuss in class.
+
+Once you have finished reading and completing the items above, make sure to
+submit the pre-class form.

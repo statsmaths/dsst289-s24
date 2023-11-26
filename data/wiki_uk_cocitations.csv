@@ -1,0 +1,2115 @@
+doc_id,doc_id_out,count
+Marie de France,Matthew Arnold,1
+Marie de France,Oscar Wilde,2
+Marie de France,Samuel Pepys,1
+Marie de France,T. S. Eliot,1
+Marie de France,Thomas Malory,1
+Marie de France,W. H. Auden,1
+Marie de France,Walter Raleigh,1
+Marie de France,William Blake,1
+Marie de France,William Langland,1
+Marie de France,William Shakespeare,2
+Geoffrey Chaucer,George Bernard Shaw,1
+Geoffrey Chaucer,George Eliot,6
+Geoffrey Chaucer,George Herbert,2
+Geoffrey Chaucer,George Orwell,3
+Geoffrey Chaucer,Henry Vaughan,3
+Geoffrey Chaucer,James Boswell,2
+Geoffrey Chaucer,Jane Austen,5
+Geoffrey Chaucer,John Clare,1
+Geoffrey Chaucer,John Donne,4
+Geoffrey Chaucer,John Dryden,3
+Geoffrey Chaucer,John Gower,9
+Geoffrey Chaucer,John Keats,3
+Geoffrey Chaucer,John Locke,3
+Geoffrey Chaucer,John Milton,5
+Geoffrey Chaucer,John Stuart Mill,1
+Geoffrey Chaucer,Jonathan Swift,2
+Geoffrey Chaucer,Joseph Conrad,3
+Geoffrey Chaucer,Katherine Philipps,1
+Geoffrey Chaucer,Lord Byron,2
+Geoffrey Chaucer,Louis MacNeice,1
+Geoffrey Chaucer,Margaret Cavendish,2
+Geoffrey Chaucer,Margery Kempe,5
+Geoffrey Chaucer,Marie de France,3
+Geoffrey Chaucer,Mary Robinson,1
+Geoffrey Chaucer,Mary Wollstonecraft,1
+Geoffrey Chaucer,Matthew Arnold,1
+Geoffrey Chaucer,Oscar Wilde,2
+Geoffrey Chaucer,Percy Bysshe Shelley,5
+Geoffrey Chaucer,Philip Sidney,3
+Geoffrey Chaucer,Rudyard Kipling,5
+Geoffrey Chaucer,Samuel Beckett,1
+Geoffrey Chaucer,Samuel Johnson,8
+Geoffrey Chaucer,Samuel Pepys,5
+Geoffrey Chaucer,Samuel Taylor Coleridge,3
+Geoffrey Chaucer,Stephen Spender,1
+Geoffrey Chaucer,T. S. Eliot,7
+Geoffrey Chaucer,Thomas Hobbes,2
+Geoffrey Chaucer,Thomas Malory,2
+Geoffrey Chaucer,Thomas More,9
+Geoffrey Chaucer,Virginia Woolf,1
+Geoffrey Chaucer,W. H. Auden,7
+Geoffrey Chaucer,Walter Raleigh,6
+Geoffrey Chaucer,William Blake,3
+Geoffrey Chaucer,William Langland,8
+Geoffrey Chaucer,William Shakespeare,7
+Geoffrey Chaucer,William Wordsworth,1
+John Gower,John Locke,1
+John Gower,Margaret Cavendish,1
+John Gower,Marie de France,3
+John Gower,Mary Wollstonecraft,1
+John Gower,Oscar Wilde,1
+John Gower,Percy Bysshe Shelley,1
+John Gower,Rex Warner,1
+John Gower,Rudyard Kipling,1
+John Gower,Samuel Beckett,1
+John Gower,Samuel Pepys,1
+John Gower,Samuel Taylor Coleridge,2
+John Gower,Thomas Hobbes,1
+John Gower,Thomas Malory,1
+John Gower,Thomas More,1
+John Gower,Virginia Woolf,3
+John Gower,W. H. Auden,2
+John Gower,Walter Raleigh,2
+John Gower,William Blake,1
+John Gower,William Langland,3
+John Gower,William Shakespeare,4
+Margery Kempe,Marie de France,1
+Margery Kempe,Mary Wollstonecraft,1
+Margery Kempe,Percy Bysshe Shelley,1
+Margery Kempe,Samuel Johnson,3
+Margery Kempe,Samuel Taylor Coleridge,1
+Margery Kempe,Stephen Spender,1
+Margery Kempe,T. S. Eliot,2
+Margery Kempe,Thomas More,7
+Margery Kempe,W. H. Auden,1
+Margery Kempe,Walter Raleigh,1
+Margery Kempe,William Blake,1
+Margery Kempe,William Langland,2
+Margery Kempe,William Shakespeare,1
+Margery Kempe,William Wordsworth,2
+Thomas Malory,Thomas More,4
+Thomas Malory,W. H. Auden,1
+Thomas Malory,Walter Raleigh,2
+Thomas Malory,William Blake,2
+Thomas Malory,William Langland,1
+Thomas Malory,William Shakespeare,3
+Thomas Malory,William Wordsworth,2
+Thomas More,Virginia Woolf,1
+Thomas More,W. B. Yeats,1
+Thomas More,W. H. Auden,3
+Thomas More,Walter Raleigh,7
+Thomas More,William Blake,4
+Thomas More,William Shakespeare,10
+Thomas More,William Wordsworth,3
+Edmund Spenser,Elizabeth Barrett Browning,3
+Edmund Spenser,Emilia Lanier,3
+Edmund Spenser,Emily Brontë,2
+Edmund Spenser,Felicia Hemans,1
+Edmund Spenser,Geoffrey Chaucer,5
+Edmund Spenser,George Bernard Shaw,1
+Edmund Spenser,George Eliot,3
+Edmund Spenser,George Herbert,1
+Edmund Spenser,George Orwell,1
+Edmund Spenser,Henry Vaughan,1
+Edmund Spenser,James Boswell,1
+Edmund Spenser,Jane Austen,2
+Edmund Spenser,John Clare,3
+Edmund Spenser,John Donne,4
+Edmund Spenser,John Dryden,13
+Edmund Spenser,John Gower,4
+Edmund Spenser,John Keats,3
+Edmund Spenser,John Locke,1
+Edmund Spenser,John Milton,6
+Edmund Spenser,John Stuart Mill,2
+Edmund Spenser,Jonathan Swift,1
+Edmund Spenser,Joseph Conrad,1
+Edmund Spenser,Katherine Philipps,2
+Edmund Spenser,Lord Byron,4
+Edmund Spenser,Margaret Cavendish,3
+Edmund Spenser,Marie de France,1
+Edmund Spenser,Mary Robinson,1
+Edmund Spenser,Mary Wollstonecraft,2
+Edmund Spenser,Matthew Arnold,1
+Edmund Spenser,Oscar Wilde,3
+Edmund Spenser,Percy Bysshe Shelley,4
+Edmund Spenser,Philip Sidney,4
+Edmund Spenser,Rex Warner,1
+Edmund Spenser,Robert Burns,1
+Edmund Spenser,Rudyard Kipling,3
+Edmund Spenser,Samuel Beckett,2
+Edmund Spenser,Samuel Johnson,5
+Edmund Spenser,Samuel Pepys,5
+Edmund Spenser,Samuel Taylor Coleridge,6
+Edmund Spenser,T. S. Eliot,5
+Edmund Spenser,Thomas Hobbes,2
+Edmund Spenser,Thomas Malory,1
+Edmund Spenser,Virginia Woolf,1
+Edmund Spenser,W. B. Yeats,3
+Edmund Spenser,W. H. Auden,4
+Edmund Spenser,Walter Raleigh,6
+Edmund Spenser,William Blake,6
+Edmund Spenser,William Langland,2
+Edmund Spenser,William Shakespeare,10
+Edmund Spenser,William Wordsworth,4
+Walter Raleigh,William Blake,3
+Walter Raleigh,William Langland,1
+Walter Raleigh,William Shakespeare,6
+Walter Raleigh,William Wordsworth,2
+Philip Sidney,Rudyard Kipling,1
+Philip Sidney,Samuel Johnson,3
+Philip Sidney,Samuel Pepys,2
+Philip Sidney,Samuel Taylor Coleridge,1
+Philip Sidney,Stephen Spender,1
+Philip Sidney,T. S. Eliot,2
+Philip Sidney,Thomas Malory,1
+Philip Sidney,Thomas More,2
+Philip Sidney,W. B. Yeats,1
+Philip Sidney,W. H. Auden,2
+Philip Sidney,Walter Raleigh,4
+Philip Sidney,William Blake,1
+Philip Sidney,William Langland,1
+Philip Sidney,William Shakespeare,2
+Philip Sidney,William Wordsworth,2
+Christopher Marlowe,D. H. Lawrence,1
+Christopher Marlowe,Daphne du Maurier,1
+Christopher Marlowe,Edmund Spenser,10
+Christopher Marlowe,Edward Upward,1
+Christopher Marlowe,Elizabeth Barrett Browning,1
+Christopher Marlowe,Emilia Lanier,5
+Christopher Marlowe,Emily Brontë,2
+Christopher Marlowe,Geoffrey Chaucer,5
+Christopher Marlowe,George Bernard Shaw,5
+Christopher Marlowe,George Eliot,2
+Christopher Marlowe,George Herbert,4
+Christopher Marlowe,George Orwell,3
+Christopher Marlowe,Henry Vaughan,2
+Christopher Marlowe,James Boswell,2
+Christopher Marlowe,Jane Austen,4
+Christopher Marlowe,John Clare,5
+Christopher Marlowe,John Donne,7
+Christopher Marlowe,John Dryden,6
+Christopher Marlowe,John Gower,2
+Christopher Marlowe,John Keats,2
+Christopher Marlowe,John Locke,2
+Christopher Marlowe,John Milton,8
+Christopher Marlowe,John Stuart Mill,2
+Christopher Marlowe,Jonathan Swift,1
+Christopher Marlowe,Joseph Conrad,3
+Christopher Marlowe,Lord Byron,1
+Christopher Marlowe,Margaret Cavendish,3
+Christopher Marlowe,Margery Kempe,4
+Christopher Marlowe,Mary Robinson,3
+Christopher Marlowe,Mary Wollstonecraft,2
+Christopher Marlowe,Oscar Wilde,5
+Christopher Marlowe,Percy Bysshe Shelley,2
+Christopher Marlowe,Philip Sidney,6
+Christopher Marlowe,Rudyard Kipling,5
+Christopher Marlowe,Samuel Beckett,1
+Christopher Marlowe,Samuel Johnson,6
+Christopher Marlowe,Samuel Pepys,4
+Christopher Marlowe,Samuel Taylor Coleridge,6
+Christopher Marlowe,T. S. Eliot,6
+Christopher Marlowe,Thomas Hobbes,3
+Christopher Marlowe,Thomas Malory,3
+Christopher Marlowe,Thomas More,8
+Christopher Marlowe,Virginia Woolf,2
+Christopher Marlowe,W. B. Yeats,1
+Christopher Marlowe,W. H. Auden,6
+Christopher Marlowe,Walter Raleigh,6
+Christopher Marlowe,William Blake,6
+Christopher Marlowe,William Langland,3
+Christopher Marlowe,William Shakespeare,27
+Christopher Marlowe,William Wordsworth,2
+William Shakespeare,William Wordsworth,8
+John Donne,John Dryden,7
+John Donne,John Gower,1
+John Donne,John Keats,3
+John Donne,John Locke,3
+John Donne,John Milton,11
+John Donne,John Stuart Mill,3
+John Donne,Jonathan Swift,2
+John Donne,Joseph Conrad,4
+John Donne,Katherine Philipps,3
+John Donne,Lord Byron,1
+John Donne,Louis MacNeice,2
+John Donne,Margaret Cavendish,1
+John Donne,Margery Kempe,3
+John Donne,Marie de France,1
+John Donne,Mary Wollstonecraft,3
+John Donne,Matthew Arnold,1
+John Donne,Oscar Wilde,2
+John Donne,Percy Bysshe Shelley,5
+John Donne,Philip Sidney,3
+John Donne,Robert Burns,1
+John Donne,Rudyard Kipling,3
+John Donne,Samuel Beckett,2
+John Donne,Samuel Johnson,8
+John Donne,Samuel Pepys,7
+John Donne,Samuel Taylor Coleridge,5
+John Donne,Seamus Heaney,1
+John Donne,Stephen Spender,2
+John Donne,T. S. Eliot,2
+John Donne,Thomas Hobbes,10
+John Donne,Thomas Malory,2
+John Donne,Thomas More,9
+John Donne,Virginia Woolf,3
+John Donne,W. B. Yeats,1
+John Donne,W. H. Auden,7
+John Donne,Walter Raleigh,10
+John Donne,William Blake,7
+John Donne,William Langland,3
+John Donne,William Shakespeare,9
+John Donne,William Wordsworth,1
+Emilia Lanier,Geoffrey Chaucer,3
+Emilia Lanier,George Bernard Shaw,1
+Emilia Lanier,George Eliot,1
+Emilia Lanier,George Herbert,2
+Emilia Lanier,George Orwell,1
+Emilia Lanier,Henry Vaughan,2
+Emilia Lanier,James Boswell,1
+Emilia Lanier,Jane Austen,1
+Emilia Lanier,John Clare,2
+Emilia Lanier,John Donne,2
+Emilia Lanier,John Dryden,3
+Emilia Lanier,John Gower,2
+Emilia Lanier,John Keats,2
+Emilia Lanier,John Milton,5
+Emilia Lanier,John Stuart Mill,1
+Emilia Lanier,Jonathan Swift,2
+Emilia Lanier,Joseph Conrad,2
+Emilia Lanier,Lord Byron,1
+Emilia Lanier,Margaret Cavendish,1
+Emilia Lanier,Margery Kempe,1
+Emilia Lanier,Marie de France,2
+Emilia Lanier,Mary Robinson,1
+Emilia Lanier,Percy Bysshe Shelley,2
+Emilia Lanier,Philip Sidney,5
+Emilia Lanier,Rudyard Kipling,1
+Emilia Lanier,Samuel Johnson,3
+Emilia Lanier,Samuel Pepys,1
+Emilia Lanier,Samuel Taylor Coleridge,1
+Emilia Lanier,T. S. Eliot,2
+Emilia Lanier,Thomas Hobbes,1
+Emilia Lanier,Thomas Malory,1
+Emilia Lanier,Thomas More,3
+Emilia Lanier,Virginia Woolf,2
+Emilia Lanier,W. B. Yeats,1
+Emilia Lanier,W. H. Auden,1
+Emilia Lanier,Walter Raleigh,3
+Emilia Lanier,William Blake,2
+Emilia Lanier,William Shakespeare,10
+Emilia Lanier,William Wordsworth,2
+Ben Jonson,C. S. Lewis,6
+Ben Jonson,Cecil Day-Lewis,2
+Ben Jonson,Charles Dickens,6
+Ben Jonson,Charlotte Brontë,1
+Ben Jonson,Charlotte Smith,1
+Ben Jonson,Christina Rossetti,2
+Ben Jonson,Christopher Isherwood,2
+Ben Jonson,Christopher Marlowe,20
+Ben Jonson,D. H. Lawrence,1
+Ben Jonson,Daphne du Maurier,1
+Ben Jonson,Edmund Spenser,9
+Ben Jonson,Elizabeth Barrett Browning,4
+Ben Jonson,Emilia Lanier,4
+Ben Jonson,Geoffrey Chaucer,7
+Ben Jonson,George Bernard Shaw,6
+Ben Jonson,George Eliot,3
+Ben Jonson,George Herbert,8
+Ben Jonson,George Orwell,2
+Ben Jonson,Henry Vaughan,3
+Ben Jonson,James Joyce,2
+Ben Jonson,Jane Austen,3
+Ben Jonson,John Clare,1
+Ben Jonson,John Donne,16
+Ben Jonson,John Dryden,16
+Ben Jonson,John Gower,1
+Ben Jonson,John Keats,8
+Ben Jonson,John Locke,7
+Ben Jonson,John Milton,22
+Ben Jonson,John Stuart Mill,1
+Ben Jonson,Jonathan Swift,6
+Ben Jonson,Joseph Conrad,2
+Ben Jonson,Katherine Philipps,5
+Ben Jonson,Lord Byron,4
+Ben Jonson,Louis MacNeice,2
+Ben Jonson,Margaret Cavendish,7
+Ben Jonson,Mary Robinson,2
+Ben Jonson,Mary Wollstonecraft,2
+Ben Jonson,Matthew Arnold,2
+Ben Jonson,Oscar Wilde,5
+Ben Jonson,Percy Bysshe Shelley,3
+Ben Jonson,Philip Sidney,8
+Ben Jonson,Rex Warner,1
+Ben Jonson,Robert Burns,3
+Ben Jonson,Rudyard Kipling,5
+Ben Jonson,Samuel Beckett,2
+Ben Jonson,Samuel Johnson,10
+Ben Jonson,Samuel Pepys,7
+Ben Jonson,Samuel Taylor Coleridge,3
+Ben Jonson,Seamus Heaney,1
+Ben Jonson,Stephen Spender,1
+Ben Jonson,T. S. Eliot,8
+Ben Jonson,Thomas Hobbes,5
+Ben Jonson,Thomas Malory,3
+Ben Jonson,Thomas More,8
+Ben Jonson,Virginia Woolf,3
+Ben Jonson,W. B. Yeats,1
+Ben Jonson,W. H. Auden,7
+Ben Jonson,Walter Raleigh,8
+Ben Jonson,William Blake,7
+Ben Jonson,William Langland,1
+Ben Jonson,William Shakespeare,27
+Ben Jonson,William Wordsworth,2
+Thomas Hobbes,Thomas More,2
+Thomas Hobbes,Virginia Woolf,1
+Thomas Hobbes,W. B. Yeats,1
+Thomas Hobbes,W. H. Auden,3
+Thomas Hobbes,Walter Raleigh,5
+Thomas Hobbes,William Blake,4
+Thomas Hobbes,William Langland,3
+Thomas Hobbes,William Shakespeare,4
+Thomas Hobbes,William Wordsworth,1
+George Herbert,George Orwell,3
+George Herbert,James Boswell,1
+George Herbert,John Clare,3
+George Herbert,John Donne,12
+George Herbert,John Dryden,7
+George Herbert,John Keats,1
+George Herbert,John Locke,4
+George Herbert,John Milton,7
+George Herbert,John Stuart Mill,1
+George Herbert,Jonathan Swift,2
+George Herbert,Joseph Conrad,1
+George Herbert,Katherine Philipps,2
+George Herbert,Lord Byron,2
+George Herbert,Louis MacNeice,3
+George Herbert,Margaret Cavendish,2
+George Herbert,Margery Kempe,2
+George Herbert,Mary Wollstonecraft,1
+George Herbert,Oscar Wilde,1
+George Herbert,Philip Sidney,1
+George Herbert,Rudyard Kipling,1
+George Herbert,Samuel Johnson,6
+George Herbert,Samuel Pepys,4
+George Herbert,Samuel Taylor Coleridge,1
+George Herbert,Stephen Spender,1
+George Herbert,T. S. Eliot,3
+George Herbert,Thomas Hobbes,2
+George Herbert,Thomas Malory,1
+George Herbert,Thomas More,4
+George Herbert,Virginia Woolf,1
+George Herbert,W. H. Auden,3
+George Herbert,Walter Raleigh,2
+George Herbert,William Blake,7
+George Herbert,William Shakespeare,3
+George Herbert,William Wordsworth,2
+Henry Vaughan,Jane Austen,1
+Henry Vaughan,John Clare,2
+Henry Vaughan,John Donne,1
+Henry Vaughan,John Dryden,3
+Henry Vaughan,John Gower,1
+Henry Vaughan,John Locke,1
+Henry Vaughan,John Milton,3
+Henry Vaughan,Jonathan Swift,2
+Henry Vaughan,Katherine Philipps,1
+Henry Vaughan,Margaret Cavendish,3
+Henry Vaughan,Mary Robinson,1
+Henry Vaughan,Matthew Arnold,1
+Henry Vaughan,Oscar Wilde,1
+Henry Vaughan,Percy Bysshe Shelley,1
+Henry Vaughan,Philip Sidney,1
+Henry Vaughan,Rudyard Kipling,1
+Henry Vaughan,Samuel Johnson,2
+Henry Vaughan,Samuel Pepys,1
+Henry Vaughan,Samuel Taylor Coleridge,2
+Henry Vaughan,T. S. Eliot,1
+Henry Vaughan,Thomas Hobbes,5
+Henry Vaughan,Thomas Malory,2
+Henry Vaughan,Thomas More,3
+Henry Vaughan,W. H. Auden,2
+Henry Vaughan,Walter Raleigh,2
+Henry Vaughan,William Blake,1
+Henry Vaughan,William Shakespeare,3
+Henry Vaughan,William Wordsworth,1
+Katherine Philipps,Lord Byron,1
+Katherine Philipps,Margaret Cavendish,4
+Katherine Philipps,Oscar Wilde,1
+Katherine Philipps,Percy Bysshe Shelley,2
+Katherine Philipps,Philip Sidney,1
+Katherine Philipps,Samuel Beckett,2
+Katherine Philipps,Samuel Johnson,2
+Katherine Philipps,Samuel Pepys,2
+Katherine Philipps,Samuel Taylor Coleridge,2
+Katherine Philipps,T. S. Eliot,1
+Katherine Philipps,Thomas Hobbes,1
+Katherine Philipps,Thomas More,1
+Katherine Philipps,W. B. Yeats,2
+Katherine Philipps,William Blake,1
+Katherine Philipps,William Shakespeare,2
+Katherine Philipps,William Wordsworth,2
+John Milton,John Stuart Mill,9
+John Milton,Jonathan Swift,8
+John Milton,Joseph Conrad,10
+John Milton,Katherine Philipps,5
+John Milton,Lord Byron,11
+John Milton,Louis MacNeice,2
+John Milton,Margaret Cavendish,8
+John Milton,Margery Kempe,4
+John Milton,Marie de France,3
+John Milton,Mary Robinson,2
+John Milton,Mary Wollstonecraft,11
+John Milton,Matthew Arnold,3
+John Milton,Oscar Wilde,4
+John Milton,Percy Bysshe Shelley,14
+John Milton,Philip Sidney,2
+John Milton,Robert Burns,5
+John Milton,Rudyard Kipling,4
+John Milton,Samuel Beckett,5
+John Milton,Samuel Johnson,18
+John Milton,Samuel Pepys,13
+John Milton,Samuel Taylor Coleridge,17
+John Milton,Seamus Heaney,1
+John Milton,Stephen Spender,2
+John Milton,T. S. Eliot,11
+John Milton,Thomas Hobbes,12
+John Milton,Thomas Malory,1
+John Milton,Thomas More,9
+John Milton,Virginia Woolf,5
+John Milton,W. B. Yeats,7
+John Milton,W. H. Auden,8
+John Milton,Walter Raleigh,5
+John Milton,William Blake,12
+John Milton,William Langland,1
+John Milton,William Shakespeare,18
+John Milton,William Wordsworth,11
+Margaret Cavendish,Mary Robinson,1
+Margaret Cavendish,Mary Wollstonecraft,2
+Margaret Cavendish,Matthew Arnold,1
+Margaret Cavendish,Oscar Wilde,3
+Margaret Cavendish,Robert Burns,1
+Margaret Cavendish,Rudyard Kipling,2
+Margaret Cavendish,Samuel Johnson,2
+Margaret Cavendish,Samuel Pepys,2
+Margaret Cavendish,Samuel Taylor Coleridge,3
+Margaret Cavendish,Stephen Spender,1
+Margaret Cavendish,T. S. Eliot,3
+Margaret Cavendish,Thomas Hobbes,5
+Margaret Cavendish,Thomas More,2
+Margaret Cavendish,W. B. Yeats,1
+Margaret Cavendish,W. H. Auden,1
+Margaret Cavendish,Walter Raleigh,1
+Margaret Cavendish,William Blake,4
+Margaret Cavendish,William Shakespeare,4
+Margaret Cavendish,William Wordsworth,1
+John Dryden,John Gower,3
+John Dryden,John Keats,9
+John Dryden,John Locke,9
+John Dryden,John Milton,18
+John Dryden,John Stuart Mill,1
+John Dryden,Jonathan Swift,4
+John Dryden,Joseph Conrad,1
+John Dryden,Katherine Philipps,3
+John Dryden,Lord Byron,4
+John Dryden,Louis MacNeice,2
+John Dryden,Margaret Cavendish,4
+John Dryden,Marie de France,1
+John Dryden,Mary Robinson,1
+John Dryden,Mary Wollstonecraft,2
+John Dryden,Matthew Arnold,2
+John Dryden,Oscar Wilde,3
+John Dryden,Percy Bysshe Shelley,8
+John Dryden,Philip Sidney,2
+John Dryden,Rex Warner,1
+John Dryden,Robert Burns,2
+John Dryden,Rudyard Kipling,5
+John Dryden,Samuel Beckett,2
+John Dryden,Samuel Johnson,12
+John Dryden,Samuel Pepys,13
+John Dryden,Samuel Taylor Coleridge,9
+John Dryden,Seamus Heaney,1
+John Dryden,Stephen Spender,2
+John Dryden,T. S. Eliot,7
+John Dryden,Thomas Hobbes,7
+John Dryden,Thomas Malory,1
+John Dryden,Thomas More,3
+John Dryden,Virginia Woolf,3
+John Dryden,W. B. Yeats,5
+John Dryden,W. H. Auden,7
+John Dryden,Walter Raleigh,3
+John Dryden,William Blake,10
+John Dryden,William Langland,1
+John Dryden,William Shakespeare,8
+John Dryden,William Wordsworth,7
+Samuel Pepys,Samuel Taylor Coleridge,5
+Samuel Pepys,Seamus Heaney,1
+Samuel Pepys,T. S. Eliot,1
+Samuel Pepys,Thomas Hobbes,3
+Samuel Pepys,Thomas More,7
+Samuel Pepys,Virginia Woolf,3
+Samuel Pepys,W. B. Yeats,2
+Samuel Pepys,W. H. Auden,2
+Samuel Pepys,Walter Raleigh,7
+Samuel Pepys,William Blake,2
+Samuel Pepys,William Langland,3
+Samuel Pepys,William Shakespeare,5
+John Locke,John Milton,24
+John Locke,John Stuart Mill,6
+John Locke,Jonathan Swift,6
+John Locke,Joseph Conrad,3
+John Locke,Katherine Philipps,3
+John Locke,Lord Byron,1
+John Locke,Louis MacNeice,1
+John Locke,Margaret Cavendish,4
+John Locke,Margery Kempe,1
+John Locke,Mary Robinson,1
+John Locke,Mary Wollstonecraft,5
+John Locke,Matthew Arnold,1
+John Locke,Oscar Wilde,4
+John Locke,Percy Bysshe Shelley,4
+John Locke,Philip Sidney,2
+John Locke,Rex Warner,1
+John Locke,Robert Burns,3
+John Locke,Rudyard Kipling,2
+John Locke,Samuel Beckett,4
+John Locke,Samuel Johnson,4
+John Locke,Samuel Pepys,13
+John Locke,Samuel Taylor Coleridge,7
+John Locke,Seamus Heaney,1
+John Locke,Thomas Hobbes,14
+John Locke,Thomas Malory,2
+John Locke,Thomas More,7
+John Locke,Virginia Woolf,1
+John Locke,W. B. Yeats,1
+John Locke,W. H. Auden,2
+John Locke,Walter Raleigh,2
+John Locke,William Blake,6
+John Locke,William Langland,1
+John Locke,William Shakespeare,5
+Jonathan Swift,Joseph Conrad,1
+Jonathan Swift,Katherine Philipps,3
+Jonathan Swift,Louis MacNeice,6
+Jonathan Swift,Margaret Cavendish,2
+Jonathan Swift,Mary Robinson,1
+Jonathan Swift,Mary Wollstonecraft,2
+Jonathan Swift,Oscar Wilde,8
+Jonathan Swift,Percy Bysshe Shelley,2
+Jonathan Swift,Philip Sidney,1
+Jonathan Swift,Rudyard Kipling,5
+Jonathan Swift,Samuel Beckett,4
+Jonathan Swift,Samuel Johnson,8
+Jonathan Swift,Samuel Pepys,2
+Jonathan Swift,Samuel Taylor Coleridge,1
+Jonathan Swift,Seamus Heaney,2
+Jonathan Swift,T. S. Eliot,2
+Jonathan Swift,Thomas Hobbes,2
+Jonathan Swift,Thomas Malory,1
+Jonathan Swift,Thomas More,2
+Jonathan Swift,W. B. Yeats,3
+Jonathan Swift,W. H. Auden,4
+Jonathan Swift,Walter Raleigh,5
+Jonathan Swift,William Blake,2
+Jonathan Swift,William Shakespeare,1
+Jonathan Swift,William Wordsworth,2
+Alexander Pope,"Alfred, Lord Tennyson",5
+Alexander Pope,Ann Radcliffe,5
+Alexander Pope,Beatrix Potter,1
+Alexander Pope,Ben Jonson,9
+Alexander Pope,C. S. Lewis,3
+Alexander Pope,Cecil Day-Lewis,1
+Alexander Pope,Charles Dickens,5
+Alexander Pope,Charlotte Brontë,1
+Alexander Pope,Charlotte Smith,1
+Alexander Pope,Christina Rossetti,2
+Alexander Pope,Christopher Marlowe,5
+Alexander Pope,D. H. Lawrence,1
+Alexander Pope,Edmund Spenser,6
+Alexander Pope,Elizabeth Barrett Browning,5
+Alexander Pope,Emilia Lanier,1
+Alexander Pope,Emily Brontë,4
+Alexander Pope,Felicia Hemans,2
+Alexander Pope,Geoffrey Chaucer,2
+Alexander Pope,George Bernard Shaw,4
+Alexander Pope,George Eliot,1
+Alexander Pope,George Herbert,3
+Alexander Pope,George Orwell,7
+Alexander Pope,Henry Vaughan,1
+Alexander Pope,James Boswell,5
+Alexander Pope,James Joyce,2
+Alexander Pope,Jane Austen,5
+Alexander Pope,John Clare,4
+Alexander Pope,John Donne,3
+Alexander Pope,John Dryden,17
+Alexander Pope,John Gower,1
+Alexander Pope,John Keats,7
+Alexander Pope,John Locke,3
+Alexander Pope,John Milton,15
+Alexander Pope,John Stuart Mill,3
+Alexander Pope,Jonathan Swift,15
+Alexander Pope,Joseph Conrad,1
+Alexander Pope,Katherine Philipps,2
+Alexander Pope,Lord Byron,1
+Alexander Pope,Louis MacNeice,1
+Alexander Pope,Margaret Cavendish,3
+Alexander Pope,Margery Kempe,1
+Alexander Pope,Marie de France,1
+Alexander Pope,Mary Robinson,3
+Alexander Pope,Mary Wollstonecraft,3
+Alexander Pope,Matthew Arnold,2
+Alexander Pope,Oscar Wilde,2
+Alexander Pope,Percy Bysshe Shelley,3
+Alexander Pope,Philip Sidney,1
+Alexander Pope,Robert Burns,1
+Alexander Pope,Rudyard Kipling,3
+Alexander Pope,Samuel Beckett,1
+Alexander Pope,Samuel Johnson,13
+Alexander Pope,Samuel Pepys,5
+Alexander Pope,Samuel Taylor Coleridge,8
+Alexander Pope,Seamus Heaney,1
+Alexander Pope,T. S. Eliot,4
+Alexander Pope,Thomas Hobbes,2
+Alexander Pope,Thomas Malory,2
+Alexander Pope,Thomas More,5
+Alexander Pope,Virginia Woolf,1
+Alexander Pope,W. B. Yeats,4
+Alexander Pope,W. H. Auden,5
+Alexander Pope,Walter Raleigh,2
+Alexander Pope,William Blake,9
+Alexander Pope,William Langland,1
+Alexander Pope,William Shakespeare,6
+Alexander Pope,William Wordsworth,5
+Samuel Johnson,Samuel Pepys,6
+Samuel Johnson,Samuel Taylor Coleridge,10
+Samuel Johnson,Seamus Heaney,2
+Samuel Johnson,Stephen Spender,1
+Samuel Johnson,T. S. Eliot,10
+Samuel Johnson,Thomas Hobbes,3
+Samuel Johnson,Thomas Malory,1
+Samuel Johnson,Thomas More,6
+Samuel Johnson,Virginia Woolf,2
+Samuel Johnson,W. B. Yeats,3
+Samuel Johnson,W. H. Auden,8
+Samuel Johnson,Walter Raleigh,2
+Samuel Johnson,William Blake,9
+Samuel Johnson,William Langland,1
+Samuel Johnson,William Shakespeare,16
+Samuel Johnson,William Wordsworth,6
+James Boswell,James Joyce,1
+James Boswell,Jane Austen,4
+James Boswell,John Donne,3
+James Boswell,John Dryden,2
+James Boswell,John Gower,1
+James Boswell,John Keats,3
+James Boswell,John Locke,6
+James Boswell,John Milton,8
+James Boswell,John Stuart Mill,3
+James Boswell,Jonathan Swift,2
+James Boswell,Joseph Conrad,3
+James Boswell,Katherine Philipps,1
+James Boswell,Lord Byron,2
+James Boswell,Louis MacNeice,1
+James Boswell,Marie de France,1
+James Boswell,Mary Robinson,1
+James Boswell,Mary Wollstonecraft,4
+James Boswell,Oscar Wilde,1
+James Boswell,Percy Bysshe Shelley,2
+James Boswell,Robert Burns,4
+James Boswell,Rudyard Kipling,1
+James Boswell,Samuel Beckett,3
+James Boswell,Samuel Johnson,8
+James Boswell,Samuel Pepys,2
+James Boswell,Samuel Taylor Coleridge,7
+James Boswell,Thomas Hobbes,2
+James Boswell,Thomas More,3
+James Boswell,Virginia Woolf,4
+James Boswell,W. B. Yeats,1
+James Boswell,W. H. Auden,1
+James Boswell,Walter Raleigh,2
+James Boswell,William Blake,2
+James Boswell,William Langland,1
+James Boswell,William Shakespeare,6
+James Boswell,William Wordsworth,1
+Charlotte Smith,Christina Rossetti,5
+Charlotte Smith,D. H. Lawrence,1
+Charlotte Smith,Daphne du Maurier,2
+Charlotte Smith,Edmund Spenser,2
+Charlotte Smith,Elizabeth Barrett Browning,3
+Charlotte Smith,Emily Brontë,1
+Charlotte Smith,Felicia Hemans,1
+Charlotte Smith,George Bernard Shaw,1
+Charlotte Smith,George Eliot,2
+Charlotte Smith,George Orwell,1
+Charlotte Smith,James Boswell,2
+Charlotte Smith,Jane Austen,12
+Charlotte Smith,John Clare,3
+Charlotte Smith,John Donne,1
+Charlotte Smith,John Dryden,4
+Charlotte Smith,John Keats,3
+Charlotte Smith,John Locke,2
+Charlotte Smith,John Milton,8
+Charlotte Smith,John Stuart Mill,2
+Charlotte Smith,Joseph Conrad,1
+Charlotte Smith,Katherine Philipps,1
+Charlotte Smith,Lord Byron,3
+Charlotte Smith,Margaret Cavendish,1
+Charlotte Smith,Mary Robinson,3
+Charlotte Smith,Mary Wollstonecraft,13
+Charlotte Smith,Matthew Arnold,1
+Charlotte Smith,Oscar Wilde,1
+Charlotte Smith,Percy Bysshe Shelley,4
+Charlotte Smith,Robert Burns,7
+Charlotte Smith,Rudyard Kipling,2
+Charlotte Smith,Samuel Johnson,8
+Charlotte Smith,Samuel Taylor Coleridge,7
+Charlotte Smith,Stephen Spender,1
+Charlotte Smith,T. S. Eliot,1
+Charlotte Smith,Thomas Hobbes,1
+Charlotte Smith,Thomas More,1
+Charlotte Smith,Virginia Woolf,2
+Charlotte Smith,W. B. Yeats,2
+Charlotte Smith,Walter Raleigh,1
+Charlotte Smith,William Blake,7
+Charlotte Smith,William Langland,1
+Charlotte Smith,William Shakespeare,2
+Charlotte Smith,William Wordsworth,7
+Mary Robinson,Mary Wollstonecraft,2
+Mary Robinson,Matthew Arnold,1
+Mary Robinson,Percy Bysshe Shelley,2
+Mary Robinson,Philip Sidney,1
+Mary Robinson,Robert Burns,2
+Mary Robinson,Rudyard Kipling,1
+Mary Robinson,Samuel Johnson,2
+Mary Robinson,Samuel Pepys,1
+Mary Robinson,Samuel Taylor Coleridge,4
+Mary Robinson,T. S. Eliot,1
+Mary Robinson,Thomas Hobbes,2
+Mary Robinson,Thomas Malory,1
+Mary Robinson,Thomas More,1
+Mary Robinson,W. B. Yeats,2
+Mary Robinson,W. H. Auden,1
+Mary Robinson,Walter Raleigh,2
+Mary Robinson,William Blake,3
+Mary Robinson,William Langland,1
+Mary Robinson,William Shakespeare,5
+Mary Robinson,William Wordsworth,2
+William Blake,William Langland,1
+William Blake,William Shakespeare,9
+William Blake,William Wordsworth,9
+Robert Burns,Rudyard Kipling,5
+Robert Burns,Samuel Beckett,1
+Robert Burns,Samuel Johnson,2
+Robert Burns,Samuel Pepys,1
+Robert Burns,Samuel Taylor Coleridge,6
+Robert Burns,Seamus Heaney,1
+Robert Burns,T. S. Eliot,3
+Robert Burns,Thomas More,1
+Robert Burns,Virginia Woolf,3
+Robert Burns,W. B. Yeats,2
+Robert Burns,W. H. Auden,1
+Robert Burns,William Blake,8
+Robert Burns,William Shakespeare,3
+Robert Burns,William Wordsworth,8
+Mary Wollstonecraft,Matthew Arnold,2
+Mary Wollstonecraft,Oscar Wilde,3
+Mary Wollstonecraft,Percy Bysshe Shelley,12
+Mary Wollstonecraft,Robert Burns,8
+Mary Wollstonecraft,Rudyard Kipling,5
+Mary Wollstonecraft,Samuel Beckett,2
+Mary Wollstonecraft,Samuel Johnson,7
+Mary Wollstonecraft,Samuel Pepys,2
+Mary Wollstonecraft,Samuel Taylor Coleridge,12
+Mary Wollstonecraft,Seamus Heaney,1
+Mary Wollstonecraft,Stephen Spender,1
+Mary Wollstonecraft,T. S. Eliot,4
+Mary Wollstonecraft,Thomas Hobbes,2
+Mary Wollstonecraft,Thomas More,3
+Mary Wollstonecraft,Virginia Woolf,5
+Mary Wollstonecraft,W. B. Yeats,2
+Mary Wollstonecraft,W. H. Auden,2
+Mary Wollstonecraft,Walter Raleigh,2
+Mary Wollstonecraft,William Blake,13
+Mary Wollstonecraft,William Langland,1
+Mary Wollstonecraft,William Shakespeare,6
+Mary Wollstonecraft,William Wordsworth,7
+Samuel Taylor Coleridge,Seamus Heaney,1
+Samuel Taylor Coleridge,T. S. Eliot,13
+Samuel Taylor Coleridge,Thomas Hobbes,3
+Samuel Taylor Coleridge,Thomas Malory,2
+Samuel Taylor Coleridge,Thomas More,4
+Samuel Taylor Coleridge,Virginia Woolf,4
+Samuel Taylor Coleridge,W. B. Yeats,3
+Samuel Taylor Coleridge,W. H. Auden,4
+Samuel Taylor Coleridge,Walter Raleigh,3
+Samuel Taylor Coleridge,William Blake,10
+Samuel Taylor Coleridge,William Langland,2
+Samuel Taylor Coleridge,William Shakespeare,10
+Samuel Taylor Coleridge,William Wordsworth,19
+Ann Radcliffe,Beatrix Potter,2
+Ann Radcliffe,Ben Jonson,2
+Ann Radcliffe,Bram Stoker,1
+Ann Radcliffe,Cecil Day-Lewis,1
+Ann Radcliffe,Charles Dickens,11
+Ann Radcliffe,Charlotte Brontë,5
+Ann Radcliffe,Charlotte Smith,5
+Ann Radcliffe,Christina Rossetti,3
+Ann Radcliffe,Christopher Marlowe,1
+Ann Radcliffe,D. H. Lawrence,2
+Ann Radcliffe,Daphne du Maurier,2
+Ann Radcliffe,Elizabeth Barrett Browning,2
+Ann Radcliffe,Emily Brontë,4
+Ann Radcliffe,George Bernard Shaw,1
+Ann Radcliffe,George Eliot,1
+Ann Radcliffe,James Joyce,1
+Ann Radcliffe,Jane Austen,8
+Ann Radcliffe,John Dryden,2
+Ann Radcliffe,John Keats,1
+Ann Radcliffe,John Locke,2
+Ann Radcliffe,John Milton,3
+Ann Radcliffe,John Stuart Mill,1
+Ann Radcliffe,Jonathan Swift,2
+Ann Radcliffe,Joseph Conrad,1
+Ann Radcliffe,Lord Byron,2
+Ann Radcliffe,Mary Robinson,1
+Ann Radcliffe,Mary Wollstonecraft,5
+Ann Radcliffe,Oscar Wilde,2
+Ann Radcliffe,Percy Bysshe Shelley,1
+Ann Radcliffe,Robert Burns,3
+Ann Radcliffe,Rudyard Kipling,2
+Ann Radcliffe,Samuel Johnson,3
+Ann Radcliffe,Samuel Pepys,3
+Ann Radcliffe,Samuel Taylor Coleridge,4
+Ann Radcliffe,Stephen Spender,1
+Ann Radcliffe,T. S. Eliot,2
+Ann Radcliffe,Thomas Hobbes,2
+Ann Radcliffe,Thomas More,3
+Ann Radcliffe,Virginia Woolf,3
+Ann Radcliffe,W. B. Yeats,1
+Ann Radcliffe,Walter Raleigh,1
+Ann Radcliffe,William Blake,5
+Ann Radcliffe,William Langland,1
+Ann Radcliffe,William Shakespeare,2
+Ann Radcliffe,William Wordsworth,3
+Jane Austen,John Clare,2
+Jane Austen,John Donne,4
+Jane Austen,John Dryden,8
+Jane Austen,John Gower,1
+Jane Austen,John Keats,3
+Jane Austen,John Locke,1
+Jane Austen,John Milton,9
+Jane Austen,John Stuart Mill,1
+Jane Austen,Jonathan Swift,2
+Jane Austen,Joseph Conrad,6
+Jane Austen,Lord Byron,6
+Jane Austen,Louis MacNeice,1
+Jane Austen,Margaret Cavendish,3
+Jane Austen,Mary Robinson,4
+Jane Austen,Mary Wollstonecraft,12
+Jane Austen,Matthew Arnold,3
+Jane Austen,Oscar Wilde,3
+Jane Austen,Percy Bysshe Shelley,5
+Jane Austen,Philip Sidney,1
+Jane Austen,Robert Burns,6
+Jane Austen,Rudyard Kipling,7
+Jane Austen,Samuel Beckett,1
+Jane Austen,Samuel Johnson,8
+Jane Austen,Samuel Pepys,3
+Jane Austen,Samuel Taylor Coleridge,12
+Jane Austen,Stephen Spender,1
+Jane Austen,T. S. Eliot,5
+Jane Austen,Thomas Hobbes,1
+Jane Austen,Thomas Malory,1
+Jane Austen,Thomas More,1
+Jane Austen,Virginia Woolf,6
+Jane Austen,W. B. Yeats,3
+Jane Austen,W. H. Auden,5
+Jane Austen,Walter Raleigh,5
+Jane Austen,William Blake,5
+Jane Austen,William Langland,1
+Jane Austen,William Shakespeare,8
+Jane Austen,William Wordsworth,6
+Lord Byron,Louis MacNeice,2
+Lord Byron,Margaret Cavendish,3
+Lord Byron,Margery Kempe,1
+Lord Byron,Mary Robinson,3
+Lord Byron,Mary Wollstonecraft,8
+Lord Byron,Matthew Arnold,2
+Lord Byron,Oscar Wilde,5
+Lord Byron,Percy Bysshe Shelley,16
+Lord Byron,Rex Warner,1
+Lord Byron,Robert Burns,9
+Lord Byron,Rudyard Kipling,3
+Lord Byron,Samuel Beckett,1
+Lord Byron,Samuel Johnson,3
+Lord Byron,Samuel Pepys,3
+Lord Byron,Samuel Taylor Coleridge,10
+Lord Byron,Seamus Heaney,1
+Lord Byron,T. S. Eliot,5
+Lord Byron,Thomas Hobbes,1
+Lord Byron,Thomas Malory,1
+Lord Byron,Thomas More,1
+Lord Byron,Virginia Woolf,3
+Lord Byron,W. B. Yeats,4
+Lord Byron,W. H. Auden,1
+Lord Byron,Walter Raleigh,2
+Lord Byron,William Blake,5
+Lord Byron,William Shakespeare,5
+Lord Byron,William Wordsworth,9
+Percy Bysshe Shelley,Philip Sidney,2
+Percy Bysshe Shelley,Rex Warner,1
+Percy Bysshe Shelley,Robert Burns,2
+Percy Bysshe Shelley,Rudyard Kipling,7
+Percy Bysshe Shelley,Samuel Beckett,3
+Percy Bysshe Shelley,Samuel Johnson,9
+Percy Bysshe Shelley,Samuel Pepys,1
+Percy Bysshe Shelley,Samuel Taylor Coleridge,16
+Percy Bysshe Shelley,Seamus Heaney,2
+Percy Bysshe Shelley,Stephen Spender,5
+Percy Bysshe Shelley,T. S. Eliot,7
+Percy Bysshe Shelley,Thomas Hobbes,3
+Percy Bysshe Shelley,Thomas Malory,2
+Percy Bysshe Shelley,Thomas More,4
+Percy Bysshe Shelley,Virginia Woolf,6
+Percy Bysshe Shelley,W. B. Yeats,3
+Percy Bysshe Shelley,W. H. Auden,10
+Percy Bysshe Shelley,Walter Raleigh,4
+Percy Bysshe Shelley,William Blake,10
+Percy Bysshe Shelley,William Langland,1
+Percy Bysshe Shelley,William Shakespeare,5
+Percy Bysshe Shelley,William Wordsworth,9
+John Clare,John Donne,4
+John Clare,John Dryden,4
+John Clare,John Keats,5
+John Clare,John Milton,6
+John Clare,John Stuart Mill,2
+John Clare,Jonathan Swift,1
+John Clare,Joseph Conrad,1
+John Clare,Katherine Philipps,1
+John Clare,Lord Byron,3
+John Clare,Louis MacNeice,2
+John Clare,Margaret Cavendish,1
+John Clare,Margery Kempe,1
+John Clare,Mary Robinson,2
+John Clare,Mary Wollstonecraft,2
+John Clare,Matthew Arnold,1
+John Clare,Oscar Wilde,1
+John Clare,Percy Bysshe Shelley,5
+John Clare,Philip Sidney,1
+John Clare,Robert Burns,2
+John Clare,Rudyard Kipling,3
+John Clare,Samuel Johnson,4
+John Clare,Samuel Taylor Coleridge,7
+John Clare,T. S. Eliot,3
+John Clare,Thomas Hobbes,1
+John Clare,Thomas Malory,2
+John Clare,Thomas More,2
+John Clare,W. B. Yeats,2
+John Clare,W. H. Auden,5
+John Clare,Walter Raleigh,1
+John Clare,William Blake,7
+John Clare,William Shakespeare,3
+John Clare,William Wordsworth,6
+Felicia Hemans,George Bernard Shaw,4
+Felicia Hemans,George Eliot,1
+Felicia Hemans,George Orwell,1
+Felicia Hemans,James Boswell,1
+Felicia Hemans,James Joyce,1
+Felicia Hemans,Jane Austen,3
+Felicia Hemans,John Clare,2
+Felicia Hemans,John Dryden,1
+Felicia Hemans,John Keats,3
+Felicia Hemans,John Milton,1
+Felicia Hemans,John Stuart Mill,1
+Felicia Hemans,Jonathan Swift,1
+Felicia Hemans,Joseph Conrad,1
+Felicia Hemans,Katherine Philipps,1
+Felicia Hemans,Lord Byron,4
+Felicia Hemans,Louis MacNeice,1
+Felicia Hemans,Margaret Cavendish,1
+Felicia Hemans,Marie de France,1
+Felicia Hemans,Mary Robinson,3
+Felicia Hemans,Mary Wollstonecraft,1
+Felicia Hemans,Matthew Arnold,1
+Felicia Hemans,Oscar Wilde,2
+Felicia Hemans,Robert Burns,3
+Felicia Hemans,Rudyard Kipling,1
+Felicia Hemans,Samuel Beckett,1
+Felicia Hemans,Samuel Taylor Coleridge,2
+Felicia Hemans,T. S. Eliot,1
+Felicia Hemans,Thomas Hobbes,1
+Felicia Hemans,Thomas Malory,1
+Felicia Hemans,Thomas More,1
+Felicia Hemans,Virginia Woolf,1
+Felicia Hemans,W. B. Yeats,4
+Felicia Hemans,William Blake,1
+Felicia Hemans,William Shakespeare,1
+Felicia Hemans,William Wordsworth,1
+John Keats,John Milton,12
+John Keats,John Stuart Mill,2
+John Keats,Jonathan Swift,2
+John Keats,Joseph Conrad,6
+John Keats,Lord Byron,9
+John Keats,Louis MacNeice,4
+John Keats,Margaret Cavendish,2
+John Keats,Marie de France,1
+John Keats,Mary Robinson,2
+John Keats,Mary Wollstonecraft,4
+John Keats,Matthew Arnold,3
+John Keats,Oscar Wilde,5
+John Keats,Percy Bysshe Shelley,14
+John Keats,Philip Sidney,1
+John Keats,Robert Burns,5
+John Keats,Rudyard Kipling,5
+John Keats,Samuel Beckett,5
+John Keats,Samuel Johnson,10
+John Keats,Samuel Pepys,1
+John Keats,Samuel Taylor Coleridge,12
+John Keats,Seamus Heaney,3
+John Keats,Stephen Spender,2
+John Keats,T. S. Eliot,4
+John Keats,Virginia Woolf,5
+John Keats,W. B. Yeats,6
+John Keats,W. H. Auden,5
+John Keats,Walter Raleigh,1
+John Keats,William Blake,12
+John Keats,William Shakespeare,8
+John Keats,William Wordsworth,9
+John Stuart Mill,Jonathan Swift,1
+John Stuart Mill,Joseph Conrad,2
+John Stuart Mill,Lord Byron,3
+John Stuart Mill,Margaret Cavendish,2
+John Stuart Mill,Margery Kempe,1
+John Stuart Mill,Marie de France,2
+John Stuart Mill,Mary Robinson,1
+John Stuart Mill,Mary Wollstonecraft,5
+John Stuart Mill,Matthew Arnold,4
+John Stuart Mill,Oscar Wilde,1
+John Stuart Mill,Percy Bysshe Shelley,1
+John Stuart Mill,Robert Burns,1
+John Stuart Mill,Rudyard Kipling,2
+John Stuart Mill,Samuel Johnson,3
+John Stuart Mill,Samuel Pepys,3
+John Stuart Mill,Samuel Taylor Coleridge,7
+John Stuart Mill,Seamus Heaney,1
+John Stuart Mill,T. S. Eliot,2
+John Stuart Mill,Thomas Hobbes,7
+John Stuart Mill,Thomas Malory,1
+John Stuart Mill,Thomas More,5
+John Stuart Mill,Virginia Woolf,3
+John Stuart Mill,W. B. Yeats,1
+John Stuart Mill,W. H. Auden,2
+John Stuart Mill,Walter Raleigh,3
+John Stuart Mill,William Blake,4
+John Stuart Mill,William Shakespeare,5
+John Stuart Mill,William Wordsworth,1
+Elizabeth Barrett Browning,Emily Brontë,2
+Elizabeth Barrett Browning,Felicia Hemans,1
+Elizabeth Barrett Browning,Geoffrey Chaucer,1
+Elizabeth Barrett Browning,George Bernard Shaw,4
+Elizabeth Barrett Browning,George Eliot,9
+Elizabeth Barrett Browning,George Herbert,1
+Elizabeth Barrett Browning,George Orwell,5
+Elizabeth Barrett Browning,Henry Vaughan,1
+Elizabeth Barrett Browning,James Boswell,2
+Elizabeth Barrett Browning,James Joyce,3
+Elizabeth Barrett Browning,Jane Austen,2
+Elizabeth Barrett Browning,John Clare,1
+Elizabeth Barrett Browning,John Donne,1
+Elizabeth Barrett Browning,John Dryden,7
+Elizabeth Barrett Browning,John Keats,13
+Elizabeth Barrett Browning,John Milton,7
+Elizabeth Barrett Browning,John Stuart Mill,2
+Elizabeth Barrett Browning,Jonathan Swift,2
+Elizabeth Barrett Browning,Joseph Conrad,2
+Elizabeth Barrett Browning,Katherine Philipps,1
+Elizabeth Barrett Browning,Lord Byron,8
+Elizabeth Barrett Browning,Louis MacNeice,2
+Elizabeth Barrett Browning,Margaret Cavendish,3
+Elizabeth Barrett Browning,Mary Robinson,3
+Elizabeth Barrett Browning,Mary Wollstonecraft,8
+Elizabeth Barrett Browning,Matthew Arnold,5
+Elizabeth Barrett Browning,Oscar Wilde,3
+Elizabeth Barrett Browning,Percy Bysshe Shelley,3
+Elizabeth Barrett Browning,Robert Burns,4
+Elizabeth Barrett Browning,Rudyard Kipling,2
+Elizabeth Barrett Browning,Samuel Beckett,1
+Elizabeth Barrett Browning,Samuel Johnson,4
+Elizabeth Barrett Browning,Samuel Taylor Coleridge,6
+Elizabeth Barrett Browning,Seamus Heaney,1
+Elizabeth Barrett Browning,Stephen Spender,1
+Elizabeth Barrett Browning,T. S. Eliot,3
+Elizabeth Barrett Browning,Thomas Hobbes,1
+Elizabeth Barrett Browning,Thomas Malory,2
+Elizabeth Barrett Browning,Virginia Woolf,5
+Elizabeth Barrett Browning,W. B. Yeats,2
+Elizabeth Barrett Browning,W. H. Auden,4
+Elizabeth Barrett Browning,William Blake,7
+Elizabeth Barrett Browning,William Langland,2
+Elizabeth Barrett Browning,William Shakespeare,6
+Elizabeth Barrett Browning,William Wordsworth,3
+"Alfred, Lord Tennyson",Ann Radcliffe,1
+"Alfred, Lord Tennyson",Beatrix Potter,1
+"Alfred, Lord Tennyson",Ben Jonson,2
+"Alfred, Lord Tennyson",Bram Stoker,2
+"Alfred, Lord Tennyson",C. S. Lewis,1
+"Alfred, Lord Tennyson",Cecil Day-Lewis,2
+"Alfred, Lord Tennyson",Charles Dickens,10
+"Alfred, Lord Tennyson",Charlotte Brontë,1
+"Alfred, Lord Tennyson",Charlotte Smith,3
+"Alfred, Lord Tennyson",Christina Rossetti,6
+"Alfred, Lord Tennyson",Christopher Isherwood,1
+"Alfred, Lord Tennyson",Christopher Marlowe,4
+"Alfred, Lord Tennyson",D. H. Lawrence,1
+"Alfred, Lord Tennyson",Daphne du Maurier,1
+"Alfred, Lord Tennyson",Edmund Spenser,4
+"Alfred, Lord Tennyson",Edward Upward,3
+"Alfred, Lord Tennyson",Elizabeth Barrett Browning,7
+"Alfred, Lord Tennyson",Emily Brontë,1
+"Alfred, Lord Tennyson",Felicia Hemans,1
+"Alfred, Lord Tennyson",Geoffrey Chaucer,2
+"Alfred, Lord Tennyson",George Bernard Shaw,2
+"Alfred, Lord Tennyson",George Eliot,7
+"Alfred, Lord Tennyson",George Herbert,2
+"Alfred, Lord Tennyson",George Orwell,3
+"Alfred, Lord Tennyson",James Boswell,2
+"Alfred, Lord Tennyson",James Joyce,2
+"Alfred, Lord Tennyson",Jane Austen,3
+"Alfred, Lord Tennyson",John Clare,4
+"Alfred, Lord Tennyson",John Donne,3
+"Alfred, Lord Tennyson",John Dryden,8
+"Alfred, Lord Tennyson",John Gower,1
+"Alfred, Lord Tennyson",John Keats,10
+"Alfred, Lord Tennyson",John Locke,3
+"Alfred, Lord Tennyson",John Milton,6
+"Alfred, Lord Tennyson",John Stuart Mill,3
+"Alfred, Lord Tennyson",Jonathan Swift,1
+"Alfred, Lord Tennyson",Joseph Conrad,1
+"Alfred, Lord Tennyson",Katherine Philipps,1
+"Alfred, Lord Tennyson",Lord Byron,5
+"Alfred, Lord Tennyson",Louis MacNeice,2
+"Alfred, Lord Tennyson",Margaret Cavendish,3
+"Alfred, Lord Tennyson",Margery Kempe,1
+"Alfred, Lord Tennyson",Mary Robinson,2
+"Alfred, Lord Tennyson",Mary Wollstonecraft,6
+"Alfred, Lord Tennyson",Matthew Arnold,4
+"Alfred, Lord Tennyson",Oscar Wilde,3
+"Alfred, Lord Tennyson",Percy Bysshe Shelley,6
+"Alfred, Lord Tennyson",Philip Sidney,1
+"Alfred, Lord Tennyson",Rex Warner,1
+"Alfred, Lord Tennyson",Robert Burns,2
+"Alfred, Lord Tennyson",Rudyard Kipling,4
+"Alfred, Lord Tennyson",Samuel Beckett,1
+"Alfred, Lord Tennyson",Samuel Johnson,2
+"Alfred, Lord Tennyson",Samuel Pepys,3
+"Alfred, Lord Tennyson",Samuel Taylor Coleridge,5
+"Alfred, Lord Tennyson",Seamus Heaney,1
+"Alfred, Lord Tennyson",Stephen Spender,3
+"Alfred, Lord Tennyson",T. S. Eliot,3
+"Alfred, Lord Tennyson",Thomas Hobbes,1
+"Alfred, Lord Tennyson",Thomas Malory,1
+"Alfred, Lord Tennyson",Thomas More,1
+"Alfred, Lord Tennyson",Virginia Woolf,6
+"Alfred, Lord Tennyson",W. B. Yeats,3
+"Alfred, Lord Tennyson",W. H. Auden,3
+"Alfred, Lord Tennyson",Walter Raleigh,1
+"Alfred, Lord Tennyson",William Blake,5
+"Alfred, Lord Tennyson",William Langland,2
+"Alfred, Lord Tennyson",William Shakespeare,5
+"Alfred, Lord Tennyson",William Wordsworth,4
+Charles Dickens,Charlotte Brontë,7
+Charles Dickens,Charlotte Smith,7
+Charles Dickens,Christina Rossetti,4
+Charles Dickens,Christopher Marlowe,9
+Charles Dickens,D. H. Lawrence,5
+Charles Dickens,Daphne du Maurier,5
+Charles Dickens,Edmund Spenser,5
+Charles Dickens,Elizabeth Barrett Browning,8
+Charles Dickens,Emilia Lanier,2
+Charles Dickens,Emily Brontë,2
+Charles Dickens,Felicia Hemans,2
+Charles Dickens,Geoffrey Chaucer,9
+Charles Dickens,George Bernard Shaw,13
+Charles Dickens,George Eliot,14
+Charles Dickens,George Herbert,1
+Charles Dickens,George Orwell,16
+Charles Dickens,Henry Vaughan,1
+Charles Dickens,James Boswell,2
+Charles Dickens,James Joyce,6
+Charles Dickens,Jane Austen,20
+Charles Dickens,John Clare,4
+Charles Dickens,John Donne,6
+Charles Dickens,John Dryden,11
+Charles Dickens,John Gower,3
+Charles Dickens,John Keats,8
+Charles Dickens,John Locke,2
+Charles Dickens,John Milton,8
+Charles Dickens,John Stuart Mill,6
+Charles Dickens,Jonathan Swift,2
+Charles Dickens,Joseph Conrad,11
+Charles Dickens,Lord Byron,5
+Charles Dickens,Louis MacNeice,2
+Charles Dickens,Margaret Cavendish,3
+Charles Dickens,Marie de France,1
+Charles Dickens,Mary Robinson,2
+Charles Dickens,Mary Wollstonecraft,11
+Charles Dickens,Matthew Arnold,6
+Charles Dickens,Oscar Wilde,7
+Charles Dickens,Percy Bysshe Shelley,8
+Charles Dickens,Philip Sidney,1
+Charles Dickens,Robert Burns,3
+Charles Dickens,Rudyard Kipling,16
+Charles Dickens,Samuel Beckett,6
+Charles Dickens,Samuel Johnson,13
+Charles Dickens,Samuel Pepys,6
+Charles Dickens,Samuel Taylor Coleridge,10
+Charles Dickens,Seamus Heaney,4
+Charles Dickens,Stephen Spender,2
+Charles Dickens,T. S. Eliot,9
+Charles Dickens,Thomas Hobbes,1
+Charles Dickens,Thomas Malory,3
+Charles Dickens,Thomas More,7
+Charles Dickens,Virginia Woolf,14
+Charles Dickens,W. B. Yeats,7
+Charles Dickens,W. H. Auden,9
+Charles Dickens,Walter Raleigh,3
+Charles Dickens,William Blake,10
+Charles Dickens,William Langland,1
+Charles Dickens,William Shakespeare,15
+Charles Dickens,William Wordsworth,4
+Charlotte Brontë,Charlotte Smith,3
+Charlotte Brontë,Christina Rossetti,1
+Charlotte Brontë,Christopher Marlowe,2
+Charlotte Brontë,D. H. Lawrence,1
+Charlotte Brontë,Daphne du Maurier,2
+Charlotte Brontë,Edmund Spenser,1
+Charlotte Brontë,Elizabeth Barrett Browning,4
+Charlotte Brontë,Emily Brontë,29
+Charlotte Brontë,Geoffrey Chaucer,1
+Charlotte Brontë,George Bernard Shaw,3
+Charlotte Brontë,George Eliot,3
+Charlotte Brontë,George Herbert,1
+Charlotte Brontë,George Orwell,5
+Charlotte Brontë,Henry Vaughan,1
+Charlotte Brontë,James Boswell,2
+Charlotte Brontë,Jane Austen,4
+Charlotte Brontë,John Clare,2
+Charlotte Brontë,John Donne,2
+Charlotte Brontë,John Dryden,2
+Charlotte Brontë,John Gower,1
+Charlotte Brontë,John Keats,3
+Charlotte Brontë,John Locke,1
+Charlotte Brontë,John Milton,3
+Charlotte Brontë,Joseph Conrad,3
+Charlotte Brontë,Lord Byron,2
+Charlotte Brontë,Louis MacNeice,1
+Charlotte Brontë,Mary Wollstonecraft,4
+Charlotte Brontë,Oscar Wilde,3
+Charlotte Brontë,Percy Bysshe Shelley,2
+Charlotte Brontë,Philip Sidney,1
+Charlotte Brontë,Robert Burns,2
+Charlotte Brontë,Rudyard Kipling,3
+Charlotte Brontë,Samuel Beckett,2
+Charlotte Brontë,Samuel Johnson,3
+Charlotte Brontë,Samuel Pepys,1
+Charlotte Brontë,Samuel Taylor Coleridge,6
+Charlotte Brontë,T. S. Eliot,2
+Charlotte Brontë,Thomas Hobbes,2
+Charlotte Brontë,Thomas Malory,1
+Charlotte Brontë,Virginia Woolf,6
+Charlotte Brontë,W. H. Auden,2
+Charlotte Brontë,Walter Raleigh,2
+Charlotte Brontë,William Blake,1
+Charlotte Brontë,William Langland,1
+Charlotte Brontë,William Wordsworth,5
+Emily Brontë,Felicia Hemans,1
+Emily Brontë,Geoffrey Chaucer,1
+Emily Brontë,George Bernard Shaw,2
+Emily Brontë,George Eliot,2
+Emily Brontë,George Herbert,1
+Emily Brontë,George Orwell,4
+Emily Brontë,James Boswell,2
+Emily Brontë,James Joyce,1
+Emily Brontë,Jane Austen,4
+Emily Brontë,John Clare,1
+Emily Brontë,John Donne,1
+Emily Brontë,John Dryden,3
+Emily Brontë,John Gower,1
+Emily Brontë,John Keats,4
+Emily Brontë,John Locke,1
+Emily Brontë,John Milton,2
+Emily Brontë,Joseph Conrad,2
+Emily Brontë,Lord Byron,3
+Emily Brontë,Louis MacNeice,2
+Emily Brontë,Mary Robinson,1
+Emily Brontë,Mary Wollstonecraft,1
+Emily Brontë,Percy Bysshe Shelley,3
+Emily Brontë,Robert Burns,3
+Emily Brontë,Rudyard Kipling,2
+Emily Brontë,Samuel Beckett,1
+Emily Brontë,Samuel Johnson,1
+Emily Brontë,Samuel Pepys,2
+Emily Brontë,Samuel Taylor Coleridge,3
+Emily Brontë,T. S. Eliot,1
+Emily Brontë,Thomas Hobbes,2
+Emily Brontë,Virginia Woolf,4
+Emily Brontë,W. B. Yeats,2
+Emily Brontë,W. H. Auden,2
+Emily Brontë,Walter Raleigh,1
+Emily Brontë,William Blake,3
+Emily Brontë,William Langland,2
+Emily Brontë,William Wordsworth,4
+George Eliot,George Herbert,1
+George Eliot,George Orwell,7
+George Eliot,Henry Vaughan,1
+George Eliot,James Boswell,1
+George Eliot,James Joyce,1
+George Eliot,Jane Austen,6
+George Eliot,John Clare,2
+George Eliot,John Donne,1
+George Eliot,John Dryden,4
+George Eliot,John Keats,3
+George Eliot,John Locke,3
+George Eliot,John Milton,7
+George Eliot,John Stuart Mill,3
+George Eliot,Jonathan Swift,1
+George Eliot,Joseph Conrad,4
+George Eliot,Lord Byron,5
+George Eliot,Louis MacNeice,2
+George Eliot,Margaret Cavendish,3
+George Eliot,Margery Kempe,1
+George Eliot,Marie de France,1
+George Eliot,Mary Robinson,1
+George Eliot,Mary Wollstonecraft,3
+George Eliot,Matthew Arnold,7
+George Eliot,Oscar Wilde,4
+George Eliot,Percy Bysshe Shelley,5
+George Eliot,Rex Warner,1
+George Eliot,Robert Burns,2
+George Eliot,Rudyard Kipling,6
+George Eliot,Samuel Johnson,2
+George Eliot,Samuel Pepys,1
+George Eliot,Samuel Taylor Coleridge,5
+George Eliot,Seamus Heaney,1
+George Eliot,Stephen Spender,3
+George Eliot,T. S. Eliot,6
+George Eliot,Thomas Hobbes,2
+George Eliot,Thomas Malory,3
+George Eliot,Thomas More,1
+George Eliot,Virginia Woolf,4
+George Eliot,W. B. Yeats,2
+George Eliot,W. H. Auden,5
+George Eliot,William Blake,4
+George Eliot,William Langland,1
+George Eliot,William Shakespeare,7
+Matthew Arnold,Oscar Wilde,4
+Matthew Arnold,Percy Bysshe Shelley,3
+Matthew Arnold,Robert Burns,1
+Matthew Arnold,Rudyard Kipling,2
+Matthew Arnold,Samuel Beckett,1
+Matthew Arnold,Samuel Johnson,3
+Matthew Arnold,Samuel Taylor Coleridge,5
+Matthew Arnold,Seamus Heaney,2
+Matthew Arnold,T. S. Eliot,3
+Matthew Arnold,Thomas More,1
+Matthew Arnold,Virginia Woolf,3
+Matthew Arnold,W. B. Yeats,2
+Matthew Arnold,W. H. Auden,4
+Matthew Arnold,William Blake,2
+Matthew Arnold,William Shakespeare,4
+Matthew Arnold,William Wordsworth,1
+Christina Rossetti,Christopher Marlowe,1
+Christina Rossetti,D. H. Lawrence,1
+Christina Rossetti,Daphne du Maurier,1
+Christina Rossetti,Edmund Spenser,3
+Christina Rossetti,Elizabeth Barrett Browning,6
+Christina Rossetti,Emilia Lanier,2
+Christina Rossetti,Emily Brontë,2
+Christina Rossetti,Geoffrey Chaucer,2
+Christina Rossetti,George Bernard Shaw,2
+Christina Rossetti,George Eliot,2
+Christina Rossetti,George Herbert,1
+Christina Rossetti,George Orwell,1
+Christina Rossetti,James Joyce,2
+Christina Rossetti,Jane Austen,3
+Christina Rossetti,John Clare,3
+Christina Rossetti,John Donne,3
+Christina Rossetti,John Dryden,3
+Christina Rossetti,John Keats,8
+Christina Rossetti,John Milton,2
+Christina Rossetti,John Stuart Mill,2
+Christina Rossetti,Joseph Conrad,1
+Christina Rossetti,Katherine Philipps,1
+Christina Rossetti,Lord Byron,3
+Christina Rossetti,Margaret Cavendish,1
+Christina Rossetti,Margery Kempe,1
+Christina Rossetti,Mary Robinson,1
+Christina Rossetti,Mary Wollstonecraft,5
+Christina Rossetti,Oscar Wilde,2
+Christina Rossetti,Percy Bysshe Shelley,3
+Christina Rossetti,Philip Sidney,1
+Christina Rossetti,Robert Burns,3
+Christina Rossetti,Samuel Beckett,2
+Christina Rossetti,Samuel Johnson,2
+Christina Rossetti,Samuel Taylor Coleridge,8
+Christina Rossetti,Stephen Spender,1
+Christina Rossetti,T. S. Eliot,4
+Christina Rossetti,Thomas Malory,1
+Christina Rossetti,Thomas More,1
+Christina Rossetti,Virginia Woolf,5
+Christina Rossetti,W. B. Yeats,2
+Christina Rossetti,W. H. Auden,2
+Christina Rossetti,William Blake,9
+Christina Rossetti,William Shakespeare,5
+Christina Rossetti,William Wordsworth,7
+Bram Stoker,C. S. Lewis,1
+Bram Stoker,Cecil Day-Lewis,1
+Bram Stoker,Charles Dickens,4
+Bram Stoker,Charlotte Smith,1
+Bram Stoker,Christopher Marlowe,1
+Bram Stoker,D. H. Lawrence,1
+Bram Stoker,Daphne du Maurier,1
+Bram Stoker,George Bernard Shaw,3
+Bram Stoker,James Joyce,3
+Bram Stoker,Jane Austen,1
+Bram Stoker,John Milton,3
+Bram Stoker,John Stuart Mill,2
+Bram Stoker,Jonathan Swift,2
+Bram Stoker,Katherine Philipps,1
+Bram Stoker,Lord Byron,3
+Bram Stoker,Louis MacNeice,1
+Bram Stoker,Mary Wollstonecraft,3
+Bram Stoker,Matthew Arnold,2
+Bram Stoker,Oscar Wilde,8
+Bram Stoker,Percy Bysshe Shelley,2
+Bram Stoker,Philip Sidney,1
+Bram Stoker,Rudyard Kipling,3
+Bram Stoker,Samuel Beckett,4
+Bram Stoker,Samuel Johnson,2
+Bram Stoker,Samuel Taylor Coleridge,3
+Bram Stoker,Seamus Heaney,2
+Bram Stoker,T. S. Eliot,2
+Bram Stoker,W. B. Yeats,4
+Bram Stoker,William Shakespeare,1
+Oscar Wilde,Percy Bysshe Shelley,3
+Oscar Wilde,Philip Sidney,1
+Oscar Wilde,Rex Warner,1
+Oscar Wilde,Robert Burns,1
+Oscar Wilde,Rudyard Kipling,8
+Oscar Wilde,Samuel Beckett,8
+Oscar Wilde,Samuel Johnson,3
+Oscar Wilde,Samuel Pepys,3
+Oscar Wilde,Samuel Taylor Coleridge,3
+Oscar Wilde,Seamus Heaney,5
+Oscar Wilde,Stephen Spender,1
+Oscar Wilde,T. S. Eliot,5
+Oscar Wilde,Thomas Hobbes,1
+Oscar Wilde,Thomas Malory,2
+Oscar Wilde,Virginia Woolf,8
+Oscar Wilde,W. B. Yeats,10
+Oscar Wilde,W. H. Auden,4
+Oscar Wilde,William Blake,8
+Oscar Wilde,William Langland,1
+Oscar Wilde,William Shakespeare,7
+George Bernard Shaw,George Eliot,3
+George Bernard Shaw,George Herbert,1
+George Bernard Shaw,George Orwell,16
+George Bernard Shaw,James Boswell,2
+George Bernard Shaw,James Joyce,12
+George Bernard Shaw,Jane Austen,3
+George Bernard Shaw,John Clare,1
+George Bernard Shaw,John Donne,3
+George Bernard Shaw,John Dryden,5
+George Bernard Shaw,John Keats,4
+George Bernard Shaw,John Locke,1
+George Bernard Shaw,John Milton,9
+George Bernard Shaw,Jonathan Swift,2
+George Bernard Shaw,Joseph Conrad,10
+George Bernard Shaw,Katherine Philipps,2
+George Bernard Shaw,Lord Byron,3
+George Bernard Shaw,Louis MacNeice,6
+George Bernard Shaw,Margaret Cavendish,1
+George Bernard Shaw,Margery Kempe,1
+George Bernard Shaw,Marie de France,1
+George Bernard Shaw,Oscar Wilde,12
+George Bernard Shaw,Percy Bysshe Shelley,4
+George Bernard Shaw,Philip Sidney,1
+George Bernard Shaw,Rex Warner,4
+George Bernard Shaw,Robert Burns,2
+George Bernard Shaw,Rudyard Kipling,16
+George Bernard Shaw,Samuel Beckett,9
+George Bernard Shaw,Samuel Johnson,2
+George Bernard Shaw,Samuel Pepys,1
+George Bernard Shaw,Samuel Taylor Coleridge,2
+George Bernard Shaw,Seamus Heaney,3
+George Bernard Shaw,Stephen Spender,3
+George Bernard Shaw,T. S. Eliot,11
+George Bernard Shaw,Thomas Malory,1
+George Bernard Shaw,Thomas More,9
+George Bernard Shaw,Virginia Woolf,10
+George Bernard Shaw,W. B. Yeats,19
+George Bernard Shaw,W. H. Auden,3
+George Bernard Shaw,William Blake,3
+George Bernard Shaw,William Shakespeare,7
+George Bernard Shaw,William Wordsworth,2
+Rudyard Kipling,Samuel Beckett,6
+Rudyard Kipling,Samuel Johnson,9
+Rudyard Kipling,Samuel Pepys,4
+Rudyard Kipling,Samuel Taylor Coleridge,4
+Rudyard Kipling,Seamus Heaney,4
+Rudyard Kipling,Stephen Spender,4
+Rudyard Kipling,T. S. Eliot,11
+Rudyard Kipling,Thomas Hobbes,3
+Rudyard Kipling,Thomas Malory,1
+Rudyard Kipling,Thomas More,6
+Rudyard Kipling,Virginia Woolf,8
+Rudyard Kipling,W. B. Yeats,6
+Rudyard Kipling,W. H. Auden,11
+Rudyard Kipling,Walter Raleigh,4
+Rudyard Kipling,William Blake,3
+Rudyard Kipling,William Langland,1
+Rudyard Kipling,William Shakespeare,6
+Rudyard Kipling,William Wordsworth,4
+Joseph Conrad,Louis MacNeice,2
+Joseph Conrad,Margery Kempe,1
+Joseph Conrad,Marie de France,1
+Joseph Conrad,Matthew Arnold,1
+Joseph Conrad,Oscar Wilde,9
+Joseph Conrad,Percy Bysshe Shelley,3
+Joseph Conrad,Philip Sidney,3
+Joseph Conrad,Robert Burns,1
+Joseph Conrad,Rudyard Kipling,17
+Joseph Conrad,Samuel Beckett,3
+Joseph Conrad,Samuel Johnson,4
+Joseph Conrad,Samuel Pepys,2
+Joseph Conrad,Samuel Taylor Coleridge,5
+Joseph Conrad,Seamus Heaney,4
+Joseph Conrad,Stephen Spender,5
+Joseph Conrad,T. S. Eliot,6
+Joseph Conrad,Thomas Hobbes,1
+Joseph Conrad,Thomas More,2
+Joseph Conrad,Virginia Woolf,9
+Joseph Conrad,W. B. Yeats,4
+Joseph Conrad,W. H. Auden,4
+Joseph Conrad,Walter Raleigh,2
+Joseph Conrad,William Blake,3
+Joseph Conrad,William Langland,1
+Joseph Conrad,William Shakespeare,7
+Joseph Conrad,William Wordsworth,2
+W. B. Yeats,W. H. Auden,2
+W. B. Yeats,Walter Raleigh,2
+W. B. Yeats,William Blake,6
+W. B. Yeats,William Langland,1
+W. B. Yeats,William Shakespeare,4
+W. B. Yeats,William Wordsworth,4
+Virginia Woolf,W. B. Yeats,3
+Virginia Woolf,W. H. Auden,5
+Virginia Woolf,Walter Raleigh,1
+Virginia Woolf,William Blake,1
+Virginia Woolf,William Langland,1
+Virginia Woolf,William Shakespeare,5
+Virginia Woolf,William Wordsworth,1
+James Joyce,Jane Austen,1
+James Joyce,John Clare,1
+James Joyce,John Donne,1
+James Joyce,John Dryden,2
+James Joyce,John Milton,4
+James Joyce,John Stuart Mill,1
+James Joyce,Jonathan Swift,1
+James Joyce,Joseph Conrad,5
+James Joyce,Katherine Philipps,1
+James Joyce,Lord Byron,2
+James Joyce,Louis MacNeice,3
+James Joyce,Margaret Cavendish,1
+James Joyce,Mary Robinson,1
+James Joyce,Mary Wollstonecraft,1
+James Joyce,Matthew Arnold,2
+James Joyce,Oscar Wilde,6
+James Joyce,Percy Bysshe Shelley,4
+James Joyce,Philip Sidney,1
+James Joyce,Robert Burns,1
+James Joyce,Rudyard Kipling,1
+James Joyce,Samuel Beckett,14
+James Joyce,Samuel Taylor Coleridge,5
+James Joyce,Seamus Heaney,6
+James Joyce,Stephen Spender,3
+James Joyce,T. S. Eliot,7
+James Joyce,Thomas Hobbes,1
+James Joyce,Thomas Malory,1
+James Joyce,Thomas More,2
+James Joyce,Virginia Woolf,7
+James Joyce,W. B. Yeats,11
+James Joyce,W. H. Auden,3
+James Joyce,Walter Raleigh,1
+James Joyce,William Blake,4
+James Joyce,William Shakespeare,5
+D. H. Lawrence,Daphne du Maurier,4
+D. H. Lawrence,Edward Upward,1
+D. H. Lawrence,Elizabeth Barrett Browning,3
+D. H. Lawrence,Emily Brontë,1
+D. H. Lawrence,Geoffrey Chaucer,1
+D. H. Lawrence,George Bernard Shaw,4
+D. H. Lawrence,George Eliot,2
+D. H. Lawrence,George Herbert,2
+D. H. Lawrence,George Orwell,13
+D. H. Lawrence,James Boswell,1
+D. H. Lawrence,James Joyce,5
+D. H. Lawrence,Jane Austen,3
+D. H. Lawrence,John Clare,1
+D. H. Lawrence,John Donne,3
+D. H. Lawrence,John Dryden,1
+D. H. Lawrence,John Keats,2
+D. H. Lawrence,John Locke,2
+D. H. Lawrence,John Milton,7
+D. H. Lawrence,John Stuart Mill,2
+D. H. Lawrence,Jonathan Swift,1
+D. H. Lawrence,Joseph Conrad,9
+D. H. Lawrence,Lord Byron,2
+D. H. Lawrence,Louis MacNeice,5
+D. H. Lawrence,Mary Wollstonecraft,2
+D. H. Lawrence,Matthew Arnold,1
+D. H. Lawrence,Oscar Wilde,1
+D. H. Lawrence,Percy Bysshe Shelley,2
+D. H. Lawrence,Philip Sidney,1
+D. H. Lawrence,Rex Warner,1
+D. H. Lawrence,Robert Burns,2
+D. H. Lawrence,Rudyard Kipling,3
+D. H. Lawrence,Samuel Beckett,3
+D. H. Lawrence,Samuel Johnson,4
+D. H. Lawrence,Samuel Taylor Coleridge,4
+D. H. Lawrence,Seamus Heaney,1
+D. H. Lawrence,Stephen Spender,1
+D. H. Lawrence,T. S. Eliot,7
+D. H. Lawrence,Thomas Hobbes,1
+D. H. Lawrence,Thomas More,1
+D. H. Lawrence,Virginia Woolf,4
+D. H. Lawrence,W. B. Yeats,5
+D. H. Lawrence,W. H. Auden,4
+D. H. Lawrence,William Blake,4
+D. H. Lawrence,William Shakespeare,4
+D. H. Lawrence,William Wordsworth,2
+A. A. Milne,"Alfred, Lord Tennyson",3
+A. A. Milne,Ann Radcliffe,1
+A. A. Milne,Beatrix Potter,5
+A. A. Milne,Ben Jonson,1
+A. A. Milne,Bram Stoker,2
+A. A. Milne,C. S. Lewis,4
+A. A. Milne,Cecil Day-Lewis,2
+A. A. Milne,Charles Dickens,6
+A. A. Milne,Charlotte Brontë,1
+A. A. Milne,Charlotte Smith,1
+A. A. Milne,Christopher Isherwood,1
+A. A. Milne,Christopher Marlowe,1
+A. A. Milne,D. H. Lawrence,3
+A. A. Milne,Daphne du Maurier,5
+A. A. Milne,Edmund Spenser,1
+A. A. Milne,Emily Brontë,1
+A. A. Milne,Geoffrey Chaucer,1
+A. A. Milne,George Bernard Shaw,3
+A. A. Milne,George Herbert,2
+A. A. Milne,George Orwell,9
+A. A. Milne,James Boswell,1
+A. A. Milne,James Joyce,1
+A. A. Milne,Jane Austen,1
+A. A. Milne,John Donne,2
+A. A. Milne,John Dryden,3
+A. A. Milne,John Gower,1
+A. A. Milne,John Locke,2
+A. A. Milne,John Milton,2
+A. A. Milne,Joseph Conrad,2
+A. A. Milne,Lord Byron,1
+A. A. Milne,Louis MacNeice,5
+A. A. Milne,Mary Wollstonecraft,1
+A. A. Milne,Oscar Wilde,2
+A. A. Milne,Percy Bysshe Shelley,1
+A. A. Milne,Philip Sidney,1
+A. A. Milne,Rex Warner,2
+A. A. Milne,Robert Burns,1
+A. A. Milne,Rudyard Kipling,5
+A. A. Milne,Samuel Beckett,6
+A. A. Milne,Samuel Johnson,1
+A. A. Milne,Samuel Pepys,2
+A. A. Milne,Samuel Taylor Coleridge,1
+A. A. Milne,Seamus Heaney,1
+A. A. Milne,Stephen Spender,1
+A. A. Milne,T. S. Eliot,2
+A. A. Milne,Thomas Hobbes,2
+A. A. Milne,Thomas More,1
+A. A. Milne,Virginia Woolf,2
+A. A. Milne,W. B. Yeats,1
+A. A. Milne,W. H. Auden,1
+A. A. Milne,Walter Raleigh,1
+A. A. Milne,William Blake,3
+A. A. Milne,William Langland,1
+A. A. Milne,William Wordsworth,1
+Beatrix Potter,Ben Jonson,2
+Beatrix Potter,C. S. Lewis,5
+Beatrix Potter,Cecil Day-Lewis,1
+Beatrix Potter,Charles Dickens,9
+Beatrix Potter,Charlotte Brontë,3
+Beatrix Potter,Charlotte Smith,1
+Beatrix Potter,Christopher Isherwood,2
+Beatrix Potter,Christopher Marlowe,3
+Beatrix Potter,D. H. Lawrence,4
+Beatrix Potter,Daphne du Maurier,2
+Beatrix Potter,Edmund Spenser,1
+Beatrix Potter,Edward Upward,1
+Beatrix Potter,Elizabeth Barrett Browning,3
+Beatrix Potter,Emilia Lanier,1
+Beatrix Potter,Emily Brontë,1
+Beatrix Potter,Geoffrey Chaucer,2
+Beatrix Potter,George Bernard Shaw,7
+Beatrix Potter,George Eliot,1
+Beatrix Potter,George Orwell,6
+Beatrix Potter,Henry Vaughan,2
+Beatrix Potter,James Boswell,1
+Beatrix Potter,James Joyce,2
+Beatrix Potter,Jane Austen,3
+Beatrix Potter,John Clare,2
+Beatrix Potter,John Donne,2
+Beatrix Potter,John Dryden,2
+Beatrix Potter,John Gower,1
+Beatrix Potter,John Keats,1
+Beatrix Potter,John Locke,1
+Beatrix Potter,John Milton,3
+Beatrix Potter,John Stuart Mill,2
+Beatrix Potter,Jonathan Swift,1
+Beatrix Potter,Joseph Conrad,1
+Beatrix Potter,Lord Byron,3
+Beatrix Potter,Louis MacNeice,3
+Beatrix Potter,Marie de France,1
+Beatrix Potter,Mary Robinson,1
+Beatrix Potter,Mary Wollstonecraft,4
+Beatrix Potter,Matthew Arnold,2
+Beatrix Potter,Oscar Wilde,4
+Beatrix Potter,Percy Bysshe Shelley,3
+Beatrix Potter,Philip Sidney,2
+Beatrix Potter,Robert Burns,2
+Beatrix Potter,Rudyard Kipling,7
+Beatrix Potter,Samuel Beckett,4
+Beatrix Potter,Samuel Johnson,2
+Beatrix Potter,Samuel Pepys,3
+Beatrix Potter,Samuel Taylor Coleridge,6
+Beatrix Potter,Stephen Spender,2
+Beatrix Potter,T. S. Eliot,8
+Beatrix Potter,Thomas Hobbes,1
+Beatrix Potter,Thomas Malory,1
+Beatrix Potter,Thomas More,1
+Beatrix Potter,Virginia Woolf,7
+Beatrix Potter,W. B. Yeats,1
+Beatrix Potter,W. H. Auden,3
+Beatrix Potter,Walter Raleigh,2
+Beatrix Potter,William Blake,2
+Beatrix Potter,William Langland,1
+Beatrix Potter,William Shakespeare,2
+Beatrix Potter,William Wordsworth,4
+C. S. Lewis,Cecil Day-Lewis,8
+C. S. Lewis,Charles Dickens,8
+C. S. Lewis,Charlotte Brontë,3
+C. S. Lewis,Charlotte Smith,1
+C. S. Lewis,Christina Rossetti,3
+C. S. Lewis,Christopher Isherwood,3
+C. S. Lewis,Christopher Marlowe,5
+C. S. Lewis,D. H. Lawrence,2
+C. S. Lewis,Daphne du Maurier,1
+C. S. Lewis,Edmund Spenser,6
+C. S. Lewis,Edward Upward,1
+C. S. Lewis,Elizabeth Barrett Browning,1
+C. S. Lewis,Felicia Hemans,1
+C. S. Lewis,Geoffrey Chaucer,5
+C. S. Lewis,George Bernard Shaw,7
+C. S. Lewis,George Eliot,3
+C. S. Lewis,George Herbert,3
+C. S. Lewis,George Orwell,12
+C. S. Lewis,Henry Vaughan,1
+C. S. Lewis,James Boswell,1
+C. S. Lewis,James Joyce,4
+C. S. Lewis,Jane Austen,1
+C. S. Lewis,John Clare,3
+C. S. Lewis,John Donne,6
+C. S. Lewis,John Dryden,3
+C. S. Lewis,John Gower,1
+C. S. Lewis,John Keats,2
+C. S. Lewis,John Locke,2
+C. S. Lewis,John Milton,9
+C. S. Lewis,John Stuart Mill,4
+C. S. Lewis,Jonathan Swift,3
+C. S. Lewis,Joseph Conrad,3
+C. S. Lewis,Katherine Philipps,1
+C. S. Lewis,Lord Byron,3
+C. S. Lewis,Louis MacNeice,11
+C. S. Lewis,Margaret Cavendish,1
+C. S. Lewis,Margery Kempe,4
+C. S. Lewis,Mary Wollstonecraft,2
+C. S. Lewis,Matthew Arnold,1
+C. S. Lewis,Oscar Wilde,11
+C. S. Lewis,Percy Bysshe Shelley,3
+C. S. Lewis,Rex Warner,2
+C. S. Lewis,Rudyard Kipling,9
+C. S. Lewis,Samuel Beckett,10
+C. S. Lewis,Samuel Johnson,4
+C. S. Lewis,Samuel Pepys,3
+C. S. Lewis,Samuel Taylor Coleridge,3
+C. S. Lewis,Seamus Heaney,4
+C. S. Lewis,Stephen Spender,3
+C. S. Lewis,T. S. Eliot,11
+C. S. Lewis,Thomas Hobbes,4
+C. S. Lewis,Thomas More,3
+C. S. Lewis,Virginia Woolf,4
+C. S. Lewis,W. B. Yeats,6
+C. S. Lewis,W. H. Auden,13
+C. S. Lewis,Walter Raleigh,1
+C. S. Lewis,William Blake,11
+C. S. Lewis,William Langland,3
+C. S. Lewis,William Shakespeare,6
+C. S. Lewis,William Wordsworth,2
+Daphne du Maurier,Edmund Spenser,1
+Daphne du Maurier,Emily Brontë,1
+Daphne du Maurier,Geoffrey Chaucer,1
+Daphne du Maurier,George Bernard Shaw,1
+Daphne du Maurier,George Orwell,3
+Daphne du Maurier,Henry Vaughan,2
+Daphne du Maurier,James Boswell,1
+Daphne du Maurier,Jane Austen,2
+Daphne du Maurier,John Donne,1
+Daphne du Maurier,John Dryden,1
+Daphne du Maurier,John Gower,1
+Daphne du Maurier,John Locke,2
+Daphne du Maurier,John Milton,1
+Daphne du Maurier,John Stuart Mill,1
+Daphne du Maurier,Jonathan Swift,1
+Daphne du Maurier,Katherine Philipps,1
+Daphne du Maurier,Louis MacNeice,2
+Daphne du Maurier,Margaret Cavendish,2
+Daphne du Maurier,Mary Robinson,1
+Daphne du Maurier,Mary Wollstonecraft,3
+Daphne du Maurier,Oscar Wilde,1
+Daphne du Maurier,Percy Bysshe Shelley,1
+Daphne du Maurier,Robert Burns,1
+Daphne du Maurier,Rudyard Kipling,3
+Daphne du Maurier,Samuel Beckett,2
+Daphne du Maurier,Samuel Johnson,3
+Daphne du Maurier,Samuel Pepys,2
+Daphne du Maurier,Samuel Taylor Coleridge,2
+Daphne du Maurier,Thomas Hobbes,3
+Daphne du Maurier,Thomas Malory,1
+Daphne du Maurier,Virginia Woolf,2
+Daphne du Maurier,W. B. Yeats,1
+Daphne du Maurier,W. H. Auden,1
+Daphne du Maurier,Walter Raleigh,3
+Daphne du Maurier,William Blake,3
+Daphne du Maurier,William Langland,1
+Daphne du Maurier,William Shakespeare,1
+Daphne du Maurier,William Wordsworth,1
+T. S. Eliot,Thomas Malory,3
+T. S. Eliot,Thomas More,6
+T. S. Eliot,Virginia Woolf,7
+T. S. Eliot,W. B. Yeats,7
+T. S. Eliot,W. H. Auden,14
+T. S. Eliot,Walter Raleigh,2
+T. S. Eliot,William Blake,8
+T. S. Eliot,William Shakespeare,10
+T. S. Eliot,William Wordsworth,5
+George Orwell,Henry Vaughan,2
+George Orwell,James Boswell,3
+George Orwell,James Joyce,4
+George Orwell,Jane Austen,9
+George Orwell,John Clare,3
+George Orwell,John Donne,4
+George Orwell,John Dryden,9
+George Orwell,John Gower,1
+George Orwell,John Keats,8
+George Orwell,John Milton,12
+George Orwell,John Stuart Mill,4
+George Orwell,Jonathan Swift,3
+George Orwell,Joseph Conrad,20
+George Orwell,Lord Byron,3
+George Orwell,Louis MacNeice,17
+George Orwell,Margery Kempe,1
+George Orwell,Mary Robinson,1
+George Orwell,Mary Wollstonecraft,1
+George Orwell,Matthew Arnold,4
+George Orwell,Oscar Wilde,4
+George Orwell,Percy Bysshe Shelley,7
+George Orwell,Philip Sidney,1
+George Orwell,Rex Warner,11
+George Orwell,Robert Burns,2
+George Orwell,Rudyard Kipling,19
+George Orwell,Samuel Beckett,6
+George Orwell,Samuel Johnson,12
+George Orwell,Samuel Pepys,2
+George Orwell,Samuel Taylor Coleridge,8
+George Orwell,Seamus Heaney,5
+George Orwell,Stephen Spender,18
+George Orwell,T. S. Eliot,18
+George Orwell,Thomas Malory,3
+George Orwell,Thomas More,5
+George Orwell,Virginia Woolf,14
+George Orwell,W. B. Yeats,4
+George Orwell,W. H. Auden,12
+George Orwell,Walter Raleigh,3
+George Orwell,William Blake,7
+George Orwell,William Langland,1
+George Orwell,William Shakespeare,9
+George Orwell,William Wordsworth,5
+Samuel Beckett,Samuel Johnson,6
+Samuel Beckett,Samuel Pepys,2
+Samuel Beckett,Samuel Taylor Coleridge,2
+Samuel Beckett,Seamus Heaney,8
+Samuel Beckett,Stephen Spender,4
+Samuel Beckett,T. S. Eliot,10
+Samuel Beckett,Thomas Hobbes,2
+Samuel Beckett,Virginia Woolf,10
+Samuel Beckett,W. B. Yeats,7
+Samuel Beckett,W. H. Auden,5
+Samuel Beckett,Walter Raleigh,2
+Samuel Beckett,William Blake,3
+Samuel Beckett,William Langland,1
+Samuel Beckett,William Shakespeare,3
+W. H. Auden,Walter Raleigh,4
+W. H. Auden,William Blake,5
+W. H. Auden,William Langland,3
+W. H. Auden,William Shakespeare,7
+W. H. Auden,William Wordsworth,3
+Louis MacNeice,Matthew Arnold,1
+Louis MacNeice,Oscar Wilde,2
+Louis MacNeice,Percy Bysshe Shelley,4
+Louis MacNeice,Rex Warner,8
+Louis MacNeice,Robert Burns,2
+Louis MacNeice,Rudyard Kipling,6
+Louis MacNeice,Samuel Beckett,8
+Louis MacNeice,Samuel Johnson,2
+Louis MacNeice,Samuel Taylor Coleridge,2
+Louis MacNeice,Seamus Heaney,6
+Louis MacNeice,Stephen Spender,14
+Louis MacNeice,T. S. Eliot,11
+Louis MacNeice,Virginia Woolf,4
+Louis MacNeice,W. B. Yeats,5
+Louis MacNeice,W. H. Auden,19
+Louis MacNeice,Walter Raleigh,2
+Louis MacNeice,William Blake,6
+Louis MacNeice,William Shakespeare,4
+Louis MacNeice,William Wordsworth,1
+Cecil Day-Lewis,Charles Dickens,3
+Cecil Day-Lewis,Christopher Isherwood,2
+Cecil Day-Lewis,Daphne du Maurier,2
+Cecil Day-Lewis,Edward Upward,3
+Cecil Day-Lewis,Elizabeth Barrett Browning,1
+Cecil Day-Lewis,Emily Brontë,1
+Cecil Day-Lewis,Felicia Hemans,1
+Cecil Day-Lewis,George Bernard Shaw,2
+Cecil Day-Lewis,George Eliot,2
+Cecil Day-Lewis,George Orwell,6
+Cecil Day-Lewis,Jane Austen,1
+Cecil Day-Lewis,John Donne,1
+Cecil Day-Lewis,John Dryden,2
+Cecil Day-Lewis,John Keats,3
+Cecil Day-Lewis,John Locke,2
+Cecil Day-Lewis,John Milton,1
+Cecil Day-Lewis,John Stuart Mill,2
+Cecil Day-Lewis,Jonathan Swift,3
+Cecil Day-Lewis,Joseph Conrad,3
+Cecil Day-Lewis,Lord Byron,1
+Cecil Day-Lewis,Louis MacNeice,8
+Cecil Day-Lewis,Oscar Wilde,2
+Cecil Day-Lewis,Percy Bysshe Shelley,4
+Cecil Day-Lewis,Rex Warner,3
+Cecil Day-Lewis,Robert Burns,2
+Cecil Day-Lewis,Rudyard Kipling,7
+Cecil Day-Lewis,Samuel Beckett,3
+Cecil Day-Lewis,Samuel Johnson,3
+Cecil Day-Lewis,Seamus Heaney,3
+Cecil Day-Lewis,Stephen Spender,5
+Cecil Day-Lewis,T. S. Eliot,4
+Cecil Day-Lewis,Thomas Hobbes,3
+Cecil Day-Lewis,Thomas Malory,1
+Cecil Day-Lewis,Thomas More,1
+Cecil Day-Lewis,Virginia Woolf,4
+Cecil Day-Lewis,W. B. Yeats,2
+Cecil Day-Lewis,W. H. Auden,7
+Cecil Day-Lewis,Walter Raleigh,1
+Cecil Day-Lewis,William Blake,2
+Cecil Day-Lewis,William Langland,1
+Cecil Day-Lewis,William Wordsworth,2
+Stephen Spender,T. S. Eliot,8
+Stephen Spender,Virginia Woolf,2
+Stephen Spender,W. B. Yeats,4
+Stephen Spender,W. H. Auden,16
+Stephen Spender,William Blake,2
+Stephen Spender,William Shakespeare,2
+Christopher Isherwood,Christopher Marlowe,1
+Christopher Isherwood,D. H. Lawrence,3
+Christopher Isherwood,Edward Upward,5
+Christopher Isherwood,Geoffrey Chaucer,1
+Christopher Isherwood,George Bernard Shaw,2
+Christopher Isherwood,George Eliot,1
+Christopher Isherwood,George Herbert,1
+Christopher Isherwood,George Orwell,9
+Christopher Isherwood,John Donne,2
+Christopher Isherwood,John Dryden,2
+Christopher Isherwood,John Keats,1
+Christopher Isherwood,John Milton,4
+Christopher Isherwood,John Stuart Mill,2
+Christopher Isherwood,Joseph Conrad,3
+Christopher Isherwood,Lord Byron,1
+Christopher Isherwood,Louis MacNeice,5
+Christopher Isherwood,Oscar Wilde,1
+Christopher Isherwood,Percy Bysshe Shelley,1
+Christopher Isherwood,Rex Warner,3
+Christopher Isherwood,Rudyard Kipling,2
+Christopher Isherwood,Samuel Pepys,1
+Christopher Isherwood,Seamus Heaney,1
+Christopher Isherwood,Stephen Spender,5
+Christopher Isherwood,T. S. Eliot,4
+Christopher Isherwood,Thomas Hobbes,1
+Christopher Isherwood,Thomas Malory,1
+Christopher Isherwood,Thomas More,1
+Christopher Isherwood,Virginia Woolf,2
+Christopher Isherwood,W. H. Auden,12
+Christopher Isherwood,Walter Raleigh,1
+Christopher Isherwood,William Blake,1
+Edward Upward,George Bernard Shaw,2
+Edward Upward,George Eliot,2
+Edward Upward,George Orwell,6
+Edward Upward,James Joyce,3
+Edward Upward,John Dryden,1
+Edward Upward,John Keats,1
+Edward Upward,John Milton,1
+Edward Upward,Louis MacNeice,6
+Edward Upward,Marie de France,1
+Edward Upward,Oscar Wilde,1
+Edward Upward,Percy Bysshe Shelley,1
+Edward Upward,Rex Warner,3
+Edward Upward,Robert Burns,2
+Edward Upward,Rudyard Kipling,2
+Edward Upward,Samuel Beckett,4
+Edward Upward,Samuel Johnson,1
+Edward Upward,Samuel Pepys,1
+Edward Upward,Seamus Heaney,1
+Edward Upward,Stephen Spender,5
+Edward Upward,T. S. Eliot,2
+Edward Upward,Thomas More,1
+Edward Upward,Virginia Woolf,3
+Edward Upward,W. H. Auden,5
+Edward Upward,William Blake,2
+Edward Upward,William Shakespeare,1
+Edward Upward,William Wordsworth,1
+Rex Warner,Robert Burns,2
+Rex Warner,Rudyard Kipling,4
+Rex Warner,Samuel Beckett,1
+Rex Warner,Stephen Spender,4
+Rex Warner,T. S. Eliot,3
+Rex Warner,Thomas Hobbes,1
+Rex Warner,Virginia Woolf,1
+Rex Warner,W. H. Auden,3
+Rex Warner,William Blake,1
+Rex Warner,William Langland,1
+Rex Warner,William Shakespeare,2
+Seamus Heaney,Stephen Spender,2
+Seamus Heaney,T. S. Eliot,6
+Seamus Heaney,Thomas More,2
+Seamus Heaney,Virginia Woolf,2
+Seamus Heaney,W. B. Yeats,4
+Seamus Heaney,W. H. Auden,5
+Seamus Heaney,William Shakespeare,1
+Seamus Heaney,William Wordsworth,1

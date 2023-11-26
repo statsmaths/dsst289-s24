@@ -1,0 +1,153 @@
+---
+title: "09. Table Joins"
+output:
+  html_document:
+    theme: cosmo
+    highlight: zenburn
+    css: "../css/note-style.css"
+---
+
+```{r, include=FALSE, message=FALSE}
+source("../funs/funs.R")
+
+food <- read_csv(file.path("..", "data", "food.csv"))
+food_prices <- read_csv(file.path("..", "data", "food_prices.csv"))
+```
+
+## Overview (read this section twice)
+
+These notes all focus on the core concept of a *primary key*. A primary key
+is a feature or group of features (in other words, a column or group of 
+columns) in a dataset that uniquely identifies a row of data.
+In our food dataset, the feature `item` is a primary key. In the `us`
+dataset, the `city` and `year` columns together form a primary key. We need
+both to uniquely identify one observation.
+
+Likewise, a *foreign key* is the appearance of a primary key within a
+different dataset. The food group feature in the `food` dataset, for example,
+could be a foreign key if we had another table with one row describing
+information about each food group.
+
+A primary key and the corresponding foreign key in another table form a
+*relation*. Typically a relation maps a single row in one dataset to many rows
+in another.
+
+A table join is a way of combining two tables based on relations. The goal is
+to match up a foreign key in one table with the primary key in another table,
+to add new features from one dataset into another dataset. Several examples
+will make this notion more clear.
+
+## Joining data by key
+
+As an example of performing table joins, we will start with a pared down
+version of our foods data:
+
+```{r, message=FALSE}
+food_sml <- food |>
+  select(item, food_group, calories)
+
+food_sml
+```
+
+Now, consider the following new dataset corresponding to dietary restrictions
+associated with different food groups:
+
+```{r, message=FALSE}
+diet <- read_csv(file.path("..", "data", "food_diet_restrictions.csv"))
+diet
+```
+
+In the `diet` table, the food group feature is a primary key. Within the
+`food` table, it is a foreign key. What we would like to do is to combine these
+datasets by matching up rows that have the same values in the corresponding
+columns.
+
+For example, it could be helpful to include the columns `vegan`, `vegetarian`,
+and `pescatarian` in the foods dataset. In order to do this, we need to
+associate a row in the food dataset with the row in the diet dataset that
+contains the same value of the feature `food_group`. We do this using the
+function `left_join`; we pipe in the larger dataset that we want to join columns
+to, provide the name of the table to grab columns from, and indicate what
+column will be used to combine the two datasets.
+
+```{r}
+food_sml |>
+  left_join(diet, by = c("food_group"))
+```
+
+And that is it! We now have the dietary restrictions added into the food
+dataset. We can now compute models, summaries, and construct visualizations
+based on the new metadata associated with each food group.
+
+Now, let's consider a third dataset containing information about food recipes,
+one for a Pot Roast and another for Guacamole:
+
+```{r, message=FALSE}
+recipes <- read_csv(file.path("..", "data", "food_recipes.csv"))
+recipes
+```
+
+In this dataset, ingredient is a foreign key corresponding to the primary key
+"item" in the foods dataset. For the recipes data, the primary key requires two
+columns: both recipe and ingredient are needed to describe each row uniquely.
+
+We can now try adding the calories information from the `food` dataset into the
+recipes dataset. The complication here is that the column we want to join on has
+a different name in each dataset ("ingredient" versus "item"). To specify this,
+specify the two different names within the `by =` argument of the join function:
+
+```{r}
+recipes |>
+  left_join(food_sml, by = c("ingredient" = "item"))
+```
+
+Now, we have a dataset that has added the food group and calories information
+to our recipe dataset. Notice that the ingredient "Bay Leaf" is not in our food
+dataset. Because of this, the food group and calories information for this
+ingredient are filled in with missing values.
+
+Notice that rows of data about food items in the dataset `food` that  are not
+in any recipe are not included in the output. This is where the term "left"
+comes from: all rows from the "left" (e.g., first) table are returned, but
+non-matching rows in the second (e.g., "right") table are dropped.
+
+## Inner and outer joins
+
+There are four mutating joins available in **dplyr**. These have the
+same syntax. If the join key is a primary key in one table and there
+are no missing matches, they all function exactly the same. If the
+join key is a primary key in one table and not all foreign keys in
+the other table match an entry in the other, the following happens:
+
+- `left_join` only non-matching rows in the first dataset are kept
+- `right_join` only non-matching rows in the second dataset are kept
+- `full_join` non-matching rows are included from either table
+- `inner_join` only matching rows from both tables are included
+
+For example, by replacing `left_join` with the function `inner_join`
+we can modify the join from the last section to drop the missing term
+(Bay Leaf) that is not contained in our food dataset:
+
+```{r}
+recipes |>
+  inner_join(food_sml, by = c("ingredient" = "item"))
+```
+
+These four joins are called "mutating" joins because, like the mutate function,
+they add columns to a dataset. There are also two "filter" joins that serve only
+to select rows in the first (left) table. The function `semi_join` selects
+rows in the first table that has a match in the second and `anti_join` selects
+rows in the first table that do not have a match in the second. These are
+useful for several data science tasks and will come up from time-to-time in our
+applications.
+
+Finally, there is another join called a "nested" join (`nest_join`). It has some
+very interesting applications, but we avoid using it this semester.
+
+## Homework Question
+
+Hand write a dataset that consists of at least two different tables where
+one table has a primary key that appears as foreign key on the second table.
+The tables do not need to be large (10 rows between both tables is more than
+enough) and the subject of the tables is up to you. Be creative and don't just
+copy the example above.

@@ -1,0 +1,238 @@
+---
+title: "16. Cleaning Antipatterns"
+output:
+  html_document:
+    theme: cosmo
+    highlight: zenburn
+    css: "../css/note-style.css"
+---
+
+```{r, include=FALSE, message=FALSE}
+source("../funs/funs.R")
+```
+
+In a recent set of slides, I shared some examples of ways that we should try to
+not organize our data. It is always better to avoid this antipatterns and 
+collect our original data following the rules in Notebook 7 and respecting at
+(a minimum) the 1NF rules. However, because I thought it may be of interest, in
+these notes, I will show how it can be possible to fix these antipatterns from
+within R. You will see that some are relatively easy and others are quite 
+involves, even for these small examples.
+
+## Antipattern 1
+
+Here is the data from the first antipattern, which is missing a feature name
+for the first column of the data:
+
+```{r, message=FALSE}
+ap <- read_csv("../data/antipattern01.csv")
+ap
+```
+
+Notice that R has given the feature the name `...1`; we can rename this using
+the function `rename`:
+
+```{r}
+ap |>
+  rename(name = ...1)
+```
+
+And that's about it. Fixing one variable name is not a huge problem; the real
+challenge is if we had to do this for a large number of features.
+
+## Antipattern 2
+
+In the second antipattern, we have a "*" in one of the numeric columns. When
+reading into R, the numeric column becomes a character column and we lose the
+ability to do any sort of numerical operations on it.
+
+```{r}
+ap <- read_csv("../data/antipattern02.csv")
+ap
+```
+
+We can fix this by using the **stringi** package and a series of mutates to
+reconver the column to a numeric type while building a new notes column:
+
+```{r}
+ap |>
+  mutate(notes = stri_extract_first(birth_year, fixed = "*")) |>
+  mutate(birth_year = stri_replace_all(birth_year, "", fixed = "*")) |>
+  mutate(birth_year = as.integer(birth_year))
+```
+
+A similar technique can be used if you have units of measurement of currency
+signs written into the data. As with the first example, fixing one column is
+not too difficult. The problem comes when trying to fix many columns at once.
+
+## Antipattern 3
+
+The third antipatterns concerns two tables that are put on sheet. This is 
+actually a fairly difficult thing to do directly in R. Reading in the data 
+all together is a mess:
+
+```{r, message=FALSE}
+ap <- read_csv("../data/antipattern03.csv")
+ap
+```
+
+The trick is to use the options `skip` and `n_max` to read each table into
+R separately. Here is the first table:
+
+```{r, message=FALSE}
+ap1 <- read_csv("../data/antipattern03.csv", skip = 2, n_max = 7)
+ap1
+```
+
+And here is the second:
+
+```{r, message=FALSE}
+ap2 <- read_csv("../data/antipattern03.csv", skip = 12, n_max = 7)
+ap2
+```
+
+We can fix the bad variable name, put the tables together, and add the trial
+information through a series of data verbs like this:
+
+```{r}
+ap1 |>
+  mutate(trial = 1) |>
+  bind_rows(ap2) |>
+  mutate(trial = if_else(is.na(trial), 2, trial)) |>
+  rename(latin = ...1)
+```
+
+If we wanted to create the even better long-format of the data described in the
+slides, we can add in a pivot and select function as well:
+
+```{r}
+ap1 |>
+  mutate(trial = 1) |>
+  bind_rows(ap2) |>
+  mutate(trial = if_else(is.na(trial), 2, trial)) |>
+  rename(latin = ...1) |>
+  pivot_longer(-c(latin, trial), names_to = "greek", values_to = "number") |>
+  select(trial, latin, greek, number)
+```
+
+And again, these things are doable with two tables that are otherwise well 
+structured. If the sheet contains dozens of individual tables, it would be quite
+time-consuming to use this method to read in the data into R. Note that the 
+choices of the `n_max` and `skip` functions required a bit of guess-and-check
+on my part to get this working.
+
+## Antipattern 4
+
+In this antipattern there are hierarchical column names. This is one of the 
+worst things you can run into in a dataset because there is really no simply
+answer about how to fix the data in R. Let's illustrate this by showing how
+we could do this from the example. Reading the table in all at once is a mess:
+
+```{r, message=FALSE}
+ap <- read_csv("../data/antipattern04.csv")
+ap
+```
+
+Let's read in the data ignoring the first row as a starting point: 
+
+```{r, message=FALSE}
+ap_tbl <- read_csv("../data/antipattern04.csv", skip = 1L)
+ap_tbl
+```
+
+We can then pivot the data and get something that actually looks quite fine:
+
+```{r}
+ap_tbl <- ap_tbl |>
+  pivot_longer(-c(student_name), names_to = "course", values_to = "grade")
+ap_tbl
+```
+
+In this small example we could do some hand editing to figure out which rows
+are from the fall semester and which are from the spring semester. Let's see
+if we can do this in a more programatic way that would sort of work for a larger
+table. Let's read in the first row of column names as a seperate table:
+
+```{r, message=FALSE}
+ap_head <- read_csv("../data/antipattern04.csv", n_max = 1L)
+ap_head
+```
+
+Some manipulation, now, can turn this into a metadata table telling us when
+each class was offered:
+
+```{r}
+ap_head <- ap_head |>
+  select(-...1) |>
+  pivot_longer(-c(), names_to = "semester", values_to = "course") |>
+  mutate(semester = stri_replace(semester, "", fixed = "_semester")) |>
+  mutate(semester = if_else(stri_sub(semester, 1, 3) == "...", NA_character_, semester)) |>
+  fill(semester)
+ap_head
+```
+
+This can then be join into the larger dataset to get the version of the data 
+we wished had been stored in the first place.
+
+```{r}
+ap_tbl |>
+  left_join(ap_head, by = "course")
+```
+
+The technique here only works because there is a unique semester in which each
+class was held. Otherwise we'd need any even more involved technique to get the
+data into the right format. So, just please do not use hierarchical column names
+in your data collection!
+
+## Antipattern 5
+
+The final antipattern is actually not that bad. In fact, while I never want my
+data to look like this when I am analyzing it, sometimes putting more than one
+thing in a value seperated by a common marker is actually an easy way to do
+data collection. Here is what the data look like in R:
+
+```{r}
+ap <- read_csv("../data/antipattern05.csv")
+ap
+```
+
+We can split apart the favorite foods using the `stri_split` function, but 
+this results in a nested data table (the kind of thing we discussed when talking
+about the 1NF rules).
+
+```{r}
+ap |>
+  mutate(fav_foods = stri_split(fav_foods, fixed = "; "))
+```
+
+The `unnest` function comes to the rescue, though, and produces a table that
+respects the first normal form:
+
+```{r}
+ap |>
+  mutate(fav_foods = stri_split(fav_foods, fixed = "; ")) |>
+  unnest(c(fav_foods))
+```
+
+We could recover the 3NF by splitting the data into two tables using the 
+`select` function like this:
+
+```{r}
+ap |>
+  select(student_name, year)
+```
+
+And this:
+
+```{r}
+ap |>
+  select(-year) |>
+  mutate(fav_foods = stri_split(fav_foods, fixed = "; ")) |>
+  unnest(c(fav_foods))
+```
+
+## Homework Questions
+
+Given last week's exam, there are no homework questions for today.
+
+

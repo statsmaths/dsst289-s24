@@ -1,0 +1,254 @@
+---
+title: "17. Dates, Datetimes, and Times"
+output:
+  html_document:
+    theme: cosmo
+    highlight: zenburn
+    css: "../css/note-style.css"
+---
+
+```{r, include=FALSE, message=FALSE}
+source("../funs/funs.R")
+```
+
+One of the topics we covered early on this course was the idea of a data type,
+which we defined as the type of data stored in the column of a tabular dataset.
+Most commonly these have been numbers (`<int>` or `<dbl>`) or character strings
+(`<chr>`). We've also common across the logical data type (`<lgl>`) , which can
+only be either `TRUE` or `FALSE`, and factors (`<fct>`). The latter are similar
+to character strings but have a built-in ordering of their unique values.
+
+In these notes, we want to consider three new data types specifically designed
+to work with dates and times. With some reflection, it should seem reasonable
+to have specific data type for date and times because they act somewhat like a
+number (ordered, some meaning of distances), somewhat like a categorical
+variable (there are fixed values), and have some unique properties (such as 
+issues with days of the week and timezones).
+
+The three data types we will work with are:
+
+- **date** (`<date>`) to represent a single day in time
+- **datetime** (`<S3: POSIXct>`) to represent a particular time during a particular day
+- **time** (`<S3: hms>`) to represent a time of day without reference to a specific day
+
+The first two are far more common than the last. Let's start by looking at a
+dataset with a date column and discuss unique functions for working with these
+dates. Then, we'll see how to extend this to the datetime and time objects.
+
+## Dates
+
+As an example dataset, let's look at a modified version of the shark data from
+the first exam. The data is the same, but now we have a specific `date` column
+describing the data of the shark attack. Notice that the `read_csv` function has
+done the conversion to a date format automatically for us.
+
+```{r}
+sharks <- read_csv("../data/shark_attacks_date.csv")
+sharks
+```
+
+There are a number of specific functions that can be used inside the mutate
+function to extract elements of the date. For example, we can get the year,
+month, and day of the attack as new columns with the following:
+
+```{r}
+sharks |>
+  mutate(
+    year = year(date),
+    month = month(date),
+    day = day(date),
+    wday = wday(date)
+  ) |>
+  select(date, year, month, day, wday)
+```
+
+Note that `month` and `wday` have options to return character strings rather
+than numbers, which can be useful:
+
+```{r}
+sharks |>
+  mutate(
+    month = month(date, label = TRUE, abbr = FALSE),
+    wday = wday(date, label = TRUE, abbr = FALSE)
+  ) |>
+  select(date, month, wday)
+```
+
+The character strings that come out of these two functions already have a built
+in ordering, which makes plots slightly easier to create (though not the comment
+regarding the line layer below). Here are the number of attacks per months in
+the `sharks` data:
+
+```{r}
+sharks |>
+  mutate(
+    month = month(date, label = TRUE, abbr = TRUE),
+  ) |> 
+  group_by(month) |>
+  summarize(n = n()) |>
+  ggplot(aes(month, n)) +
+    geom_point() +
+    geom_line(aes(group = 1))  # the group = 1 is needed to connect the dots
+```
+
+Using a date object as the x- or y-aesthetic in a plot works without an addition
+effort on our part. Here, we'll plot just the attacks in 1990, with `date` on
+the x-axis.
+
+```{r}
+sharks |>
+  filter(year(date) %in% c(1990)) |>
+  ggplot(aes(date, shark_type)) +
+    geom_point()
+```
+
+Often with dates, it is useful to manually modify the labels on the time-based
+axis. We do this with `scale_x_date` (or its y-equivalent if time is on the
+y-axis). Adding this scale to a plot on its own will have no effect, but we can
+change the default by changing three parameters:
+
+- `date_breaks` a string describing the frequency of the labels, such as
+   "month" or "2 years"
+- `date_minor_breaks` a string describing the frequency of the grid-lines
+- `date_labels` format string: [strptime](https://rdrr.io/r/base/strptime.html)
+
+You can set just a subset of these, depending on how much control you want over
+the plot. For example, let's label the previous plot by showing a label for
+every month, and using the pattern "%B" to show (just) the full month's name.
+
+```{r}
+sharks |>
+  filter(year(date) %in% c(1990)) |>
+  ggplot(aes(date, shark_type)) +
+    geom_point() +
+    scale_x_date(
+      date_breaks = "month",
+      date_labels = "%B",
+      date_minor_breaks = "month"
+    )
+```
+
+### Datetimes
+
+To explore datetimes, let's look at a version of the flights dataset, but this
+time from the three NYC airports. Reading the data into R shows that one of
+these columns, `time_hour` contains a special object for holding information
+about the time of the weather reading.
+
+```{r}
+weather <- read_csv("../data/flights_weather.csv")
+weather
+```
+
+As with the date data type, we can use a variety of functions inside a mutate 
+to extract information about the time. All of the same date functions exists
+as well as some extra ones specifically for time.
+
+```{r}
+weather |>
+  mutate(month = month(time_hour), hour = hour(time_hour)) |>
+  select(time_hour, month, hour)
+```
+
+Also, as with dates, we can set the time variable to the x- or y-aesthetic of a
+ggplot graphic and it will work as expected. Here is a plot showing the 
+tempurature over the course of one day at JFK airport.
+
+```{r}
+weather |>
+  filter(origin == "JFK") |>
+  filter(year(time_hour) == 2013) |>
+  filter(month(time_hour) == 5) |>
+  filter(day(time_hour) == 1) |>
+  ggplot(aes(time_hour, temp)) +
+    geom_point() +
+    geom_line()
+```
+
+We can modify the axis labels with `scale_x_datetime`. Note that this is a 
+different function that required for dates, but the options are the same.
+
+```{r}
+weather |>
+  filter(origin == "JFK") |>
+  filter(year(time_hour) == 2013) |>
+  filter(month(time_hour) == 5) |>
+  filter(day(time_hour) == 1) |>
+  ggplot(aes(time_hour, temp)) +
+    geom_point() +
+    geom_line()  +
+    scale_x_datetime(
+      date_breaks = "2 hours",
+      date_labels = "%H"
+    )
+```
+
+Here's another example showing how to label the axis with the days of the week
+and how to select a week of the year using the `isoweek` function:
+
+```{r}
+weather |>
+  filter(origin == "JFK") |>
+  filter(year(time_hour) == 2013) |>
+  filter(isoweek(time_hour) == 12) |>
+  ggplot(aes(time_hour, temp)) +
+    geom_line(aes(color = factor(day(time_hour))))  +
+    scale_x_datetime(
+      date_breaks = "1 day",
+      date_labels = "%a"
+    )
+```
+
+### Time and Conversion
+
+We can convert any datetime object to a date object or time object using the
+functions `as_date` and `as_hms`. For example:
+
+```{r}
+weather |>
+  mutate(time_date = as_date(time_hour), time = as_hms(time_hour)) |>
+  select(time_hour, time_date, time)
+```
+
+The function `ymd` will create a date object from a string. Putting this
+together with the `as_date` function, we can simplify the code we used to 
+select a particular day of the year:
+
+```{r}
+weather |>
+  filter(as_date(time_hour) == ymd("2013-05-01"))
+```
+
+While it is rare to deal with time data without dates in the original data, this
+comes up frequently when working with certain kinds of analysis. For example,
+here we can use the `as_hms` function to show the daily tempurature changes over
+the course of a week:
+
+```{r}
+weather |>
+  filter(origin == "JFK") |>
+  filter(year(time_hour) == 2013) |>
+  filter(isoweek(time_hour) == 12) |>
+  mutate(time = as_hms(time_hour)) |>
+  mutate(day = day(time_hour)) |>
+  ggplot(aes(time, temp)) +
+    geom_line(aes(color = factor(day)))
+```
+
+The functionality for time objects is not as good as for date and datetime 
+objects, so try to make use of the latter two whenever possible.
+
+### Homework
+
+The canonical and best way to store a date object inside of a CSV file is to
+format the date as "YYYY-MM-DD". Datetimes can be similarly stored in the 
+format "YYYY-MM-DD HH:MM" or "YYYY-MM-DD HH:MM:SS" and times as "HH:MM" or
+"HH:MM:SS". Write down on a piece of paper the following information in the
+appropriate format.
+
+1. When you woke up this morning.
+2. The first day of this semester.
+3. When you were born. 
+4. When you're alarm is currently set for.
+5. The date of your next birthday.
+

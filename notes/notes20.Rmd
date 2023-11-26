@@ -1,0 +1,145 @@
+---
+title: "20. Time Zones"
+output:
+  html_document:
+    theme: cosmo
+    highlight: zenburn
+    css: "../css/note-style.css"
+---
+
+```{r, include=FALSE, message=FALSE}
+source("../funs/funs.R")
+library(jsonlite)
+```
+
+Working with time zones is known to be a particular pain point in data science
+analyses. We'll try to illustrate some general points here without making it
+too complicated.
+
+All datetime objects held in R have two components:
+
+- the date time in a fixed coordinate system called UTC (Coordinated Universal Time)
+- information about the **local** timezone that we want to associate with the record
+
+Whenever we use functions such as `hour()` and `isoweek()`, R will silently
+convert the UTC time to the specific timezone and return results based on the
+local time.
+
+When creating a datetime object, if we don't specify the timezone manually, it
+will be assumed that we want to use the UTC as the local time as well as the
+internal representation of the time. When dealing with data in a single time
+zone, this is actually fine. Both the date and computations occur in a standard
+time zone so everything works as expected. When dealing with data across
+different time zones we may need to change the local time associated with a
+datetime using the function `with_tz`. Let's see an example.
+
+I'll create a small data set of 8 times. Without setting the time zone, R
+assumes that these are in UTC.
+
+```{r}
+df <- tibble(
+  time = make_datetime(2020, c(2, 2, 2, 7, 7, 7), 1, seq_len(8))
+)
+df
+```
+
+We can convert these to the time in New York using the function `with_tz`:
+
+```{r}
+df |>
+  mutate(time_nyc = with_tz(time, tz = "America/New_York"))
+```
+
+These two columns now look different. Notice that the difference in time is a
+bit different in February compared to July due to daylight saving (UTC does not
+have daylight savings). If we apply the function `hour` they give different
+outputs:
+
+```{r}
+df |>
+  mutate(time_nyc = with_tz(time, tz = "America/New_York")) |>
+  mutate(hour = hour(time)) |>
+  mutate(hour_nyc = hour(time_nyc))
+```
+
+However, the actual times are exactly the same. We can see this by subtracting
+one from the other:
+
+```{r}
+df |>
+  mutate(time_nyc = with_tz(time, tz = "America/New_York")) |>
+  mutate(diff = time - time_nyc)
+```
+
+What if the times we input actually were in local NYC time to begin with? As
+described above, we could just ignore the time zones and do everything in UTC.
+We can also force the time zone using `force_tz`:
+
+```{r}
+df |>
+  mutate(time_nyc = force_tz(time, tz = "America/New_York")) |>
+  mutate(diff = time - time_nyc)
+```
+
+Notice that we have the opposite behavior from before. The dates look the same
+and would return the same values for functions such as hour, but actually are
+different.
+
+### Application
+
+Let's look one more time at the forcast data you saw in Exam 03. I'll take a
+small set of the variables and create a dataset from the hourly forcast.
+
+```{r}
+dt <- read_csv("../data/other_forecast_rva_hourly.csv")
+```
+
+Notice that the times contain the marker '-05:00' indicating that these times
+are in a local time zone that is 5 hours behind UTC (that's the offset for the
+U.S. Eastern time zone in the summer). If we create a date time object from
+this, R will apply the offset but will display the result in UTC:
+
+```{r}
+dt |>
+  mutate(
+    start_time = ymd_hms(start_time)
+  )
+```
+
+Let's plot the temperature as a function of the time of day. Notice that the
+highest tempuratures occur around 8pm at night and the lowest around noon.
+That does not make much sense.
+
+```{r}
+dt |>
+  mutate(start_time = ymd_hms(start_time)) |>
+  mutate(time = as_hms(start_time)) |>
+  mutate(wday = wday(start_time, label = TRUE)) |>
+  ggplot(aes(time, temperature)) +
+    geom_point(aes(color = wday)) +
+    geom_line(aes(color = wday)) +
+    scale_x_time()
+```
+
+We can fix this by using the `with_tz` function prior to creating the time
+object:
+
+```{r}
+dt |>
+  mutate(start_time = ymd_hms(start_time)) |>
+  mutate(start_time = with_tz(start_time, "America/New_York")) |>
+  mutate(time = as_hms(start_time)) |>
+  mutate(wday = wday(start_time, label = TRUE)) |>
+  ggplot(aes(time, temperature)) +
+    geom_point(aes(color = wday)) +
+    geom_line(aes(color = wday)) +
+    scale_x_time()
+```
+
+Now the coldest hours are in the morning and warmest are in the late-afternoon,
+as we would usually expect.
+
+### Homework
+
+No homework for today, just get ready for the third exam. It was a short turn
+around from the second exam, and I know this is a busy week for everyone.

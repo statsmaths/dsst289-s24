@@ -1,0 +1,32 @@
+code,name,color
+Af,Tropical rainforest climate,#0000FE
+Am,Tropical monsoon climate,#0077FF
+Aw,Tropical savanna climate with dry-winter characteristics,#46A9FA
+As,Tropical savanna climate with dry-summer characteristics,#46A9FA
+BWh,Hot desert climates,#FE0000
+BWk,Cold desert climates,#FE9695
+BSh,Hot semi-arid climates,#F5A301
+BSk,Cold semi-arid climates,#FFDB63
+Csa,Mediterranean hot summer climates,#FFFF00
+Csb,Mediterranean warm/cool summer climates,#C6C700
+Csc,Mediterranean cold summer climates,#969600
+Cfa,Humid subtropical climates,#96FF96
+Cfb,Oceanic climate,#63C764
+Cfc,Subpolar oceanic climate,#329633
+Cwa,Dry-winter humid subtropical climate,#C6FF4E
+Cwb,Dry-winter subtropical highland climate,#66FF33
+Cwc,Dry-winter subpolar oceanic climate,#33C701
+Dfa,Hot summer continental climates,#FF00FE
+Dwa,Hot summer continental climates,#C600C7
+Dsa,Hot summer continental climates,#963295
+Dfb,Warm summer continental or hemiboreal climates,#966495
+Dwb,Warm summer continental or hemiboreal climates,#ABB1FF
+Dsb,Warm summer continental or hemiboreal climates,#5A77DB
+Dfc,Subarctic or boreal climates,#4C51B5
+Dwc,Subarctic or boreal climates,#320087
+Dsc,Subarctic or boreal climates,#00FFFF
+Dfd,Subarctic or boreal climates with severe winters,#38C7FF
+Dwd,Subarctic or boreal climates with severe winters,#007E7D
+Dsd,Subarctic or boreal climates with severe winters,#00455E
+ET,Tundra climate,#B2B2B2
+EF,Ice cap climate,#686868

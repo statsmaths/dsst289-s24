@@ -1,0 +1,293 @@
+---
+title: "Notebook 09 -- Solutions"
+output:
+  html_document:
+    theme: cosmo
+    highlight: zenburn
+    css: "../css/note-style.css"
+---
+
+## Getting Started
+
+Before running this notebook, select "Session > Restart R and Clear Output" in
+the menu above to start a new R session. This will clear any old data sets and
+give us a blank slate to start with.
+
+After starting a new session, run the following code chunk to load the
+libraries and data that we will be working with today.
+
+```{r, include=FALSE, message=FALSE}
+source("../funs/funs.R")
+```
+
+I have set the options `include=FALSE` and `message=FALSE` to avoid cluttering
+the solutions with all the output from this code.
+
+## Flights
+
+### Datasets
+
+In this notebook we are going to work with a number of different data tables
+concerning commercial flights that departed from Richmond International Airport
+(RIC) in 2019. The data are in five different tables that can be joined together
+using different sets of keys. I think most of the variables are
+self-explanatory, but please ask if you have any questions! There is a table
+of airlines:
+
+```{r}
+airlines <- read_csv("../data/flightsrva_airlines.csv.gz")
+airlines
+```
+
+One of airports:
+
+```{r}
+airports <- read_csv("../data/flightsrva_airports.csv.gz")
+airports
+```
+
+The table of flights:
+
+```{r}
+flights <- read_csv("../data/flightsrva_flights.csv.gz") |>
+  select(-time_hour) # removing for now until we discuss datetime objects 
+flights
+```
+
+A table of planes:
+
+```{r}
+planes <- read_csv("../data/flightsrva_planes.csv.gz")
+planes
+```
+
+And a table of weather:
+
+```{r}
+weather <- read_csv("../data/flightsrva_weather.csv.gz") |>
+  select(-time_hour) # removing for now until we discuss datetime objects 
+weather
+```
+
+Before you proceed, take a moment to determine what (if any) is the primary
+key of each table. 
+
+### Carriers
+
+In the first question, create a barplot showing the number of flights each 
+carrier made in 2019 out of RIC. Order the barplot in descending order of the
+count of flights. Put the count on the x-axis and the airline on the y-axis.
+
+```{r, question-01}
+flights |>
+  group_by(carrier) |>
+  summarize(n = n()) |>
+  arrange(desc(n)) |>
+  mutate(carrier = fct_inorder(carrier)) |>
+  ggplot(aes(n, carrier)) +
+    geom_col()
+```
+
+The plot above is tricky because you probably do not know all of the airline
+codes. Repeat the plot in the code below, but use a `left_join` to combine the
+results with the `airlines` dataset and use the full airline names on the 
+y-axis rather than single codes. Do you recognize the carrier with the most
+flights out of the city?
+
+```{r, question-02}
+flights |>
+  group_by(carrier) |>
+  summarize(n = n()) |>
+  arrange(desc(n)) |>
+  left_join(airlines, by = "carrier") |>
+  mutate(name = fct_inorder(name)) |>
+  ggplot(aes(n, name)) +
+    geom_col()
+```
+
+### Destinations
+
+Now, produce a similar barplot counting the number of outbound flights from RIC
+based on where the flight was going to. Put the destination code on the y-axis,
+counts on the x-axis, and order in descending order of count.
+
+```{r, question-03}
+flights |>
+  group_by(dest) |>
+  summarize(n = n()) |>
+  arrange(desc(n)) |>
+  mutate(dest = fct_inorder(dest)) |>
+  ggplot(aes(n, dest)) +
+    geom_col()
+```
+
+Airport codes are a bit easier to figure out that airline codes, but you 
+probably still only know the top few from the previous plot. Modify your plot
+above in the code below by joining with the `airports` data and using the full
+airport names. Be careful with this; it is slightly more difficult than the
+join you did in question 2.
+
+```{r, question-04}
+flights |>
+  group_by(dest) |>
+  summarize(n = n()) |>
+  arrange(desc(n)) |>
+  left_join(airports, by = c("dest" = "faa")) |>
+  mutate(name = fct_inorder(name)) |>
+  ggplot(aes(n, name)) +
+    geom_col()
+```
+
+The `airports` table has longitude and latitude in addition to the airport
+names. Let's create a plot with longitude on the x-axis, latitude on the y-axis,
+and a point for each airport that had outbound flights from RIC in 2019. Make
+the size of the points scale with the number of flights and add text labels to
+give the airport FAA code for each city. Finally, add proper labels to the 
+aesthetics and a title.
+
+```{r, question-05}
+flights |>
+  group_by(dest) |>
+  summarize(n = n()) |>
+  arrange(desc(n)) |>
+  left_join(airports, by = c("dest" = "faa")) |>
+  mutate(name = fct_inorder(name)) |>
+  ggplot(aes(lon, lat)) +
+    geom_point(aes(size = n), color = "grey85") +
+    geom_text_repel(aes(label = dest)) +
+    scale_size_area() +
+    labs(x = "", y = "", size = "Number of Flights",
+         title = "Number of Outbound Flights from RIC (2019)")
+```
+
+Let's add one more element to the plot above. In the code below, modify the 
+previous plot by including a large red dot showing RIC airport.
+
+```{r, question-06}
+ric <- airports |>
+  filter(faa == "RIC")
+
+flights |>
+  group_by(dest) |>
+  summarize(n = n()) |>
+  arrange(desc(n)) |>
+  left_join(airports, by = c("dest" = "faa")) |>
+  mutate(name = fct_inorder(name)) |>
+  ggplot(aes(lon, lat)) +
+    geom_point(aes(size = n), color = "grey85") +
+    geom_text_repel(aes(label = dest)) +
+    geom_point(data = ric, color = "red", size = 3) +
+    scale_size_area() +
+    labs(x = "", y = "", size = "Number of Flights",
+         title = "Number of Outbound Flights from RIC (2019)")
+```
+
+### Planes
+
+Take the `flights` table and join to the `planes` table using the key `tailnum`.
+Look at the resulting data, in particular the name of the first column in the
+output, comparing it to the name in the first column of the original `flights`
+table.
+
+```{r, question-07}
+flights |>
+  left_join(planes, by = "tailnum")
+```
+
+Both `flights` and `planes` have a column called `year`, but they mean different
+things. On the first table it is the year of the flight and on second table it
+is the year the plane was built. Repeat the last question but add the option
+`suffix = c("", "_plane")` to the join function. Look at the new column names
+and see how this solved the problem.
+
+```{r, question-08}
+flights |>
+  left_join(planes, by = "tailnum", suffix = c("", "_plane"))
+```
+
+Using the join code you had above, create a bar plot showing the number of 
+flights departing from RIC based on the model year of the plane. Put the years
+on the x-axis and DO NOT order by frequency (we want the years in their temporal
+order). See any patterns?
+
+```{r, question-09}
+flights |>
+  left_join(planes, by = "tailnum", suffix = c("", "_plane")) |>
+  group_by(year_plane) |>
+  summarize(n = n()) |>
+  ggplot(aes(year_plane, n)) +
+    geom_col()
+```
+
+### Weather
+
+In the code below, join together the `flight` and `weather` tables. Note that
+this will require a large number of features to properly define the join.
+
+```{r, question-10}
+flights |>
+  left_join(weather, by = c("year", "month", "day", "hour", "origin"))
+```
+
+The function `cut` takes two arguments, a numeric feature and an integer number
+of buckets. It converts a number value into a set of ordered categories by 
+bucketing the numeric values into equally spaced bins. In the next question,
+join the `flights` and `weather` tables together, and create a new variable
+that cuts the `wind_gust` feature into 10 buckets. Take a moment to look at 
+and understand the output.
+
+```{r, question-11}
+flights |>
+  left_join(weather, by = c("year", "month", "day", "hour", "origin")) |>
+  mutate(wind_gust_cat = cut(wind_gust, 10))
+```
+
+Starting with the code you had above, group the data but the wind gust buckets,
+compute the average delay of flights within each category, and compute the 
+number of flights in each bucket. You will need to remove missing values in the
+`mean` function. Produce a scatter plot that shows the average delay on the
+x-axis, the wind category on the y-axis, and use the size of the points to
+indicate the number of flights.
+
+```{r, question-12}
+flights |>
+  left_join(weather, by = c("year", "month", "day", "hour", "origin")) |>
+  mutate(wind_gust_cat = cut(wind_gust, 10)) |>
+  group_by(wind_gust_cat) |>
+  summarize(avg_delay = mean(dep_delay, na.rm = TRUE), n = n()) |>
+    ggplot(aes(avg_delay, wind_gust_cat)) +
+      geom_point(aes(size = n))
+```
+
+Does there appear to be a relationship between high wind speeds and departure
+delays?
+
+### Big Planes
+
+To finish, let's see how we can make use of a filter join. Create a table in
+the code below called `big_planes` that only contains the rows of `planes` with
+more than 200 seats.
+
+```{r, question-13}
+big_planes <- planes |>
+  filter(seats > 200)
+```
+
+Repeat the code you had for question 4, but use a filter join to only include
+flights that have greater than 200 seats. 
+
+```{r, question-14}
+flights |>
+  semi_join(big_planes, by = "tailnum") |>
+  group_by(dest) |>
+  summarize(n = n()) |>
+  arrange(desc(n)) |>
+  left_join(airports, by = c("dest" = "faa")) |>
+  mutate(name = fct_inorder(name)) |>
+  ggplot(aes(n, name)) +
+    geom_col()
+```
+
+Where are all of the big planes going that depart from RIC?
+**Answer**: Nearly every larger plane in the datset is going to Atlanta.
+

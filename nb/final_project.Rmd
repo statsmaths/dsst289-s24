@@ -1,0 +1,30 @@
+---
+title: "Final Project"
+output:
+  html_document:
+    theme: cosmo
+    highlight: zenburn
+    css: "../css/note-style.css"
+---
+
+## Instructions
+
+Deadline: Wednesday, 30 November 2022 at the start of class
+
+Please see the course website for instructions. This is just an empty
+document for you to work on the project from.
+
+Good luck!
+
+```{r, echo=FALSE}
+source("../funs/funs.R")
+```
+
+## Final Project
+
+
+
+
+```{r}
+
+```

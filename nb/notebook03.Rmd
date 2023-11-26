@@ -1,0 +1,214 @@
+---
+title: "Notebook 03"
+output:
+  html_document:
+    theme: cosmo
+    highlight: zenburn
+    css: "../css/note-style.css"
+---
+
+## Getting Started
+
+Before running this notebook, select "Session > Restart R and Clear Output" in
+the menu above to start a new R session. This will clear any old data sets and
+give us a blank slate to start with.
+
+After starting a new session, run the following code chunk to load the
+libraries and data that we will be working with today.
+
+```{r, include=FALSE, message=FALSE}
+source("../funs/funs.R")
+```
+
+I have set the options `include=FALSE` and `message=FALSE` to avoid cluttering
+the solutions with all the output from this code.
+
+# Practice
+
+For practice, we will work again with the largest cities datasets:
+
+```{r, message=FALSE}
+cities <- read_csv("../data/largest_cities.csv")
+cities
+```
+
+We will also work with a second dataset of U.S. city populations over time.
+The code below, which we will learn about next time, will select three
+cities of data (Boston, Chicago, and LA) for us to work with:
+
+```{r, message=FALSE}
+us_three <- read_csv("../data/us_city_population.csv") |>
+  filter(city %in% c("Boston, MA", "Chicago, IL", "Los Angeles, CA"))
+us_three
+```
+
+You may want to take a moment to look at this new data set to understand what
+features are available.
+
+## Color and Size
+
+In this section we will use the `cities` dataset. In the code below, produce a
+scatter plot with longitude on the x-axis and latitude on the y-axis. Make the
+points scale with the size of the city's population.
+
+```{r, question-01}
+
+```
+
+What region(s) seem to have the highest concentration of large cities?
+**Answer**:
+
+Below, repeat the same plot but now scale the color (not the size) of the
+points based on the population.
+
+```{r, question-02}
+
+```
+
+Which of these two plots (color or size) do you find easier to read? Why?
+**Answer**:
+
+In the code below, plot the cities data with the city longitude on the x-axis
+and latitude on the y-axis. Color the points based on the continent the city
+is in and make the size proportional to the population.
+
+```{r, question-03}
+
+```
+
+What "holes" in the map exist? That is, what are some large regions have no
+cities in the dataset that you tend to expect to find on a map?
+**Answer**:
+
+## Group Aesthetic
+
+In this section, we will use the `us_three` dataset. In the code below we are
+going to produce a line plot with year on the x-axis and population on the
+y-axis. To do this, use the `geom_line` geometry.
+
+```{r, question-04}
+
+```
+
+You should see a strange plot that seems to have a jagged, comb-like pattern to
+it. Below, repeat this plot but add a points layer that is colored by the city
+name (do not add color yet to the lines)
+
+```{r, question-05}
+
+```
+
+Can you see what's happening now? The line plot is drawing a single line,
+from the smallest year to the largest year, without ever lifting up its pen.
+It is connecting across time and space, producing a plot that is nearly
+meaningless (or at least, very hard to interpret).
+
+In the code below, produce a line plot with year on the x-axis and population
+on the y-axis. Color the lines by city. Do not include a points layer.
+
+```{r, question-06}
+
+```
+
+This plot should now look a lot nicer as it shows a different line for each
+city. To understand what is going on, produce the same plot in the code below,
+but replace the `color` aes with a new aes called `group`. In other words, map
+the `group` aesthetic to the city aesthetic.
+
+```{r, question-07}
+
+```
+
+You should now see three lines that are all in black. It is this exact plot
+that was being colored in the previous example.
+
+What's going on here? When we add aesthetics such as color and size to a line
+geometry, another aesthetic called `group` is magically set at the same time.
+It is possible to set this aesthetic explicitly if we want to group the data
+without producing a different size or color.
+
+## Fixed Aesthetics
+
+Now, return again to the `cities` dataset. Produce a scatter plot with
+longitude and latitude, but color all of the points the color "pink".
+
+```{r, question-08}
+
+```
+
+Starting from the plot in the previous question, modify the size of the points
+to change with the population of each city.
+
+```{r, question-09}
+
+```
+
+Another aesthetic value that was not covered in the notes above is `alpha`.
+It is given by a number between 0 and 1 and sets how opaque the points are
+shown. Most typically it is used as a fixed aesthetic to make a plot with a
+large number of points more readable. Starting with the plot in the previous
+question, add a fixed aesthetic to change the alpha value of the points to 0.4.
+
+```{r, question-10}
+
+```
+
+Notice how the areas where multiple cities overlap are darker than the
+surrounding regions.
+
+## Scales
+
+With the `cities` dataset, produce a scatter plot with city area (`city_area`)
+on the x-axis and city population (`city_pop`) on the y-axis.
+
+```{r, warning=FALSE, question-11}
+
+```
+
+You should find that it is difficult to interpret this plot because most of the
+cities are squished together on the left-side of the plot. One way to fix this
+is to use a logarithmic scale. In the code block below, provide a modification
+of this plot with logarithmic scales for the x- and y-axes.
+
+```{r, warning = FALSE, question-12}
+
+```
+
+You should find this plot easier to work with. If you are not familiar with
+the scientific notation used on the x-axis labels here, make sure to
+[learn more about these](https://en.wikipedia.org/wiki/Scientific_notation)
+as they will appear from time-to-time throughout the notes in this course.
+
+## Color Scales
+
+The Köppen climate classification is a way of describing the climate of a region
+or city. Information about these scores are included in the `cities` dataset and
+are something that we will explore in length in future notebooks. Here we will
+work with the four level categorization stored in the feature `koppen_main`
+(there are actually five levels, but the coldest level is not present in this
+dataset).
+
+In the code block below, produce a scatter plot of the `cities` dataset with
+longitude on the x-axis  and latitude on the y-axis. Color the points based on
+the `koppen_main` feature.
+
+```{r, question-13}
+
+```
+
+In the code below, modify this plot to use the color-blind friendly Viridis
+color scale:
+
+```{r, question-14}
+
+```
+
+There is a well-known and standardized color scale for the Köppen codes. We will
+use the full palette in a future notebook; here we will just set values for the
+four main categories. In the code below repeat the scatter plot, but add a manual
+color scale where the "Tropical" climates are blue, the "Dry" climates are red,
+"Temperate" is green and "Continental" is purple.
+
+```{r, question-15}
+
+```

@@ -1,0 +1,190 @@
+---
+title: "Notebook 05"
+output:
+  html_document:
+    theme: cosmo
+    highlight: zenburn
+    css: "../css/note-style.css"
+---
+
+## Getting Started
+
+Before running this notebook, select "Session > Restart R and Clear Output" in
+the menu above to start a new R session. This will clear any old data sets and
+give us a blank slate to start with.
+
+After starting a new session, run the following code chunk to load the
+libraries and data that we will be working with today.
+
+```{r, include=FALSE, message=FALSE}
+source("../funs/funs.R")
+```
+
+I have set the options `include=FALSE` and `message=FALSE` to avoid cluttering
+the solutions with all the output from this code.
+
+# Practice
+
+We will work with the largest cities data sets:
+
+```{r, message=FALSE}
+cities <- read_csv("../data/largest_cities.csv")
+cities
+```
+
+We will now also work with the entire U.S. cities data set:
+
+```{r, message=FALSE}
+us <- read_csv("../data/us_city_population.csv") |>
+  filter(!is.na(population))
+us
+```
+
+Please refer to the previous notebooks for more information about these data
+sets and how these data sets are organized.
+
+## Summary Statistics
+
+In the code block below, using the `summarize` function to compute the mean
+population (`population`) in the `cities` dataset.
+
+```{r, question-01}
+
+```
+
+## Grouped Summaries
+
+Let's now try to use grouped summarize functions. There is a feature in the
+`cities` data set called `city_definition`. It describes the kind of
+administrative structure given to each city. Using a grouped summary, in the
+code below tabulate how many times each city definition is used in the dataset.
+Arrange the data in decreasing order from the most common to least common
+definition.
+
+```{r, question-02}
+
+```
+
+What city type is the most common in the dataset?
+**Answer**:
+
+Now, count and arrange in descending order the feature `koppen_code`.
+
+```{r, question-03}
+
+```
+
+What Köppen Code is the most common in the dataset?
+**Answer**:
+
+Now, in the code below group by continent and paste together the
+city names (`name`).
+
+```{r, question-04}
+
+```
+
+You will probably have to scroll over to see the results.
+
+Finally, in the code below group by continent, count the number of
+cities in each continent, and pass this to a plot with a `geom_col` layer
+to visualize the number of cities on each continent.
+
+```{r, question-05}
+
+```
+
+## Summarize Trends in U.S. Cities Data
+
+We will now turn to the U.S. cities dataset to perform some more involved uses
+of the summary function. To start, group by the year feature and summarize the
+dataset by taking the sum of the population in every city for each year (with
+`sum`). Draw a plot with `geom_line` and `geom_point` to show the population
+trend in these 300 U.S. cities over time.
+
+```{r, question-06}
+
+```
+
+The population feature in this data set is given in thousands of people. In
+2000 there were approximately 300 million people living in the Unite States.
+Roughly what fraction of people in the year 2000 appear to have lived in one of
+the largest 300 cities according to this plot? **Answer**: It looks like about
+80 million live in these cities, so about 25%.
+
+## Grouped Arrange and Slice
+
+In the notes we used the `group_by` function to manipulate the summarize
+function. However, the functions `arrange`, `slice`, and `filter` also respect
+the grouping of a data set. This can be quite useful. For example, consider
+grouping the US cities data set by year, arrange in descending order by
+population, and then using `slice` to take the first five rows. This would
+result in a data set that gives the five largest cities for each year in our
+data set. Write the code to do this below and visually verify that it seems to
+pick out five cities for each year:
+
+```{r, question-07}
+
+```
+
+Starting with the code in the previous block, summarize the data set
+by pasting together the city names.
+
+```{r, question-08}
+
+```
+
+In the code below, write the code to select one row for each city corresponding
+to the year that the city had its largest population. (Note: think about this
+carefully before you start writing the code).
+
+```{r, question-09}
+
+```
+
+It would be helpful to sort the dataset you created in the previous code block
+by the year feature. That would let us see the cities that peaked earliest at
+the top of the dataset. However, if we added an arrange function at the end of
+the code you wrote nothing would happen because dataset still grouped by city.
+We need to first ungroup the dataset with the `ungroup()` function. In the code
+below, starting with what you wrote in the block above, ungroup the dataset and
+arrange by year:
+
+```{r, question-10}
+
+```
+
+You should see that four of the earliest cities to peak in population are in
+Massachusetts. Each of these four cities are known for being industrial towns
+will large mills. What are the names of these cities?
+**Answer**:
+
+Taking the code to create the dataset that you produced in the previous
+question, produce a bar plot showing the number of cities with a peak
+population in each decade.
+
+```{r, question-11}
+
+```
+
+Try to identify the three different clusters of peak city sizes.
+**Note**: There is a small cluster in 1920 corresponding the mill
+cities in the Northeastern U.S., a cluster in the 1950s and 1960s
+of cities that decreased in size due to white flight and gerrymandering,
+and (the large cluster) of cities that are larger today that they have
+ever been.
+
+To finish, in the code below take the `us` dataset and use the filter
+function to select only cities with a longitude greater than -125.
+Select the row corresponding to each cities largest year of population
+(as we did in one of the previous questions) and produce a
+scatterplot with longitude on the x-axis and latitude on the y-axis.
+Color the points according to the year that the city attained its largest
+population and include a color-blind friendly color scale. Finally, sort the
+data in descending order of year before plotting.
+
+```{r, question-12}
+
+```
+
+Try to match up the clusters of years with locations on the map.

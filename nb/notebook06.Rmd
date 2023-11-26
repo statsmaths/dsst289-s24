@@ -1,0 +1,152 @@
+---
+title: "Notebook 06"
+output:
+  html_document:
+    theme: cosmo
+    highlight: zenburn
+    css: "../css/note-style.css"
+---
+
+## Getting Started
+
+Before running this notebook, select "Session > Restart R and Clear Output" in
+the menu above to start a new R session. This will clear any old data sets and
+give us a blank slate to start with.
+
+After starting a new session, run the following code chunk to load the
+libraries and data that we will be working with today.
+
+```{r, include=FALSE, message=FALSE}
+source("../funs/funs.R")
+```
+
+I have set the options `include=FALSE` and `message=FALSE` to avoid cluttering
+the solutions with all the output from this code.
+
+# Practice
+
+## Load Datasets
+
+We will work with the largest cities datasets:
+
+```{r, message=FALSE}
+cities <- read_csv("../data/largest_cities.csv")
+```
+
+We will also work with the entire U.S. cities dataset:
+
+```{r, message=FALSE}
+us <- read_csv("../data/us_city_population.csv")
+```
+
+Please refer to the previous notebooks for more information about these
+datasets.
+
+## Creating new numeric features
+
+Using the `cities` dataset, create a new feature named `city_density` by
+dividing the city population (`city_pop`) by the city area (`city_area`).
+Use the `select` function to select the city name (`name`), population,
+area, and density.
+
+```{r question-01}
+
+```
+
+The numbers here are very small. What units is the feature `city_density`
+currently in?
+**Answer**:
+
+Below, modify your code by multiplying the city density by 1000.
+
+```{r question-02}
+
+```
+
+Now what are the units of the city density feature?
+**Answer**:
+
+Now, try to summarize the average city density by continent. You should notice
+that the results include some missing values:
+
+```{r question-03}
+
+```
+
+In the code block below, summarize the average city density by continent again
+but include the parameter `na.rm = TRUE` in the `mean()` function.
+
+```{r question-04}
+
+```
+
+Now, below, using the mutate verb, create a plot with city density on the x-axis
+and metro density on the y-axis. Use a log scale for the axes and include points
+and text repel labels with the city names.
+
+```{r question-05, warning=FALSE}
+
+```
+
+What two outliers stick out in this plot?
+**Answer**:
+
+## Creating new categorical features
+
+Create a bar plot showing the counts of the the `koppen_code` feature in the
+`cities` dataset. Order the groups categories ordered from the biggest to the
+smallest. The labels are short so put the categorical variable on the x-axis.
+
+```{r question-06}
+
+```
+
+In the code below, create a new feature called `hemisphere` which is equal to
+"North" for cities with a latitude above zero and "South" for cities below zero.
+Pipe the data to a plot and color the cities by their hemisphere to verify that
+your code is correct.
+
+```{r question-07}
+
+```
+
+Repeat this process below, but this time create a feature called "quadrant"
+that is equal to "NE", "NW", "SE", and "SE" depending on the sign of the
+latitude and longitude features. The easiest way to do this is to start by
+defining a default value and them fill in the quadrants with four uses of the
+`if_else` function. Note: use the `&` operator to combine two conditions
+(i.e., `(lat > 0) & (lon > 0)`).
+
+As above, pipe the data into a plot colored by quadrant to verify your work.
+
+```{r question-08}
+
+```
+
+## Grouped Mutate
+
+To conclude, we will apply a few grouped versions of the mutate verb. To make
+sure we understand how this works, take the `us` dataset, group by city, and
+compute the maximum value of the population feature for each city.
+
+```{r question-09}
+
+```
+
+Note that this added a new column to a copy of the original dataset showing
+the largest population for each city at any point in time.
+
+Building off of this approach, construct a scatter plot that shows the
+population of cities in 2010 on the x-axis and the percentage of the 2010
+population compared to the maximum population of the city from 1790-2010.
+Filter to only include cities that are less than 70% of their maximum size in
+2010. Use a text repel layer to label each city. (Note: This will require at
+least two different calls to the mutate function).
+
+```{r question-10}
+
+```
+
+An earlier version of this notebook accidentally included a question 11 that
+asks you do something you have not yet learned. If you have a version with a
+question 11, please ignore!

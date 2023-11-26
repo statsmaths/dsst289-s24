@@ -1,0 +1,378 @@
+doc_id,doc_id2
+Marie de France,Geoffrey Chaucer
+Geoffrey Chaucer,William Langland
+Geoffrey Chaucer,John Gower
+Geoffrey Chaucer,John Dryden
+Geoffrey Chaucer,Philip Sidney
+Geoffrey Chaucer,Charles Dickens
+Geoffrey Chaucer,William Shakespeare
+John Gower,William Langland
+John Gower,Geoffrey Chaucer
+John Gower,C. S. Lewis
+Thomas Malory,William Shakespeare
+Thomas Malory,Geoffrey Chaucer
+Thomas More,William Shakespeare
+Thomas More,Jonathan Swift
+Thomas More,John Donne
+Edmund Spenser,Walter Raleigh
+Edmund Spenser,Ben Jonson
+Edmund Spenser,Geoffrey Chaucer
+Edmund Spenser,John Milton
+Edmund Spenser,William Blake
+Edmund Spenser,William Wordsworth
+Edmund Spenser,John Keats
+Edmund Spenser,Lord Byron
+Edmund Spenser,Alexander Pope
+Walter Raleigh,Edmund Spenser
+Walter Raleigh,C. S. Lewis
+Walter Raleigh,John Donne
+Walter Raleigh,Christopher Marlowe
+Walter Raleigh,William Shakespeare
+Philip Sidney,William Shakespeare
+Philip Sidney,Edmund Spenser
+Christopher Marlowe,William Shakespeare
+Christopher Marlowe,Walter Raleigh
+Christopher Marlowe,Ben Jonson
+William Shakespeare,Ben Jonson
+William Shakespeare,Christopher Marlowe
+William Shakespeare,Samuel Johnson
+William Shakespeare,T. S. Eliot
+William Shakespeare,Samuel Taylor Coleridge
+William Shakespeare,"Alfred, Lord Tennyson"
+William Shakespeare,John Milton
+William Shakespeare,Charles Dickens
+William Shakespeare,William Blake
+William Shakespeare,Geoffrey Chaucer
+William Shakespeare,John Gower
+William Shakespeare,Edmund Spenser
+William Shakespeare,John Dryden
+William Shakespeare,George Bernard Shaw
+John Donne,Thomas More
+John Donne,Walter Raleigh
+John Donne,Samuel Johnson
+John Donne,John Dryden
+John Donne,T. S. Eliot
+John Donne,Ben Jonson
+Emilia Lanier,William Shakespeare
+Emilia Lanier,Edmund Spenser
+Emilia Lanier,Ben Jonson
+Ben Jonson,William Shakespeare
+Ben Jonson,Philip Sidney
+Ben Jonson,Margaret Cavendish
+Ben Jonson,John Dryden
+Ben Jonson,Alexander Pope
+Ben Jonson,T. S. Eliot
+Ben Jonson,John Donne
+Thomas Hobbes,Ben Jonson
+Thomas Hobbes,John Locke
+George Herbert,Henry Vaughan
+George Herbert,John Donne
+George Herbert,John Dryden
+Henry Vaughan,George Herbert
+Henry Vaughan,William Shakespeare
+Katherine Philipps,John Dryden
+Katherine Philipps,John Keats
+Katherine Philipps,Henry Vaughan
+Katherine Philipps,John Milton
+John Milton,Samuel Johnson
+John Milton,William Blake
+John Milton,William Wordsworth
+John Milton,William Shakespeare
+John Milton,Thomas Hobbes
+John Milton,John Locke
+John Milton,John Dryden
+John Milton,Alexander Pope
+John Milton,Edmund Spenser
+John Milton,John Keats
+John Milton,George Eliot
+John Milton,T. S. Eliot
+Margaret Cavendish,William Wordsworth
+Margaret Cavendish,Samuel Pepys
+Margaret Cavendish,Virginia Woolf
+Margaret Cavendish,John Dryden
+John Dryden,Jonathan Swift
+John Dryden,John Milton
+John Dryden,Geoffrey Chaucer
+John Dryden,W. H. Auden
+John Dryden,Alexander Pope
+John Dryden,Samuel Johnson
+John Dryden,William Wordsworth
+John Dryden,Lord Byron
+John Dryden,John Keats
+John Dryden,Matthew Arnold
+John Dryden,T. S. Eliot
+John Dryden,John Donne
+John Dryden,Ben Jonson
+John Locke,Thomas Hobbes
+John Locke,John Dryden
+Jonathan Swift,John Dryden
+Jonathan Swift,William Shakespeare
+Jonathan Swift,Alexander Pope
+Jonathan Swift,W. B. Yeats
+Jonathan Swift,George Orwell
+Alexander Pope,Geoffrey Chaucer
+Alexander Pope,William Shakespeare
+Alexander Pope,John Dryden
+Alexander Pope,Jonathan Swift
+Alexander Pope,Samuel Johnson
+Alexander Pope,Lord Byron
+Alexander Pope,William Wordsworth
+Samuel Johnson,James Boswell
+Samuel Johnson,Alexander Pope
+Samuel Johnson,Jonathan Swift
+Samuel Johnson,William Shakespeare
+Samuel Johnson,John Milton
+Samuel Johnson,John Dryden
+Samuel Johnson,Edmund Spenser
+Samuel Johnson,Jane Austen
+Samuel Johnson,Matthew Arnold
+Samuel Johnson,T. S. Eliot
+James Boswell,Samuel Johnson
+Charlotte Smith,Samuel Taylor Coleridge
+Charlotte Smith,Ann Radcliffe
+Charlotte Smith,John Locke
+Charlotte Smith,Jane Austen
+Charlotte Smith,William Wordsworth
+Charlotte Smith,John Keats
+Mary Robinson,William Shakespeare
+Mary Robinson,Mary Wollstonecraft
+Mary Robinson,William Wordsworth
+Mary Robinson,Samuel Taylor Coleridge
+William Blake,Ben Jonson
+William Blake,Edmund Spenser
+William Blake,Mary Wollstonecraft
+William Blake,William Wordsworth
+William Blake,Geoffrey Chaucer
+William Blake,Lord Byron
+Robert Burns,William Wordsworth
+Robert Burns,Samuel Taylor Coleridge
+Robert Burns,Percy Bysshe Shelley
+Mary Wollstonecraft,Jane Austen
+Mary Wollstonecraft,Elizabeth Barrett Browning
+Mary Wollstonecraft,George Eliot
+Mary Wollstonecraft,Virginia Woolf
+Mary Wollstonecraft,John Locke
+Mary Wollstonecraft,William Wordsworth
+Mary Wollstonecraft,Samuel Taylor Coleridge
+William Wordsworth,Samuel Taylor Coleridge
+William Wordsworth,John Milton
+William Wordsworth,William Shakespeare
+William Wordsworth,Edmund Spenser
+William Wordsworth,William Blake
+William Wordsworth,John Keats
+William Wordsworth,Lord Byron
+William Wordsworth,Percy Bysshe Shelley
+Samuel Taylor Coleridge,William Wordsworth
+Samuel Taylor Coleridge,William Shakespeare
+Samuel Taylor Coleridge,John Milton
+Samuel Taylor Coleridge,John Keats
+Samuel Taylor Coleridge,John Stuart Mill
+Samuel Taylor Coleridge,Samuel Johnson
+Samuel Taylor Coleridge,Lord Byron
+Samuel Taylor Coleridge,Ann Radcliffe
+Samuel Taylor Coleridge,C. S. Lewis
+Ann Radcliffe,Christina Rossetti
+Ann Radcliffe,Jane Austen
+Jane Austen,Ann Radcliffe
+Jane Austen,William Wordsworth
+Jane Austen,Samuel Johnson
+Jane Austen,William Shakespeare
+Jane Austen,Charles Dickens
+Jane Austen,George Eliot
+Jane Austen,D. H. Lawrence
+Lord Byron,Percy Bysshe Shelley
+Lord Byron,"Alfred, Lord Tennyson"
+Lord Byron,John Milton
+Lord Byron,William Wordsworth
+Lord Byron,Samuel Taylor Coleridge
+Percy Bysshe Shelley,W. B. Yeats
+Percy Bysshe Shelley,George Bernard Shaw
+Percy Bysshe Shelley,Mary Wollstonecraft
+Percy Bysshe Shelley,Lord Byron
+Percy Bysshe Shelley,John Keats
+Percy Bysshe Shelley,Matthew Arnold
+Percy Bysshe Shelley,George Eliot
+Percy Bysshe Shelley,T. S. Eliot
+Percy Bysshe Shelley,W. H. Auden
+Percy Bysshe Shelley,Edmund Spenser
+Percy Bysshe Shelley,John Milton
+Percy Bysshe Shelley,William Shakespeare
+John Clare,John Keats
+John Clare,Lord Byron
+John Clare,William Shakespeare
+John Clare,William Wordsworth
+Felicia Hemans,Percy Bysshe Shelley
+Felicia Hemans,William Wordsworth
+John Keats,Lord Byron
+John Keats,Percy Bysshe Shelley
+John Keats,Edmund Spenser
+John Keats,Samuel Taylor Coleridge
+John Keats,John Clare
+John Keats,James Boswell
+John Keats,Samuel Johnson
+John Keats,William Wordsworth
+John Keats,Alexander Pope
+John Keats,"Alfred, Lord Tennyson"
+John Keats,T. S. Eliot
+John Stuart Mill,William Wordsworth
+Elizabeth Barrett Browning,Alexander Pope
+Elizabeth Barrett Browning,Mary Wollstonecraft
+Elizabeth Barrett Browning,Virginia Woolf
+Elizabeth Barrett Browning,"Alfred, Lord Tennyson"
+Elizabeth Barrett Browning,William Wordsworth
+Elizabeth Barrett Browning,Samuel Taylor Coleridge
+Elizabeth Barrett Browning,John Milton
+"Alfred, Lord Tennyson",Samuel Taylor Coleridge
+"Alfred, Lord Tennyson",John Clare
+"Alfred, Lord Tennyson",William Wordsworth
+"Alfred, Lord Tennyson",Elizabeth Barrett Browning
+"Alfred, Lord Tennyson",Virginia Woolf
+"Alfred, Lord Tennyson",John Keats
+"Alfred, Lord Tennyson",W. H. Auden
+Charles Dickens,Geoffrey Chaucer
+Charles Dickens,William Shakespeare
+Charles Dickens,Elizabeth Barrett Browning
+Charles Dickens,Virginia Woolf
+Charles Dickens,T. S. Eliot
+Charles Dickens,George Bernard Shaw
+Charles Dickens,Oscar Wilde
+Charles Dickens,William Wordsworth
+Charles Dickens,Joseph Conrad
+Charles Dickens,George Orwell
+Emily Brontë,Lord Byron
+Emily Brontë,Percy Bysshe Shelley
+George Eliot,Charles Dickens
+George Eliot,Virginia Woolf
+George Eliot,John Stuart Mill
+George Eliot,W. H. Auden
+George Eliot,William Wordsworth
+Matthew Arnold,William Wordsworth
+Matthew Arnold,"Alfred, Lord Tennyson"
+Matthew Arnold,Jonathan Swift
+Matthew Arnold,John Stuart Mill
+Christina Rossetti,Lord Byron
+Christina Rossetti,John Keats
+Christina Rossetti,Ann Radcliffe
+Christina Rossetti,Elizabeth Barrett Browning
+Christina Rossetti,Samuel Taylor Coleridge
+Christina Rossetti,Virginia Woolf
+Bram Stoker,Oscar Wilde
+Oscar Wilde,Bram Stoker
+Oscar Wilde,George Bernard Shaw
+Oscar Wilde,Rudyard Kipling
+Oscar Wilde,George Orwell
+Oscar Wilde,Geoffrey Chaucer
+George Bernard Shaw,James Joyce
+George Bernard Shaw,Oscar Wilde
+George Bernard Shaw,T. S. Eliot
+George Bernard Shaw,Percy Bysshe Shelley
+George Bernard Shaw,William Blake
+Rudyard Kipling,Jane Austen
+Rudyard Kipling,William Shakespeare
+Rudyard Kipling,Charles Dickens
+Rudyard Kipling,T. S. Eliot
+Rudyard Kipling,George Orwell
+Rudyard Kipling,W. H. Auden
+Rudyard Kipling,W. B. Yeats
+Joseph Conrad,Charles Dickens
+Joseph Conrad,Edmund Spenser
+Joseph Conrad,George Bernard Shaw
+Joseph Conrad,Rudyard Kipling
+Joseph Conrad,T. S. Eliot
+Joseph Conrad,George Orwell
+W. B. Yeats,John Keats
+W. B. Yeats,William Wordsworth
+W. B. Yeats,William Blake
+W. B. Yeats,Edmund Spenser
+W. B. Yeats,Percy Bysshe Shelley
+W. B. Yeats,Oscar Wilde
+W. B. Yeats,T. S. Eliot
+Virginia Woolf,George Bernard Shaw
+Virginia Woolf,Percy Bysshe Shelley
+Virginia Woolf,James Joyce
+Virginia Woolf,Elizabeth Barrett Browning
+Virginia Woolf,George Eliot
+Virginia Woolf,Jane Austen
+James Joyce,Oscar Wilde
+James Joyce,George Bernard Shaw
+James Joyce,Samuel Beckett
+D. H. Lawrence,T. S. Eliot
+D. H. Lawrence,Robert Burns
+Beatrix Potter,William Shakespeare
+C. S. Lewis,Beatrix Potter
+C. S. Lewis,W. B. Yeats
+C. S. Lewis,William Blake
+Daphne du Maurier,Jane Austen
+T. S. Eliot,James Joyce
+T. S. Eliot,W. H. Auden
+T. S. Eliot,Stephen Spender
+T. S. Eliot,W. B. Yeats
+T. S. Eliot,Joseph Conrad
+T. S. Eliot,William Shakespeare
+T. S. Eliot,Percy Bysshe Shelley
+T. S. Eliot,John Milton
+T. S. Eliot,Virginia Woolf
+T. S. Eliot,Seamus Heaney
+George Orwell,T. S. Eliot
+George Orwell,Cecil Day-Lewis
+George Orwell,Stephen Spender
+George Orwell,Charles Dickens
+George Orwell,Samuel Johnson
+George Orwell,William Shakespeare
+George Orwell,Jonathan Swift
+George Orwell,James Joyce
+George Orwell,D. H. Lawrence
+George Orwell,Joseph Conrad
+George Orwell,Rudyard Kipling
+George Orwell,George Bernard Shaw
+George Orwell,W. H. Auden
+Samuel Beckett,Oscar Wilde
+Samuel Beckett,James Joyce
+Samuel Beckett,T. S. Eliot
+Samuel Beckett,Seamus Heaney
+W. H. Auden,Christopher Isherwood
+W. H. Auden,W. B. Yeats
+W. H. Auden,T. S. Eliot
+W. H. Auden,William Shakespeare
+W. H. Auden,Cecil Day-Lewis
+W. H. Auden,Louis MacNeice
+W. H. Auden,Stephen Spender
+W. H. Auden,Robert Burns
+W. H. Auden,William Langland
+W. H. Auden,Alexander Pope
+Louis MacNeice,W. H. Auden
+Louis MacNeice,Stephen Spender
+Louis MacNeice,Cecil Day-Lewis
+Louis MacNeice,Percy Bysshe Shelley
+Louis MacNeice,Christopher Marlowe
+Louis MacNeice,T. S. Eliot
+Louis MacNeice,Christopher Isherwood
+Louis MacNeice,W. B. Yeats
+Louis MacNeice,Seamus Heaney
+Cecil Day-Lewis,W. H. Auden
+Cecil Day-Lewis,George Orwell
+Cecil Day-Lewis,Percy Bysshe Shelley
+Cecil Day-Lewis,Rex Warner
+Cecil Day-Lewis,Edward Upward
+Stephen Spender,W. H. Auden
+Stephen Spender,Christopher Isherwood
+Stephen Spender,Louis MacNeice
+Stephen Spender,Edward Upward
+Stephen Spender,Cecil Day-Lewis
+Stephen Spender,T. S. Eliot
+Stephen Spender,Virginia Woolf
+Christopher Isherwood,Edward Upward
+Christopher Isherwood,W. H. Auden
+Christopher Isherwood,Stephen Spender
+Christopher Isherwood,Cecil Day-Lewis
+Christopher Isherwood,Louis MacNeice
+Edward Upward,Christopher Isherwood
+Edward Upward,W. H. Auden
+Edward Upward,Stephen Spender
+Rex Warner,W. H. Auden
+Rex Warner,Cecil Day-Lewis
+Rex Warner,Stephen Spender
+Seamus Heaney,W. B. Yeats
+Seamus Heaney,George Bernard Shaw
+Seamus Heaney,Samuel Beckett
+Seamus Heaney,Mary Robinson

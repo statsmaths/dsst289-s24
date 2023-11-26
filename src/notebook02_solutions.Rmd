@@ -1,0 +1,159 @@
+---
+title: "Notebook 02 -- Solutions"
+output:
+  html_document:
+    theme: cosmo
+    highlight: zenburn
+    css: "../css/note-style.css"
+---
+
+## Getting Started
+
+Before running this notebook, select "Session > Restart R and Clear Output" in
+the menu above to start a new R session. This will clear any old data sets and
+give us a blank slate to start with.
+
+After starting a new session, run the following code chunk to load the
+libraries and data that we will be working with today.
+
+```{r, include=FALSE, message=FALSE}
+source("../funs/funs.R")
+```
+
+I have set the options `include=FALSE` and `message=FALSE` to avoid cluttering
+the solutions with all the output from this code.
+
+## Practice
+
+### Cities Data
+
+To practice the Grammar of Graphics, we will work with the largest cities data
+set.
+
+```{r, message=FALSE}
+cities <- read_csv("../data/largest_cities.csv")
+cities
+```
+
+Population numbers are given in millions and areas are given in square
+kilometers. The three different kinds of populations refer to different
+ways of describing what is included in a city. The feature `population` is a
+measurement from the UN (2018) that tries to consistently define the region of
+a city. More information is available in the U.N.'s World Urbanization
+Prospectus, which is available
+[here](https://population.un.org/wup/Publications/Files/WUP2018-Highlights.pdf).
+The other three measurements refer to:
+
+- **city**: city proper, defined by local administrative boundaries
+- **metro**: according to UNICEF, the Metro Region is an area "comprising the
+urban area as a whole and its primary commuter areas... In addition to the city
+proper, a metropolitan area includes both the surrounding territory with urban
+levels of residential density and some additional lower-density areas that are
+adjacent to and linked to the city." See
+[UNICEF](https://www.unicef.org/sowc2012/statistics.php) for more information.
+- **urban**: an area that consists of a "continuously built up land mass of
+urban development that is within a labor market (metropolitan area or
+metropolitan region) and contains no rural land".
+
+Several of the questions in this and the following notebooks concern the
+analysis of the relationship between these various definitions.
+
+### Scatterplot
+
+In the code below, write the code to produce a scatter plot with population on
+the x-axis and the city population on the y-axis. I have set `warning=FALSE`
+because there are some missing data values and it will be helpful to turn off
+the warnings about these data rows.
+
+```{r, warning=FALSE, question-01}
+cities |>
+  ggplot() +
+    geom_point(aes(x = population, y = city_pop))
+```
+
+Now, in the code region below, produce a scatter plot with population on the
+x-axis and metro population on the y-axis.
+
+```{r, warning=FALSE, question-02}
+cities |>
+  ggplot() +
+    geom_point(aes(x = population, y = metro_pop))
+```
+
+Which of the two regional populations (metro or city) seem to more closely
+relate to the U.N.'s definition of a cities population (e.g., the `population`
+feature).
+**Answer**: The metropolitan population is much closer to the UN definition than the city population feature
+
+## Text Plot
+
+Produce a plot with population on the x-axis and metro population on the y-axis
+and label each point with the city name.
+
+```{r, warning=FALSE, question-03}
+cities |>
+  ggplot() +
+    geom_text(aes(x = population, y = metro_pop, label = city))
+```
+
+What two cities seem to have the largest (absolute) discrepancy between their
+UN population and the metro population?
+**Answer**: Jakarta and Seoul seem to stand out the most (their metro populations are much larger than the official UN population numbers).
+
+Produce a plot with a text geometry where longitude (`lon`) is on the x-axis,
+latitude is on the y-axis (`lat`), and the labels are given by the city names
+(`name`).
+
+```{r, question-04}
+cities |>
+  ggplot() +
+    geom_text(aes(x = lon, y = lat, label = name))
+```
+
+This should roughly resemble a map of the world. In the code below, produce
+a modified version of this plot, replacing the text layer with two layers:
+a text repel layer and well as a point layer.
+
+```{r, question-05}
+cities |>
+  ggplot() +
+    geom_text_repel(aes(x = lon, y = lat, label = name)) +
+    geom_point(aes(x = lon, y = lat))
+```
+
+Which of these two plots do you find easier to read, and why? (Note, there is
+no clear correct answer here).
+**Answer**: I slightly prefer the second, but it would be better to, perhaps, show only a subset of the labels. We will see how to do this soon!
+
+### Han Roslin
+
+Next, let's work with a different set of data. Namely, this is a (subset) of
+the data that Hans Roslin used in the video I shared on the first day of class.
+In the block below, I have used a function that we will learn shortly to select
+only those rows of data from the year 2007.
+
+```{r}
+hans <- read_csv("../data/hans_roslin.csv") |>
+  filter(year == 2007)
+hans
+```
+
+Create a scatter plot with the Hans Roslin data showing GDP (Income) on the 
+x-axis and life expectancy on the y-axis.
+
+```{r, question-06}
+hans |>
+  ggplot() +
+    geom_point(aes(x = gdp, y = life_exp))
+```
+
+Of course, this is a static plot, and does not move like the one that Hans 
+created. However, in addition to this there are many differences between your
+plot and the ones in the video. A link to the video can be found here:
+
+   [youtube link](https://www.youtube.com/watch?v=Z8t4k0Q8e8Y)
+
+What elements of the plot are different that you would want to change here in
+R but do not yet know how to do?
+
+**Answer**: There are number of things, including changing the color and size of the points, renaming the axis labels, decided which grid-lines to draw, and using a logarithmic scale on the x-axis. We will learn how to do these in the coming weeks. There are also some less important thematic things such as the color and font of the axis labels that we will not directly focus on as much; however, I will share some notes about how to change these as well if you are interested.

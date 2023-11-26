@@ -1,0 +1,7 @@
+food_group,vegan,vegetarian,pescatarian
+fruit,yes,yes,yes
+vegetable,yes,yes,yes
+grains,yes,yes,yes
+meat,no,no,no
+fish,no,no,yes
+dairy,no,yes,yes

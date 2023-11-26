@@ -1,0 +1,128 @@
+---
+title: "17. Working with datetime Objects"
+output:
+  html_document:
+    theme: cosmo
+    highlight: zenburn
+    css: "../css/note-style.css"
+---
+
+```{r, include=FALSE, message=FALSE}
+source("../funs/funs.R")
+```
+
+## Chicago Data
+
+### Load the Data
+
+Let's load some data from the city of Chicago
+
+```{r, message = FALSE}
+comarea <- read_sf(file.path("..", "data", "chicago_community_areas.geojson"))
+medical <- read_csv(file.path("..", "data", "chicago_medical_examiner_cases.csv"))
+```
+
+We will look into the temporal components of the data.
+
+## Time and Datetime objects
+
+### What is a datetime object?
+
+The medical examiner data has two fields that describe specific times,
+the time of the incident and the time of death. We call these *datetime*
+objects because they describe a specific time on a specific day.
+
+```{r}
+medical
+```
+
+Notice that these are similar but a bit different than the date objects we had
+in the previous notes. As with dates, there exist several functions to extract
+particular components of datetime objects. These include all of the functions
+for dates, as well as specific ones for time of day:
+
+```{r}
+medical %>%
+  select(date_incident_iso) %>%
+  mutate(
+    year = year(date_incident_iso),
+    hour = hour(date_incident_iso),
+    minute = minute(date_incident_iso)
+  )
+```
+
+Sometimes datetime data is given overly precisely, making it hard to
+group and count the data. A helpful function to working with such
+data is `floor_date`, which rounds down to the nearest interval:
+
+```{r}
+medical %>%
+  select(date_death_iso) %>%
+  mutate(hour_death_iso = floor_date(date_death_iso, "hour"))
+```
+
+You can use different intervals---such as "minute", "day", "week",
+or "2 hour"---depending on your specific application.
+
+### Creating datetime objects
+
+As with date objects, it can be useful to create datetime values on
+the fly. This can be done by specifying individual components with
+`make_datetime` (defaults go to 1970-01-01 00:00):
+
+```{r}
+medical %>%
+  arrange(date_incident_iso) %>%
+  filter(date_incident_iso > make_datetime(2020, 3, 1, 5, 6))
+```
+
+Or specifying the entire value as a string:
+
+```{r}
+medical %>%
+  arrange(date_incident_iso) %>%
+  filter(date_incident_iso > ymd_hms("2020-03-01 05:06:00"))
+```
+
+These can be useful for manipulating existing dates or for filtering data.
+
+### Time Differences
+
+Adding (or subtracting) integers from a date object increases (or decreases)
+the date by the given number of days. A datetime object works similarly, but
+changes by a number of seconds:
+
+```{r}
+medical %>%
+  select(date_incident_iso) %>%
+  mutate(date_incident_iso_plus1 = date_incident_iso + 1)
+```
+
+We can also take the difference between two datetime objects; converting
+the result to a number with `as.numeric` yields the number of seconds
+between the time time periods. Here is the difference between the incident
+datetime and the death datetime:
+
+```{r}
+medical %>%
+  select(date_incident_iso, date_death_iso) %>%
+  mutate(diff = as.numeric(date_death_iso - date_incident_iso))
+```
+
+### Time Objects
+
+Finally, we also have the ability to create a *time* object. This records
+a time without a corresponding date. It can be useful for when you want
+arithmetic to behave properly (that is, wrap around at midnight) or if
+you want to group/plot datetime objects using only their time component.
+
+The function `as_hms` will create a time object from a date object:
+
+```{r}
+medical %>%
+  select(date_death_iso) %>%
+  mutate(time_death = as_hms(date_death_iso))
+```
+
+Finally, the function hms can be used to create a *time* object from
+scratch.

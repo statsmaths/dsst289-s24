@@ -1,0 +1,209 @@
+---
+title: "Notebook 15 -- Solutions"
+output:
+  html_document:
+    theme: cosmo
+    highlight: zenburn
+    css: "../css/note-style.css"
+---
+
+## Getting Started
+
+Before running this notebook, select "Session > Restart R and Clear Output" in
+the menu above to start a new R session. This will clear any old data sets and
+give us a blank slate to start with.
+
+After starting a new session, run the following code chunk to load the
+libraries and data that we will be working with today.
+
+```{r, include=FALSE, message=FALSE}
+source("../funs/funs.R")
+```
+
+## What We Eat in America
+
+Today we will continue to look at the *What We Eat in America* dataset. We can
+read the tables in with the following:
+
+```{r}
+food <- read_csv("../data/wweia_food.csv.bz2")
+demo <- read_csv("../data/wweia_demo.csv.bz2")
+meta <- read_csv("../data/wweia_meta.csv.bz2")
+```
+
+We will do some more practice joining and reorganizing the food data, this type
+using more of the `meta` table, which we have not yet looked at.
+
+## Food Groups: Calories, Sugar, and Fat
+
+To start, create a dataset that shows the average number of calories that each
+participants consumes based on the `food_group` of the food item. The food group
+can be found in the `meta` table. Note that the easiest way to do this is to
+take the sume of the variable `kcal` and divide by `nrow(demo)` (the number of
+people).
+
+```{r, question-01}
+food |>
+  left_join(meta, by = "food_code") |>
+  group_by(food_group) |>
+  summarize(kcal = sum(kcal) / nrow(demo)) |>
+  arrange(desc(kcal))
+```
+
+Now, create a scatterplot with one dot for each food group. The x-coordinate 
+should correspond to the average number of calories participants consume from
+this group and the y-coordinate should be the average grams of sugar each 
+participant consumes from the food group. Add a text repel layer with the
+food group names.
+
+```{r, question-02}
+food |>
+  left_join(meta, by = "food_code") |>
+  group_by(food_group) |>
+  summarize(kcal = sum(kcal) / nrow(demo), sugar = sum(sugar) / nrow(demo)) |>
+  ggplot(aes(kcal, sugar)) +
+    geom_point() +
+    geom_text_repel(aes(label = food_group))
+```
+
+Below, repeat the previous question but now include a linear regression line.
+Do this use the `lm` and `augement` functions (e.g., not with `geom_smooth`).
+Take note of any outliers.
+
+```{r, question-03}
+temp <- food |>
+  left_join(meta, by = "food_code") |>
+  group_by(food_group) |>
+  summarize(kcal = sum(kcal) / nrow(demo), sugar = sum(sugar) / nrow(demo))
+
+model <- lm(sugar ~ kcal, data = temp)
+  
+augment(model, newdata = temp) |>
+  ggplot(aes(kcal, sugar)) +
+    geom_point() +
+    geom_text_repel(aes(label = food_group)) +
+    geom_line(aes(y = .fitted), color = "red", linetype = "dashed")
+```
+
+In the next block of code, repeat the previous question but this time use the
+average amount of fat in place of the average amount of sugar. Hint: this should
+be an easy change.
+
+```{r, question-04}
+temp <- food |>
+  left_join(meta, by = "food_code") |>
+  group_by(food_group) |>
+  summarize(kcal = sum(kcal) / nrow(demo), fat = sum(fat) / nrow(demo))
+
+model <- lm(fat ~ kcal, data = temp)
+  
+augment(model, newdata = temp) |>
+  ggplot(aes(kcal, fat)) +
+    geom_point() +
+    geom_text_repel(aes(label = food_group)) +
+    geom_line(aes(y = .fitted), color = "red", linetype = "dashed")
+```
+
+In the following plot, create a similar plot as you did in the previous question,
+but instead of a point for each food group, use a line segment going from the
+average values for Female participants towards the averages for Male
+participants. You do not need a regression line here. You may need to tweak 
+the colors to be able to see all of the food groups.
+
+```{r, question-05}
+# In the solution I am assuming that the number of Male and Female participants
+# are the same, which is close but not 100% correct. You could do a better job
+# by creating two tables and then joining them.
+food |>
+  left_join(meta, by = "food_code") |>
+  left_join(demo, by = "id") |>
+  group_by(gender, food_group) |>
+  summarize(kcal = sum(kcal) / nrow(demo) * 2, fat = sum(fat) / nrow(demo) * 2) |>
+  pivot_wider(names_from = c(gender), values_from = c(kcal, fat)) |>
+  ggplot(aes(kcal_Female, fat_Female)) +
+    geom_text_repel(aes(label = food_group), color = "grey") +
+    geom_segment(
+      aes(xend = kcal_Male, yend = fat_Male),
+      arrow = arrow(length = unit(0.02, "npc"))
+    )
+```
+
+### A More Complex Plot
+
+For the most part, our analyses have been able to get by using a single set of
+pipes. Sometimes, more complex analyses require use to modify a dataset in
+multiple incompatible ways, storing these as individual tables, and then joining
+them on a common key. We'll practice that here.
+
+Our goal is to see how the relationship between the average amount of calories
+consumed for breakfast within an age group is related to the average amount of
+food that was prepared from ingredients bought at a store.
+
+First, create and save a dataset that breaks the ages in the dataset into buckets
+of 5 years each and computes the proportion of calories within each bucket that
+were consumed at either Breakfast or Desayano (Spanish for Breakfast). You'll
+probably need a pivot for this.
+
+```{r, question-07}
+tab1 <- food |>
+  left_join(demo, by = "id")  |>
+  mutate(age = cut(age, breaks = seq(0, 80, by = 5), include.lowest = TRUE)) |>
+  group_by(age, meal_name) |>
+  summarize(kcal = sum(kcal)) |>
+  mutate(total_kcal = sum(kcal)) |>
+  pivot_wider(names_from = c(meal_name), values_from = c(kcal), values_fill = 0) |>
+  mutate(prop_breakfast = 100 * (Breakfast + Desayano) / total_kcal) |>
+  select(age, prop_breakfast)
+tab1
+```
+
+In the code block below, create a similar table, but this time we want to
+compute the proportion of calories consumed from items bought at a Store. The
+names for the `food_source` variable are fairly messy; so as a first step, use
+the following mutate function to take just the first 5 characters of the food
+source name:
+
+`  mutate(food_source = stri_sub(food_source, 1, 5)) |>`
+
+Then, the rest of the code should be similar to the answer above.
+
+```{r, question-08}
+tab2 <- food |>
+  mutate(food_source = stri_sub(food_source, 1, 5)) |>
+  left_join(demo, by = "id")  |>
+  mutate(age = cut(age, breaks = seq(0, 80, by = 5), include.lowest = TRUE)) |>
+  group_by(age, food_source) |>
+  summarize(kcal = sum(kcal)) |>
+  mutate(total_kcal = sum(kcal)) |>
+  pivot_wider(names_from = c(food_source), values_from = c(kcal), values_fill = 0) |>
+  mutate(prop_store = 100 * (Store) / total_kcal) |>
+  select(age, prop_store)
+tab2
+```
+
+Finally, put the two tables you saved from questions 7 and 8 together and plot
+the two proportions on the x- and y-axes. Include labels showing the age
+buckets. If you have time, try to add a linear regression line and some labels,
+title, etc. to the plot.
+
+```{r, question-09}
+temp <- tab1 |>
+  left_join(tab2, by = "age")
+model <- lm(prop_store ~ prop_breakfast, data = temp)
+
+augment(model, newdata = temp) |>
+  ggplot(aes(prop_breakfast, prop_store)) +
+    geom_line(aes(y = .fitted), color = "red", linetype = "dashed") +
+    geom_point() +
+    geom_text_repel(aes(label = age)) +
+    labs(x = "% of Calories Eaten at Breakfast",
+         y = "% of Calories Eaten from Grocery Store Items",
+         title = "Relationship Between Age Group Breakfast and Cooking Behaviors",
+         subtitle = "Boomers have enough time and money to both eat breakfast and healthy homecooked meals",
+         caption = "Source: What We Eat in America (WWEIA), 2022."
+         )
+```
+
+
+
+

@@ -1,0 +1,192 @@
+---
+title: "Notebook 04"
+output:
+  html_document:
+    theme: cosmo
+    highlight: zenburn
+    css: "../css/note-style.css"
+---
+
+## Getting Started
+
+Before running this notebook, select "Session > Restart R and Clear Output" in
+the menu above to start a new R session. This will clear any old data sets and
+give us a blank slate to start with.
+
+After starting a new session, run the following code chunk to load the
+libraries and data that we will be working with today.
+
+```{r, include=FALSE, message=FALSE}
+source("../funs/funs.R")
+```
+
+I have set the options `include=FALSE` and `message=FALSE` to avoid cluttering
+the solutions with all the output from this code.
+
+# Practice
+
+We will work with the largest cities data sets:
+
+```{r, message=FALSE}
+cities <- read_csv("../data/largest_cities.csv")
+cities
+```
+
+We will now also work with the entire U.S. cities data set:
+
+```{r, message=FALSE}
+us <- read_csv("../data/us_city_population.csv")
+us
+```
+
+Please refer to the previous notebooks for more information about these data
+sets and how these data sets are organized.
+
+## Selecting rows and columns
+
+Take the `cities` data set and select only the first 5 rows. (Note: for this
+and other questions in the notebook, just write the code to produce the
+required data. There is no need to save the results as a variable unless
+specifically asked to)
+
+```{r, question-01}
+
+```
+
+Now, filter the data set to include only those cities with a population
+(`population`) over 10 million people.
+
+```{r, question-02}
+
+```
+
+How many cities have a population over 10 million people?
+**Answer**:
+
+In the code block below, extract the cities that have between 7 and
+10 million people.
+
+```{r, question-03}
+
+```
+
+How many cities have a population between 7 and 10 million
+people?
+**Answer**:
+
+In the code block below, extract the cities in Asia that have between
+7 and 10 million people
+
+```{r, question-04}
+
+```
+
+How many Asian cities have a population between 7 and 10 million people?
+**Answer**:
+
+## Filtering plot
+
+Take the data set `us`. Select only the year 1800 and remove rows that have a
+population of zero.
+
+```{r, question-05}
+
+```
+
+How many cities have a non-zero population given for the year 1800?
+**Answer**:
+
+Now, starting with the data set you produced in the last chunk of code,
+produce a plot with city on the x-axis and and population on the y-axis
+using the `geom_col` layer:
+
+```{r, question-06}
+
+```
+
+You will notice that the labels are too difficult to read because they run into
+one another. Modify this plot in the code block below by flipping the x and y
+aesthetics:
+
+```{r, question-07}
+
+```
+
+How easy do you find this plot to read? What improvements might you want to
+make to it? (Don't worry about what you can do right now; think about what would
+make it easier to interpret).
+**Answer**:
+
+## Arranging rows
+
+In the code below, extract the five European cities from `cities` that have the
+largest population. (Note: this will take three different verbs).
+
+```{r, question-08}
+
+```
+
+Which European city in our data set has the largest population?
+**Answer**:
+
+## Selecting columns
+
+Take the `cities` data set and filter only those cities in Africa and Europe.
+Use the select function to see just the city name and the variable
+`koppen_code`.
+
+```{r, question-09}
+
+```
+
+## Layering graphics
+
+In the code below, create a data set called `cities_large_metro` by extracting
+the rows of `cities` that have a metro region larger than the U.N. estimate of
+the city's population.
+
+```{r, question-10}
+
+```
+
+Now, draw a scatter plot with longitude on the x-axis and latitude on the
+y-axis. Show all of the rows in the data set using a light grey color. Then,
+add points layer and a text layer (with the city names as labels) for the rows
+in `cities_large_metro`. Pick a bold color for the points and labels.
+
+```{r, question-11}
+
+```
+
+Do you see any particular patterns about which cities have metropolitan regions
+that are larger than the city's official U.N.-listed population? (Note: There is
+at least one thing that becomes apparent, but you will probably not find
+something that explains all of the data).
+**Answer**:
+
+## A better bar plot
+
+Let's now try to build a better bar plot. In the next code chunk, take the
+`us` dataset, filter to just the year 1800 and cities with a non-zero
+population, and arrange the cities by their population:
+
+```{r, question-12}
+
+```
+
+Now, starting with the code from the previous chunk, draw a plot using
+`geom_col`, with population mapped to the x-axis and city mapped to the y-axis.
+You will notice that this is no different from the previous plot you made above.
+
+```{r, question-13}
+
+```
+
+Copy the code from above but wrap the variable `city` in the function
+`fct_inorder` when setting it to the y aesthetic.
+
+```{r, question-14}
+
+```
+You should now notice that the cities are arranged by population. We will talk
+more about this function in future notes.

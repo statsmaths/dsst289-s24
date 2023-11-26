@@ -1,0 +1,128 @@
+---
+title: "14. Introduction to Spatial Data"
+output:
+  html_document:
+    theme: cosmo
+    highlight: zenburn
+    css: "../css/note-style.css"
+---
+
+```{r, include=FALSE, message=FALSE}
+source("../funs/funs.R")
+```
+
+
+```{r}
+us <- read_csv("../data/us_city_population.csv") %>% filter(!is.na(lon), !is.na(lat))
+us
+```
+
+
+```{r}
+us <- us %>%
+  st_as_sf(coords = c("lon", "lat"), crs = 4326, remove = FALSE)
+us
+```
+
+
+```{r}
+us %>%
+  filter(year == 2000) %>%
+  st_transform(5069) %>%
+  ggplot() +
+    geom_sf(aes(color = population)) +
+    scale_color_viridis_c()
+```
+
+
+
+```{r}
+cities <- read_csv("../data/other_world_cities.csv")
+cities
+```
+
+```{r, message = FALSE}
+cities <- cities %>%
+  st_as_sf(coords = c("lon", "lat"), crs = 4326, remove = FALSE)
+
+cities
+```
+
+
+```{r, message = FALSE}
+cities %>%
+  ggplot() +
+    geom_sf(size = 0.5)
+```
+
+```{r}
+country <- read_csv("https://raw.githubusercontent.com/lukes/ISO-3166-Countries-with-Regional-Codes/master/all/all.csv")
+```
+
+
+```{r}
+geo <- read_sf("../data/geo_countries.geojson")
+geo
+```
+
+```{r}
+geo %>%
+  filter(country == "Georgia") %>%
+  ggplot() +
+    geom_sf()
+```
+
+```{r}
+geo %>%
+  left_join(country, by = c("iso" = "alpha-3")) %>%
+  filter(`sub-region` == "Southern Europe") %>%
+  ggplot() +
+    geom_sf(aes(fill = iso2))
+```
+
+```{r}
+geo_it <- read_sf("../data/it_province.geojson")
+geo_it
+```
+
+```{r}
+covid_it <- read_csv("../data/it_province_covid.csv")
+covid_it %>% tail()
+```
+
+```{r}
+dt <- geo_it %>%
+  left_join(filter(covid_it, date == "2020-03-15"), by = "province") %>%
+  st_transform(7794)
+
+dt %>%
+  ggplot() +
+    geom_sf(aes(fill = cases)) +
+    #geom_sf_text(aes(label = province), data = filter(dt, cases > 200)) +
+    scale_fill_distiller(palette = "Spectral", guide = "legend", n.breaks = 10)
+```
+
+```{r}
+geo_it_reg <- read_sf("../data/it_region.geojson")
+geo_it_reg
+```
+
+```{r, fig.height=12}
+geo_it_reg %>%
+  st_transform(7794) %>%
+  ggplot() +
+    geom_sf(aes()) +
+    geom_sf_text(aes(label = region), size = 10)
+```
+
+```{r, fig.height=12}
+cities %>%
+  st_join(geo_it_reg, left = FALSE) %>%
+  st_transform(7794) %>%
+  ggplot() +
+    geom_sf(aes(color = region), show.legend = FALSE)
+```
+
+```{r}
+
+```

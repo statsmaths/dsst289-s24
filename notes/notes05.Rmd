@@ -1,0 +1,222 @@
+---
+title: "05. Summarize Data"
+output:
+  html_document:
+    theme: cosmo
+    highlight: zenburn
+    css: "../css/note-style.css"
+---
+
+```{r, include=FALSE, message=FALSE}
+source("../funs/funs.R")
+
+food <- read_csv(file.path("..", "data", "food.csv"))
+food_prices <- read_csv(file.path("..", "data", "food_prices.csv"))
+```
+
+## The summarize verb
+
+In the previous notebook we introduced the concept of data *verbs*. Four useful
+examples were shown: `slice` and `filter` for taking a subset of rows,
+`select` for taking a subset of columns, and `arrange` for reordering a
+data set's rows. In this notebook we discuss another important verb,
+`summarize` that collapses a data frame by using summary functions. Using this
+verb is slightly more involved because we have to explain exactly how the data
+should be summarized. We will introduce several helper functions to make this
+process slightly easier.
+
+Before describing the syntax for the summarize function, let's start with an
+example. Here, we summarize our food data set by indicating the mean (average)
+value of the sugar variable across the entire data set:
+
+```{r}
+food |>
+  summarize(sugar_mean = mean(sugar))
+```
+
+Here we used the function `mean` inside of the function `summarize` to
+produce the output. We specified which variable to compute the mean of by
+giving its name inside of the `mean` function. Note that we need to define
+what the name of the new variable is.
+
+The results shows us that the average amount of sugar in a 100g portion of al
+of the foods is 3.419g.
+
+In order to compute multiple summaries at once, we can pass multiple functions
+together are once. For example, here we compute the mean value of three
+nutritional measurements:
+
+```{r}
+food |>
+  summarize(
+    sugar_mean = mean(sugar),
+    calories_mean = mean(calories),
+    vitamin_a_mean = mean(vitamin_a)
+  )
+```
+
+Notice that R creates a new data set with the variable names we supplied above.
+There are a number of other useful summary functions that work similarly,
+such as `min`, `max`, `sum`, and `sd` (standard deviation).
+
+## Grouped summaries
+
+Summarizing the data set to a single row can be useful for understanding the
+general trends in a data set or highlighting outliers. However, the real power
+of the summary function comes when we pair it with grouped manipulations. This
+will allow us to produce summaries *within* one or more grouping variables in
+our data set.
+
+When we use the `group_by` function, subsequent uses of the `summarize` function
+will produce a summary that describes the properties of variables within the
+variable used for grouping. The variable name(s) placed inside of the
+`group_by` function indicate which variable(s) should be used for the groups.
+For example, here we compute the mean number of calories of each food group:
+
+```{r}
+food |>
+  group_by(food_group) |>
+  summarize(calories_mean = mean(calories))
+```
+
+Notice that the output data set contains a column for the grouping variable
+(`food_group`) and the summarized variable (`calories_mean`). The summarized
+variable name is exactly the same as the non-grouped version and the final line
+of code looks exactly the same as before. However, the output data set now
+contains six rows, one for each food group.
+
+Any summarization function that can be used for an ungrouped data set can also
+be used for a grouped data set. Also, as before, we can put multiple summary
+functions together to obtain different measurements of each group.
+
+```{r}
+food |>
+  group_by(food_group) |>
+  summarize(calories_mean = mean(calories), total_fat_mean = mean(total_fat))
+```
+
+Notice that the automatically produced variable names should make it clear
+which column corresponds to each summary function.
+
+## More summary functions
+
+There are several additional summary functions that will be useful for
+analyzing data. The function `n()` takes no arguments and returns a
+valye that counts the total number of rows in the data set:
+
+```{r}
+food |>
+  group_by(food_group) |>
+  summarize(n = n())
+```
+
+The summary function `paste` collapses all of the values in a character
+variable. For example, applying this summary it to the `item` category after
+grouping by color, we can see all of the foods in the data set associated with
+a specific color:
+
+```{r}
+food |>
+  group_by(color) |>
+  summarize(items = paste(item, collapse = "|"))
+```
+
+Do the foods correspond to the colors that you would expect?
+
+## Geometries for summaries
+
+We can use summarized data sets to produce new data visualizations. For
+example, consider summarizing the average number of calories, average total fat,
+and number of items in each food groups. We can take this data and construct a
+scatter plot that shows the average fat and calories of each food group, along
+with informative labels. Here's the code to make this visualization:
+
+```{r}
+food |>
+  group_by(food_group) |>
+  summarize(
+    calories = mean(calories), total_fat = mean(total_fat), n = n()
+  ) |>
+  ggplot(aes(calories, total_fat)) +
+    geom_point(aes(size = n), color = "grey85") +
+    geom_text_repel(aes(label = food_group))
+```
+
+If this seems complex, don't worry! We are just putting together elements that
+we have already covered, but it takes some practice before it becomes natural.
+
+Scatterplots are often useful for displaying summarized information. There are
+two additional `geom` types that often are useful specifically for the case of
+summarized data sets.
+
+If we want to create a bar plot, where the heights of the bars as given by a
+column in the data set, we can use the `geom_col` layer type. For this, assign a
+categorical variable to the `y`-aesthetic and the count variable to the
+`x`-aesthetic (or vice-versa). For example, here is a bar plot showing the
+number of items in each food group:
+
+```{r}
+food |>
+  group_by(food_group) |>
+  summarize(n = n()) |>
+  ggplot(aes(n, food_group)) +
+    geom_col()
+```
+
+There are two specific things to keep in mind with the `geom_col` layer. First,
+there are two color-related `aes` categories: the border of the bars (`color`)
+and the color used to shade the inside of the bars (`fill`). We can change
+these exactly as we did with the single color value used with scatter plots.
+
+
+```{r}
+food |>
+  group_by(food_group) |>
+  summarize(n = n()) |>
+  ggplot(aes(n, food_group)) +
+    geom_col(color = "black", fill = "white")
+```
+
+I find that using a white fill color and a black border is often a good-looking
+starting point. Also, you will notice that making the bars horizontal will make
+it easier to read the category names when there are a larger number of
+categories.
+
+## Multiple groups
+
+As mentioned above, it is possible to group a data set by multiple variables.
+To do this, we can provide additional variables to the `group_by` function
+separated by commas. For example, we could group the food data set into food
+group and color, and summarize each combination of the two:
+
+```{r}
+food |>
+  group_by(food_group, color) |>
+  summarize(n = n(), calories = mean(calories))
+```
+
+Notice that now there is one row for each combination of the two groups.
+However, there is no row for combinations that do not exist. So, there is no
+row for pink dairy products nor for white fruit.
+
+
+## Homework Questions
+
+Let's now take all of the rows from the entire `hans` dataset:
+
+```{r, echo = FALSE, message = FALSE}
+hans <- read_csv("../data/hans_roslin.csv") 
+hans |>
+  select(country, continent, year, life_exp, gdp, pop)
+```
+
+For each of the following five questions, write the R code that would produce 
+the desired data set:
+
+1. Compute the average life expectancy from the year 2007.
+2. Compute the average gdp from the year 2007.
+3. Compute the average life expectancy of each continent in the year 2002.
+4. Compute the total number of people living in each continent in the year 1957. Note that R has the function `sum()` that might be helpful here.
+5. Compute the total number of countries in each continent.
+
+We will talk about these questions together in class.

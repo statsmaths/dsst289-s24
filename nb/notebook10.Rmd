@@ -1,0 +1,170 @@
+---
+title: "Notebook 10"
+output:
+  html_document:
+    theme: cosmo
+    highlight: zenburn
+    css: "../css/note-style.css"
+---
+
+## Getting Started
+
+Before running this notebook, select "Session > Restart R and Clear Output" in
+the menu above to start a new R session. This will clear any old data sets and
+give us a blank slate to start with.
+
+After starting a new session, run the following code chunk to load the
+libraries and data that we will be working with today.
+
+```{r, include=FALSE, message=FALSE}
+source("../funs/funs.R")
+```
+
+I have set the options `include=FALSE` and `message=FALSE` to avoid cluttering
+the solutions with all the output from this code.
+
+# Practice
+
+## Load data sets
+
+In this notebook we will work with the U.S. city population data set.
+
+```{r, message=FALSE}
+us <- read_csv("../data/us_city_population.csv")
+```
+
+Please refer to notebook02a for more information about the data set.
+
+## Widening Data: Cities as Observations
+
+The `us` cities data set is a perfect candidate for widening. In its default
+form, there is one row for each unique combination of year and city. However,
+some plots and analyses are easier if we create a data set with either time or
+the cities.
+
+Let's start by creating a widened data set where each row is a city. The
+years will then be turned into columns. In the code below, create this
+data set using the `pivot_wider` function, with names coming from the years
+and values from the population. As we saw previously, use the names prefix
+"year_" to avoid column names staring with a number.
+
+```{r, question-01}
+
+```
+
+Below, take the data set created in the previous block and filter to include
+only cities with a population above 600 thousand in 2010. (Note: Do this after
+the pivot. It is much easier that way.) Then, plot the population of each city
+in 1950 on the x-axis and the population in 2010 on the y-axis with points and
+a text repel layer using the city names. Use logarithmic scales for the x- and
+y-axes.
+
+```{r, question-02}
+
+```
+
+Another graph that we can create using the wide version of the data set is an
+arrow plot showing the trend of each city over time. Below, piping the same
+data in as above, create a plot using the `geom_segment` layer with city of
+the y-axis and population on the x-axis. However, for this layer, you need to
+describe two additional aesthetics: `xend` and `yend`. Set `x` to the
+population in 1950 and `xend` to the population in 2010. The value for `yend`
+should be equal to the city name, the same as `y`.
+
+```{r, question-03}
+
+```
+
+One issue with this plot is that it does not show which direction the population
+is changing (is it increasing or decreasing between 1950 and 2010?). We can fix
+this by adding an option to the `geom_segment` layer that turns the segment
+into an arrow. Namely:
+
+   `arrow = arrow(length = unit(0.02, "npc"))`
+
+Below, modify the previous plot to include an arrow. Note that this line goes
+inside the `geom_segement` function, after the `aes` command. You may need to
+indent into a new line as is sometimes done in the notes to make the code easily
+readable. The `0.02` effects the size of the arrow and can be modified as you
+see fit.
+
+```{r, question-04}
+
+```
+
+As one last step, let's add some color to the plot. Below, modify the code
+from the previous chunk to include a mutate verb that sets a variable
+called `color` to "#FF7F7F" if the population decreased between 1950 and
+2010 and to "#ADD8E6" if the population increased. You should be able to
+do this with a single call to `if_else`. Then, color the lines with this
+color using `scale_color_identity`. Also, make the line size `1.5` to make
+the colors stand out more. Finally, order the cities by their size in 1950.
+
+```{r, question-05}
+
+```
+
+## Widening Data: Years as Observations
+
+Another possibility for pivoting the `us` data set is to have the observations
+be years and the variables be the cities In the code block below, try to
+`pivot_wider` using names from the city variable and values from the
+population. We do not need a variable prefix here.
+
+```{r, question-06}
+
+```
+
+You should see that there is a problem. The issue is that there are several
+other variables tied to each specific city (lon, lat, and state) that make
+the output data set have many missing values and far too many rows. Modify
+the code above by first using the `select` function to grab only the three
+variables `city`, `year`, and `population`.
+
+```{r, question-07}
+
+```
+
+You should now have a data set with 23 rows (one for each year) and 301
+columns (a year column and 300 cities). The shape of this data set is
+fine, but the column names are difficult to work with because they contain
+spaces and commas. We can fix this by changing the city names using some
+string processing. Run the following code to create a new version of the
+us cities data called `us_cities`:
+
+```{r}
+us_cities <- us |>
+  mutate(city = stri_trans_tolower(city)) |>
+  mutate(city = stri_replace_all(city, "", regex = "[^a-z ]")) |>
+  mutate(city = stri_replace_all(city, "_", fixed = " "))
+```
+
+Run the answer to your last question with the new dataset `us_cities` and
+verify that the names are now "proper" R variable names:
+
+```{r, question-08}
+
+```
+
+Starting with the code above, create a plot with one city (of your choosing) on
+the x-axis, another city (of your choosing) on the y-axis using a text layer
+where the label is given by the year. Use a `geom_path` layer and an text repel
+layer labeled by year. This should allow you to see how the population of the
+two cities change together over time.
+
+```{r, question-09}
+
+```
+
+Note that the `geom_path` geometry is different than the `geom_line` geometry.
+The latter always connects dots from the smallest x-value to the largest
+x-value, whereas the path geometry connects the dots in the order they appear
+in the data.
+
+## Closing Thoughts
+
+The `us` data set is a nice example of how keeping data in a long format makes
+it relatively easy to work with the data as-is or in various wider formats. In
+this example, the cities as observations seems to allow more interesting plots.
+However, the second format will be more useful for building the kinds of time
+series models we introduce in the applications with temporal data sets.

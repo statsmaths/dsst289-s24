@@ -1,0 +1,224 @@
+---
+title: "14. Tidy Models"
+output:
+  html_document:
+    theme: cosmo
+    highlight: zenburn
+    css: "../css/note-style.css"
+---
+
+```{r, include=FALSE, message=FALSE}
+source("../funs/funs.R")
+
+food <- read_csv(file.path("..", "data", "food.csv"))
+```
+
+## Normalized Model Outputs
+
+We do not focus much in this class on models. Those are covered fairly 
+extensively in many of the other courses in our data science program. In these
+notes we will focus on a very specific part of modeling, namely how to create
+derived data tables that describe the output of a model in a way that respects
+the 3NF format we saw in the previous notes. As an example, we will use a 
+linear regression. If you have never come across this model, don't fear. The
+notes will introduce all of the details that you need.
+
+## A Very Brief Visual Introduction to Linear Regression
+
+Let's start by drawing a scatter plot with total fat on the x-axis and the 
+numbers of calories of the y-axis using our standard `food` data.
+
+```{r}
+food |>
+  ggplot(aes(total_fat, calories)) +
+    geom_point()
+```
+
+We see that generally these two variables are positively related to one another.
+As total fat increases so do the calories. We can try to formalize this idea 
+by fitting a model. One of the most popular models for this type of relationship
+is a linear  regression, which assumes that we can relate these two variables
+according to the following (the subscript i indexes each row of the data):
+
+$$ \text{calories}_i = A + B \cdot \text{total_fat}_i + \text{error}_i $$
+
+In words, we expect the caloric content of each food to be close to the constant
+`A` (intercept) plus the total fat times the constant `B` (slope). This will
+not be a perfect fit, so there is a error that captures the difference
+between the simple model and each data point. Visually, we want something like
+this:
+
+```{r, echo=FALSE}
+model <- lm(calories ~ total_fat, data = food)
+food |>
+  ggplot(aes(total_fat, calories)) +
+    geom_point(color = "grey85") +
+    geom_abline(
+      slope = model$coefficients[2],
+      intercept = model$coefficients[1],
+      color = "red",
+      size = 0.7,
+      linetype = "dotted"
+    )
+```
+
+Our goal when building a model is to use the data to figure out the best slope
+and intercept to describe the data that we have. For linear regression, this is
+done in R using the function `lm`. Here is the syntax and basic output:
+
+```{r}
+model <- lm(calories ~ total_fat, data = food)
+model
+```
+
+Here we have the model's estimate of the slope and intercept printed to the
+screen. We can get a lot more information about the model using the function
+`summary`
+
+```{r}
+summary(model)
+```
+
+There is a lot of information here and we are not going to describe all the 
+probabilistic details of linear regression in these short notes. Hopefully you
+have or will be able to take a course that focuses on the theory of statistical
+models.
+
+## Structuring the Model Data
+
+Our goal in these notes is to organize and structure the output of the model as
+data. The print out from the summary function above is nice to read but does
+not give us a way of working with the model output in a programmatic way. How
+might we structure the model data using table formats we have learned?
+
+Linear regression, and in fact most statistical models, require three different
+tables to capture all of the information we generally want access to in a 
+normalized format. We can describe these by the different units of measurement:
+
+- **model** this is a table where the model is the unit of measurement. In other
+words, there is just one row for the entire model. It captures overall
+information about the model fit. This is all of the info at the bottom of the
+summary print out above.
+- **parameter** this table has one row for each parameter that is learned by
+the model. In the above example there will be two rows, one for the intercept
+`A` and one for the slope `B`. These observations captures the best
+guess of the parameter and also often contains information about how certain
+we are about the guess based on statistical assumptions and theory.
+- **observation** this table has one row for each observation in the original
+data. It comes from applying the best guess values from the model back to the
+data. It includes information about where the model thinks each value should
+be (the fitted value) and the residual (difference between fitted value and the
+actual model). We will often put all of the original variables back into this
+table as well.
+
+There is a very helpful R pacakge called **broom** that will produce these
+three tables for us when given a model object. Here we'll show it with a 
+simple linear regression but it works the same way with many different kinds
+of models. Note that it names new columns using a period where our class 
+convention would usually require an underscore.
+
+To get a table about the entire model, use the function `glance`: 
+
+```{r}
+glance(model)
+```
+
+To get a table about the coefficients, use the function `tidy`:
+
+```{r}
+tidy(model)
+```
+
+And to get the table about the original observations, use the function 
+augment. Here we will set the parameter `newdata` with the table we want
+to augment (the new items come at the end, so I use `select` to see them).
+
+```{r}
+augment(model, newdata = food) |>
+  select(item, total_fat, calories, .fitted, .resid)
+```
+
+We can use this augmented data in a pipe to produce a version of plot I showed
+above:
+
+```{r}
+model |>
+  augment(newdata = food) |>
+  ggplot(aes(total_fat, calories)) +
+    geom_point(color = "grey85") +
+    geom_line(aes(y = .fitted), color = "red", linetype ="dashed")
+```
+
+We won't spend too much more time talking about the details of the models, but
+hopefully this helps connect some of the ideas in this class with things you
+may be doing in other statistical courses and will be very useful in DSST389.
+
+
+## Homework Questions
+
+Consider the following plot which shows a linear model applied to a subset of
+the `hans` dataset to predict life expectancy as a function of GDP.
+
+```{r, echo = FALSE, message = FALSE}
+hans <- read_csv("../data/hans_roslin.csv") 
+set.seed(1)
+hans_subset <- hans |>
+  filter(year %in% c(2007)) |>
+  filter(continent == "Americas") |>
+  slice_sample(n = 10) |>
+  select(country, year, gdp, life_exp)
+
+model <- lm(life_exp ~ gdp, data = hans_subset)
+model |>
+  augment(newdata = hans_subset) |>
+  ggplot(aes(gdp, life_exp)) +
+    geom_point(color = "grey85") +
+    geom_text_repel(aes(label = country)) +
+    geom_abline(
+      slope = model$coefficients[2],
+      intercept = model$coefficients[1],
+      color = "red",
+      size = 0.7,
+      linetype = "dotted"
+    ) +
+    scale_x_continuous(limits = c(0, NA))
+```
+
+Answer the following three questions:
+
+1. Consider the output of `tidy(model)` applied to the model shown above. Write
+down an approximation of what the first two columns (`term` and `estimate`)
+would be for the model show in the red dashed line above.
+2. Consider the output of the `augment(model, newdata = .)` applied to the
+model and data shown above. Write down an approximation of the columns `country`
+`.fitted` and `.residual` for at least three of the countries.
+3. Which country has a residual with the largest magnitude according to the plot
+above? Which country has a residual with the smallest magnitude?
+
+## Homework Answers
+
+For 1, the actual values for the first two columns of the `tidy` function is
+given by the following (you don't need to have the exact values; I would say
+from the plot the intercept is a bit larger than 70 and the slope is around
+3 / 10000):
+
+```{r, echo = FALSE}
+tidy(model)[,c(1, 2)]
+```
+
+For 2, here is the actual output of the augmented model:
+
+```{r, echo = FALSE}
+augment(model, newdata = hans_subset) |> select(country, gdp, life_exp, .fitted, .resid)
+```
+
+And the smallest and largest absolute residuals are given by:
+
+```{r, echo = FALSE}
+augment(model, newdata = hans_subset) |> 
+  arrange(abs(.resid)) |>
+  summarize(smallest = first(country), biggest = last(country))
+```
+
+It's hard to tell on the plot though, and you may have guessed El Salvidor
+and/or Trinidad and Tobago, respectively.

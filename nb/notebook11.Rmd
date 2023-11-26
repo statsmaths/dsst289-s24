@@ -1,0 +1,163 @@
+---
+title: "Notebook 11"
+output:
+  html_document:
+    theme: cosmo
+    highlight: zenburn
+    css: "../css/note-style.css"
+---
+
+## Getting Started
+
+Before running this notebook, select "Session > Restart R and Clear Output" in
+the menu above to start a new R session. This will clear any old data sets and
+give us a blank slate to start with.
+
+After starting a new session, run the following code chunk to load the
+libraries and data that we will be working with today.
+
+```{r, include=FALSE, message=FALSE}
+source("../funs/funs.R")
+```
+
+Today's notebook will be a bit more open-ended in nature than the previous ones
+we have worked on. Instead of rushing through the questions by finding an easy
+answer, try to think of something interesting to do with the data.
+
+## Shakespeare Plays
+
+The data for today comes from the text of Shakespeare's plays. The main table
+consists of one row for each spoken line in every play included in the first
+folio. The `globalnumber` gives the line number within the entire play and 
+the `speech_id` feature gives a way of referencing a set of contiguous lines
+said by one speaker.
+
+```{r, message=FALSE}
+lines <- read_csv("../data/shakespeare_lines.csv.bz2")
+lines
+```
+
+We also have metadata about each of the plays. The dates of the plays are not
+known precisely. The variables `year_post_quem` and `year_ante_quem` give the
+earliest and latest years that the play was believed to have been written.
+
+```{r, message=FALSE}
+plays <- read_csv("../data/shakespeare_plays.csv")
+plays
+```
+
+We also have a table about the individual characters in each of the plays:
+
+```{r, message=FALSE}
+people <- read_csv("../data/shakespeare_people.csv.bz2")
+people
+```
+
+As well as a collection of stage instructions:
+
+```{r, message=FALSE}
+stage <- read_csv("../data/shakespeare_sd.csv.bz2")
+stage
+```
+
+While these are "real" datasets, I have done some aggressive filtering of the
+data to remove some potential issues when working with the data (most notably,
+I removed non-ASCII characters used to display some antiquated symbols such as
+the long-S). If you want to do a longer research project with this data, I am
+happy to share the more complex raw source information.
+
+In each of the section below, I will ask you to use the techniques we have 
+developed in class to study a particular question about the dataset. I will
+provide possible solutions to each of the questions, but you may approach them
+in a very different way.
+
+### Date and genre of the plays
+
+Produce a plot that shows the `year_post_quem` and `year_ante_quem` of each 
+play. Try to show any patterns about the mixture of comedies, histories and
+tragedies and how Shakespeare's interest across these three types of plays
+changed over his lifetime.
+
+```{r, question-01}
+
+```
+
+### Play length
+
+Produce a visualization that shows the length of each play in number of lines.
+Again, try to show the relationship between genre and play length.
+
+```{r, question-02}
+
+```
+
+### Narrative Form
+
+Take a single play, perhaps one that you are vaguely familiar with. Visualize
+when each character is speaking in the play and show how these lines relate to
+the Act of the play. 
+
+```{r, question-03}
+
+```
+
+Can you create a similar plot showing only the N characters that have the most
+lines in the play? (You can pick a good N with some experimentation on your own
+data).
+
+```{r, question-04}
+
+```
+
+### Characters
+
+Two ways that we can establish the prominence of a character is through the 
+number of total lines they have as well as the number of long speech they have.
+As a starting point, assuming long speaches are over 20 lines. Produce a
+visualization showing the relationship between these two measurements for the
+most prolific characters in the dataset. This might take several steps. 
+
+Feel free to adjust the number of characters and the length of a "long speech"
+and see how it affects the output.
+
+```{r, question-05}
+
+```
+
+### Character Gender
+
+Visualize the proportion of lines spoken by female characters in each play.
+
+```{r, question-06}
+
+```
+
+Then, use  a `geom_density` layer to show how the proportion of female character
+lines changes with genre.
+
+```{r, question-07}
+
+```
+
+### Narrative Arc
+
+Using a set of the characters that have the most overall lines across the data,
+visualize the number of lines a character has in the first two acts compared 
+their number of lines in acts 4 and 5.
+
+Note that some plays do not have a full five acts (Hamlet) in the folio version
+and you may want to remove those from the plot.
+
+```{r, question-08}
+
+```
+
+### Extensions?
+
+If you have time, try to extend one of the plots above with another idea or 
+modification of the question I asked as a way of understanding the data.
+
+```{r}
+
+```
+

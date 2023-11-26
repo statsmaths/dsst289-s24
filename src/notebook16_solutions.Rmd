@@ -1,0 +1,12 @@
+---
+title: "Notebook 16 -- Solutions"
+output:
+  html_document:
+    theme: cosmo
+    highlight: zenburn
+    css: "../css/note-style.css"
+---
+
+There is no specific notebook for the 16th class. Instead, we are going
+to work on the final project. The instructions for this are given through
+the link on the course website.

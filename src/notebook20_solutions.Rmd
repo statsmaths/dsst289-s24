@@ -1,0 +1,229 @@
+---
+title: "Notebook 20 -- Solutions"
+output:
+  html_document:
+    theme: cosmo
+    highlight: zenburn
+    css: "../css/note-style.css"
+---
+
+## Getting Started
+
+Before running this notebook, select "Session > Restart R and Clear Output" in
+the menu above to start a new R session. This will clear any old data sets and
+give us a blank slate to start with.
+
+After starting a new session, run the following code chunk to load the
+libraries and data that we will be working with today.
+
+```{r, include=FALSE, message=FALSE}
+source("../funs/funs.R")
+```
+
+## Tropical Storms
+
+The data for this notebook consists of information about tropical storms in the 
+Atlantic Ocean between 1950 and 2020. It gives one row each time a particular
+storm is measured (usually every 6 hours). Note that you will need to use both
+the year and name of the storm to uniquely describe it. I will add the code 
+here to convert the dataset to a spatial points data table.
+
+```{r}
+storms <- read_csv("../data/storms2.csv") |>
+  st_as_sf(coords = c("lon", "lat"), crs = 4326, remove = FALSE)
+storms
+```
+
+The variables are:
+
+- **year**    the year of the record
+- **month**   the month of the year
+- **day**     the day of the year
+- **hour**    the hour of the day (0-23) of the record in Eastern time 
+- **name**    a common name for the storm; these are sometimes used for different storms in different years
+- **letter**  the first letter of the name; storms are (usually) named in alphabetical order
+- **doy**     the day of the year (1-365) of the record
+- **lat**     latitude of the record in degrees
+- **lon**     longitude of the record in degrees
+- **status**  a two-digit status code of the storm system; see "storm_codes.csv"
+- **category**  for hurricanes (status == "HU"), a number giving the category of the storm from 0-5
+- **wind**    the observed sustained wind speed in miles per hour
+
+There are also two metadata tables. The first provides a full name for
+each of these codes:
+
+```{r}
+storm_codes <- read_csv("../data/storm_codes.csv")
+storm_codes
+```
+
+Secondly, we also have a geographic data set of the states from the southeastern
+U.S.
+
+```{r}
+state_se <- read_sf("../data/state_se.geojson")
+state_se
+```
+
+If you have further questions about what these features mean, please let me know.
+
+## Questions
+
+### Question 1: Make datetime object [temporal]
+
+Take the `storms` data and create a new column called `time` that is a date
+time object created by the year, month, day, and hour of the storm's
+measurement. You will need this variable in the following questions, so
+overwrite the data  `storms` with the new  version that contains the `time`
+column.
+
+```{r, question-01}
+storms <- storms |>
+  mutate(time = make_datetime(year, month, day, hour))
+
+storms
+```
+
+### Question 2: Plot datetime objects [temporal]
+
+Take the storms data and take just the hurricanes (status code "HU") from the
+year 2017. Group by the time variable you created in question 1 and count the
+number of readings for each unique time. Create a plot with the data in which
+the x-axis gives the time and the y-axis gives the number of hurricane readings
+in 2017 at that time. Set the `date_breaks` and `date_minor_breaks` to both be
+"1 week" and the date labels to be "%d %b".
+
+```{r, warning = FALSE, question-02}
+storms |>
+  filter(year == 2017) |>
+  filter(status == "HU") |>
+  group_by(time) |>
+  summarize(n = n()) |>
+  ggplot(aes(time, n)) +
+    geom_point() +
+    scale_x_datetime(
+      date_breaks = "1 week",
+      date_minor_breaks = "1 week",
+      date_labels = "%d %b"
+    )
+```
+
+
+### Question 3: Create and plot date data [temporal]
+
+Filter the data to include only category 5 hurricanes. Group the data by year
+and hurricane name and compute the maximum wind speed of each storm. Create a
+plot that has year on x-axis and max-wind speed on the y-axis. Use both a points
+layer and a `geom_text_repel` with the name of the storm. Make sure that the 
+x-axis is a date object and set `date_breaks` to be '5 year' and the date
+labels to "%Y".
+
+```{r, question-03}
+storms |>
+  filter(status == "HU") |>
+  filter(category == 5) |>
+  group_by(year, name) |>
+  summarize(max_wind = max(wind)) |>
+  mutate(year = make_date(year)) |>
+  ggplot(aes(year, max_wind)) +
+    geom_point() +
+    geom_text_repel(aes(label = name)) +
+    scale_x_date(date_breaks = "5 year", date_labels = "%Y")
+```
+
+### Question 4: Create and plot date data [temporal]
+
+Take the storms data, using all records, and group by year and name. Summarize
+the data by taking the difference between the maximum and minimum times for 
+readings of each storm. Ungroup the data and arrange in descending order, with
+the longes    t lasting storms at the top. You should see one outlier at the top of
+the list resulting from a bad data point.
+
+```{r, question-04}
+storms |>
+  group_by(year, name) |>
+  summarize(duration = max(time) - min(time)) |>
+  ungroup() |>
+  arrange(desc(duration))
+```
+
+### Question 5: Spatial polygons [temporal]
+
+Create a plot of the states in `state_se` in the coordinate system with CRS
+code 5069. 
+
+```{r, question-05}
+state_se |>
+  st_transform(5069) |>
+  ggplot() +
+    geom_sf()
+```
+
+### Question 6: Spatial points [spatial]
+
+Select the storms data from the 2004 storm "Jeanne". Create a spatial plot with
+the measurements of the storm's wind speed overlaid over the state boundaries.
+Color the points based on the status code and use the 5069 coordinate system.
+
+```{r, question-06}
+storms |>
+  filter(year == 2004) |>
+  filter(name == "Jeanne") |>
+  st_transform(5069) |>
+  ggplot() +
+    geom_sf(data = state_se) +
+    geom_sf(aes(color = status))
+```
+
+### Question 7: Spatial join [spatial]
+
+Filter the storms data to include only hurricanes (status code "HU"). Perform a
+spatial join with the states data, group by the state names, and summarize to
+count the number of hurricane readings in each state. Sort from the state with
+the most readings to the state with the fewest. After the spatial join, use the
+`as_tibble()` function to remove the spatial information (this would be helpful
+if the dataset were larger). You should see a large set of NA's corresponding
+to points that were out in the ocean.
+
+Save this dataset as a table called `storm_obs_per_state`
+
+```{r, question-07}
+storm_obs_per_state <- storms |>
+  filter(status == "HU") |>
+  spatial_join(state_se) |>
+  as_tibble() |>
+  group_by(state) |>
+  summarize(n = n()) |>
+  arrange(desc(n))
+
+storm_obs_per_state
+```
+
+### Question 8: Spatial join plot [spatial]
+
+Below, create a plot of the Southeastern U.S. states, using the color of the
+states to show how many hurricane readings there were in each state in the
+dataset. Do this by doing an inner join of `state_se` with the dataset 
+`storm_obs_per_state` you created in the previous question. Use the color scale:
+
+  scale_fill_distiller(
+    palette = 8, guide = "legend", n.breaks = 10, direction = 1
+  )
+
+```{r, question-08}
+state_se |>
+  inner_join(storm_obs_per_state, by = "state") |>
+  ggplot() +
+    geom_sf(aes(fill = n), size = 0)  +
+    scale_fill_distiller(
+      palette = 8, guide = "legend", n.breaks = 10, direction = 1
+    )
+```
+
+We could have done this with a single pipe without first creating the dataset
+in question 7 as an intermediate step. Why is the approach above preferred?
+The benefit is that it does not force us to create lots of copies of the
+(relatively large) spatial polygons that a single pipe would require. The data
+on the actual exam is large enough that not splitting this into two steps would
+be a problem for most of your machines.
+

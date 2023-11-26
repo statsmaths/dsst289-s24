@@ -1,0 +1,166 @@
+---
+title: "Notebook 18"
+output:
+  html_document:
+    theme: cosmo
+    highlight: zenburn
+    css: "../css/note-style.css"
+---
+
+## Getting Started
+
+Before running this notebook, select "Session > Restart R and Clear Output" in
+the menu above to start a new R session. This will clear any old data sets and
+give us a blank slate to start with.
+
+After starting a new session, run the following code chunk to load the
+libraries and data that we will be working with today.
+
+```{r, include=FALSE, message=FALSE}
+source("../funs/funs.R")
+```
+
+## Pandemic Data in France
+
+Today, let's look at an application using data from the COVID-19 pandemic in
+France. Today we will use several data sets. Load them in below and take a
+moment to look at them.
+
+```{r}
+covid <- read_csv("../data/france_departement_covid.csv")
+pop <- read_csv("../data/france_departement_population.csv")
+cities <- read_csv("../data/france_cities.csv")
+geo_fr <- read_sf("../data/france_departement.geojson") |>
+  filter(departement <= "95")
+```
+
+As a starting point, produce a spatial plot of the `geo_fr` data with the 
+default projection:
+
+```{r, fig.height=6, question-01}
+
+```
+
+Next, modify your plot to use the coordinate system with CRS number 27561. Use
+this transformation for all plots in the following questions using the French
+dataset.
+
+```{r, fig.height=6, question-02}
+
+```
+
+Now, filter the dataset `covid` to the date "2020-05-01" and left join it into
+the `geo_fr` dataset by the key "departement". You should notice that the output
+dataset no longer has the special spatial header attached to it.
+
+```{r, question-03}
+
+```
+
+In the block below, copy your code from the previous question and add an extra
+line with the function `st_as_sf()`. This will let R know that the resulting 
+dataset should retain all of the spatial information.
+
+```{r, question-04}
+
+```
+
+Now, starting with the code that you created above, plot a map of the French
+Département according to the the number of people that were hospitalized one
+1 May 2020. Use `scale_fill_distiller` to pick a good color scale.
+
+```{r, fig.height=7, question-05}
+
+```
+
+A problem with the above map is that it is not normalized by population. Adapt
+the code above in the block below by joining in the `pop` dataset and instead 
+plotting the hospitalization rate were 100k people.
+
+```{r, fig.height=7, question-06}
+
+```
+
+We also have a data set of French cities called `cities`. Create a spatial
+points version of the cities data and save it as an object called `cities_geo`.
+
+```{r, question-07}
+
+```
+
+Create a spatial plot with the `cities_geo` dataset that shows the labels of the
+cities. You can use the options `size` and `nudge_y` to play around with the 
+size and location of the city names. Don't forget the `coord_sf()` layer to
+make the plot use a proper map coordinate system.
+
+```{r, fig.height=7, warning = FALSE, question-08}
+
+```
+
+Now, put together the hopsitalization rate map with the cities data in a single
+plot. Include both points and text labels for the cities. Spend a few minutes
+trying to get the plot to look nice on your machine.
+
+```{r, fig.height=7, warning = FALSE, question-09}
+
+```
+
+## Spatial Lines: NYC Roads
+
+Spatial data can also associate lines with each row rather than a single point
+or an entire polygon. These are somewhat more rare, but interesting nonetheless.
+
+Let's read in a dataset of roads in New York City. Take another moment to look
+at the data print out and the data in the data viewer.
+
+```{r}
+nyc <- read_sf("../data/ny_roads.geojson")
+nyc
+```
+
+Spatial lines can be plotted with `geom_sf` much like spatial points. As with
+points, we can do this without specifying any x- or y-aesthetic. Try this here
+with the `nyc` data; you should see a familiar shape of the city.
+
+```{r, fig.height=8, question-10}
+
+```
+
+And again, as with points, we can change the color and size of the lines if 
+needed. Below, repeat your plot of the NYC roads in a color of your choosing.
+
+```{r, fig.height=8, question-11}
+
+```
+
+There are a number of functions that compute summaries of spatial data. For 
+example if we type the following inside of a mutate verb:
+
+  len = as.numeric(st_length(geometry))
+  
+We will get the length of a line geometry in meters. Try this below, sorting the
+output from the longest to the shortest road in NYC:
+
+```{r, fig.height=8, question-12}
+
+```
+
+Notice that some of the city roads have duplicates because there are multiple
+segments of a road broken up by some other feature. 
+
+Now, let's do something a bit more involved. In the block below, create a new
+data set named `nyc_broad` that only contains segements of the street with a 
+name equal to "Broadway".
+
+```{r, question-13}
+
+```
+
+Finally, create a map of the streets in NYC in which most streets are the color 
+"grey85" but Broadway is in the color "orange". Also make Broadway have a size
+of 2. Note: this can be done by layering two `geom_sf` layers.
+
+```{r, fig.height=8, question-14}
+
+```
+

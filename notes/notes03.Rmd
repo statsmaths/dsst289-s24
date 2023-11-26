@@ -1,0 +1,248 @@
+---
+title: "03. Aesthetics and Scales"
+output:
+  html_document:
+    theme: cosmo
+    highlight: zenburn
+    css: "../css/note-style.css"
+---
+
+```{r, include=FALSE, message=FALSE}
+source("../funs/funs.R")
+
+food <- read_csv(file.path("..", "data", "food.csv"))
+```
+
+## Scales
+
+Each aesthetic within the grammar of graphics is associated with a scale.
+Scales detail how a plot should relate aesthetics to the concrete, perceivable
+features in a plot. For example, a scale for the `x` aesthetic will describe
+the smallest and largest values on the x-axis. It will additionally set things
+such as the tick marks on the axis.
+
+In order to change or modify the default scales, we add an additional item
+to the ggplot code. The order of the scales relative to the geoms does not
+effect the output; by convention, scales are usually grouped after the
+geometries. These functions always start with **scale_** followed by the name
+of the aesthetic.
+
+As an example, consider a scatter plot with calories on the x-axis and sugar
+content on the y-axis. Here's what the default plot looks like if we let R
+pick the scale of the axes:
+
+```{r}
+food |>
+  ggplot() +
+    geom_point(aes(x = calories, y = sugar))
+```
+
+We can modify the scale by manually specifying the scale of, say, the x-axis.
+Here are some options (the first is the default):
+
+- `scale_x_continuous()`
+- `scale_x_reverse()`
+- `scale_x_log10()`
+- `scale_x_sqrt()`
+
+There are `_y_` equivalents of all of these as well. Here is an example where
+we reverse the x-axis direction:
+
+```{r}
+food |>
+  ggplot() +
+    geom_point(aes(x = calories, y = sugar)) +
+    scale_x_reverse()
+```
+
+Another way to adjust the scale is to pass optional arguments to the scale
+function. Two common options are `limits`, which takes two numbers and sets the
+bounds of the axis:
+
+```{r}
+food |>
+  ggplot() +
+    geom_point(aes(x = calories, y = sugar)) +
+    scale_x_continuous(limits = c(0, 500))
+```
+
+And `n.breaks`, which sets the number of labels on the axis:
+
+```{r}
+food |>
+  ggplot() +
+    geom_point(aes(x = calories, y = sugar)) +
+    scale_x_continuous(n.breaks = 20)
+```
+
+There are many other options that can be specified within the x and y scales,
+all of which are documented in the help pages, but these are the two I find to
+be the most frequently needed.
+
+## More Aesthetics: Color and Size
+
+In addition to the required aesthetics, each geometry type also has a number of
+optional aesthetics that we can use to add additional information to the plot.
+For example, most geoms have a `color` aesthetic. The syntax for describing
+this is exactly the same as with the required aesthetics; we place the name of
+the aesthetic followed by the name of the associated feature name. Let's see
+what happens when add a color aesthetic this to our scatterplot by relating
+the feature `food_group` to the aes `color`:
+
+```{r}
+food |>
+  ggplot() +
+    geom_point(aes(x = calories, y = total_fat, color = food_group))
+```
+
+Notice that R has done a lot of work for us. It determined all of the food
+groups in the data set, assigned each to a color, built a legend, and modified
+the points on the plot so that the colors align with the food groups. Can you
+now tell what types of food have a large number of calories and fat? Which
+kinds of food have the lowest calories and fat? What is the biggest difference
+between fruits and vegetables from the plot?
+
+Similarly, we can modify the size of the points according to a feature in the
+data set by setting the `size` aesthetic. Here, we will make points larger or
+smaller based on the saturated fat in each food item:
+
+```{r}
+food |>
+  ggplot() +
+    geom_point(aes(x = calories, y = total_fat, size = sat_fat))
+```
+
+Both size and color can also be specified for the text, text repel, and line
+geometries. There are a few other aesthetics that will be useful, and that we
+will introduce as needed.
+
+Also, remember from notes from last time that we can set aesthetics to fixed
+values. This is particularly useful with color and size.
+To change an aes to a fixed value, we specify the changed value inside the
+`geom_` function, but **after** the `aes(` function. Here, for example, is how
+we change the size of all the points to 4 (four times larger than the default):
+
+```{r}
+food |>
+  ggplot() +
+    geom_point(aes(x = calories, y = total_fat), size = 4)
+```
+
+We can do the same with colors, but notice that we need to put the color name
+inside of quotes:
+
+```{r}
+food |>
+  ggplot() +
+    geom_point(aes(x = calories, y = total_fat), color = "pink")
+```
+
+You can interchange the fixed and feature-based aes commands, and the
+relative order should not effect the output. Just be sure the put fixed
+terms after closing the aes command.
+
+## Scales for Color and Size
+
+Just as with the x- and y-axes, color and size have scales attached to them
+as well. It is actually quite common to what to adjust thesse.
+
+For example, a popular alternative to the default color palette shown above is
+the function `scale_color_viridis_d()`. It constructs a set of colors that is:
+(1) color-blind friendly, (2) looks nice when printed in black and white, and
+(3) still displays fine on bad projectors. To use it, add the function
+`scale_color_viridis_d` on as an extra row to the plot:
+
+```{r, message=FALSE}
+food |>
+  ggplot() +
+    geom_point(aes(x = calories, y = sat_fat, color = food_group)) +
+    scale_color_viridis_d()
+```
+
+There is also `scale_color_viridis_c` that produces a similar set of colors
+when you want to color points according to a numeric feature.
+
+```{r, message=FALSE}
+food |>
+  ggplot() +
+    geom_point(aes(x = total_fat, y = sat_fat, color = calories)) +
+    scale_color_viridis_c()
+```
+
+There are several special scale types that can be useful for working with
+colors. In some cases we may already have a column in our data set that
+explicitly describes the color of an observations. This is, in fact, the case
+with the food data set. In this case, we may want to use these colors directly.
+To do that, use the scale `scale_color_identity`. Here is an example with each
+food colored according to its assigned color:
+
+```{r, message=FALSE}
+food |>
+  ggplot() +
+    geom_text_repel(
+      aes(x = calories, y = sugar, color = color, label = item)
+    ) +
+    scale_color_identity()
+```
+
+Notice that by default no legend is created for the scale.
+
+Another type of scale that can be useful for colors is `scale_color_manual`.
+Here, it is possible to describe exactly which color should be used for each
+category. Here is the syntax, with manually defined colors for each food group:
+
+```{r}
+food |>
+  ggplot() +
+    geom_point(aes(x = calories, y = sugar, color = food_group)) +
+    scale_color_manual(values = c(
+      dairy = "lightblue",
+      fish = "navy",
+      fruit = "peachpuff1",
+      grains = "wheat",
+      meat = "indianred1",
+      vegetable = "green"
+    ))
+```
+
+Using manual colors is generally advisable in the case where there are
+well-known colors associated with the groups in the data set. For example,
+when plotting data about political parties it may make be helpful to use the
+colors traditionally associated with each party.
+
+## Inheritance of aesthetics
+
+As a final optional point, note that there is a convention for simplifying the
+plotting command. Often, each layer will use the same x and y features. It is
+possible to specify these just once in the `ggplot` function, and they will be
+used by default in all other layers. Also, you can drop the `x =` and `y =` if
+you put these options first. Here is an example of layering together
+the `geom_point` and `geom_text_repel` with this inheritance structure:
+
+```{r}
+food |>
+  ggplot(aes(calories, total_fat)) +
+    geom_point() +
+    geom_text_repel(aes(label = item))
+```
+
+These changes are optional however, and you can feel free to write them as we
+did earlier if you prefer. It is important to be able to recognize them,
+though, if you are searching through documentation or help pages.
+
+## Homework Questions
+
+For this class assignment, find a data visualization somewhere online that
+is similar to the plots in these notes (in other words, do not pick something
+too complicated). Some examples of places to look include
+[FiveThirtyEight](https://fivethirtyeight.com/) and the 
+[Reddit Data is Beautful channel](https://www.reddit.com/r/dataisbeautiful/).
+You could even search through the archives of some of the popular techie webcomics,
+such [xkcd](https://www.google.com/search?q=phd+comics+plots&tbm=isch),
+[smbc](https://www.google.com/search?q=smbc+plots&tbm=isch), or
+[Ph.D. Comics](https://www.google.com/search?q=phd+comics+plots&tbm=isch)
+
+Once you have found a data visualization, write down as best as possible how
+you would need to structure a dataset to create the visualization and briefly
+explain you would use different aesthetics and geometries to create it. Make
+sure you have a link to the visualization that you can share in class.

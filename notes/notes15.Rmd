@@ -1,0 +1,21 @@
+---
+title: "15. Exam II Review"
+output:
+  html_document:
+    theme: cosmo
+    highlight: zenburn
+    css: "../css/note-style.css"
+---
+
+```{r, include=FALSE, message=FALSE}
+source("../funs/funs.R")
+```
+
+We will talk about the data cleaning and final project more after the second
+exam.
+
+Your only homework for these notes is to look over the topics on the second 
+exam and come to class with any questions or topics that you would like me to
+review before the exam.
+
+

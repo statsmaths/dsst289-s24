@@ -1,0 +1,104 @@
+---
+title: "18. Window Functions"
+output:
+  html_document:
+    theme: cosmo
+    highlight: zenburn
+    css: "../css/note-style.css"
+---
+
+```{r, include=FALSE, message=FALSE}
+source("../funs/funs.R")
+```
+
+## French COVID-19
+
+### Load the Data
+
+We will be using the same data sets from the previous notebooks:
+
+```{r, message = FALSE}
+dept <- read_sf(file.path("..", "data", "france_departement.geojson"))
+pop <- read_csv(file.path("..", "data", "france_departement_population.csv"))
+covid <- read_csv(file.path("..", "data", "france_departement_covid.csv"))
+```
+
+This time, we will look into the temporal components of the data
+and see how they can be integrated into the spatial visualisations.
+
+### Window Functions
+
+We will now look at a completely different way to work with time data.
+Rather than working directly with a date variable, we focus on working with an
+ordered set of data and associating each row with the rows before and after it.
+To start, let's grab just a single département from the data, make sure that
+it is ordered by the date variable, and select just the variable hospitalized
+and the date.
+
+```{r}
+covid_paris <- covid %>%
+  filter(departement_name == "Paris") %>%
+  arrange(date) %>%
+  select(date, hosp = hospitalised) # shortened name to better display below
+covid_paris
+```
+
+The function `lead` lets us associate a row in the data set with the
+value of a variable in the *following* row of data:
+
+```{r}
+covid_paris %>%
+  mutate(hosp_next = lead(hosp))
+```
+
+By default lead looks one row down, but we can set the option `n`
+to select a different offset. For example, looking a week into
+the future:
+
+```{r}
+covid_paris %>%
+  mutate(hosp_next = lead(hosp), hosp_next_week = lead(hosp, n = 7))
+```
+
+The function `lag` works exactly the same way, but associates a row with
+the value of a variable in a *preceding* row. Note that the first row of
+data has a missing value because there is not previous row; we can change
+that with the option `default` (the same thing happens at the end of the
+data when using `lead`, it just was not as clear in the data print-out).
+
+```{r}
+covid_paris %>%
+  mutate(hosp_last = lag(hosp), hosp_last_default = lag(hosp, default = 0))
+```
+
+Other functions exist to do more complex relationships between rows. One
+that will be helpful for us here is `roll_meanr`, which takes the rolling
+average of a variable for a fixed number of values back in the table.
+For example, setting `n = 2` takes the average of each value of the
+hospitalization variable from each row and the preceding row:
+
+```{r}
+covid_paris %>%
+  mutate(h_mean = roll_meanr(hosp, n = 2))
+```
+
+There are variations `roll_meanl` and `roll_mean` for taking a rolling
+average with the future and symmetrically on either side. The `r` option
+(right) is the most appropriate for many kinds of time-series data.
+
+We can see the effect of rolling averages in the following plot:
+
+```{r, warning = FALSE}
+covid_paris %>%
+  mutate(
+    h_mean_7 = roll_meanr(hosp, n = 7),
+    h_sum_30 = roll_meanr(hosp, n = 30)
+  ) %>%
+  ggplot(aes(x = date, y = hosp)) +
+    geom_line() +
+    geom_line(aes(y = h_mean_7), linetype = "dashed") +
+    geom_line(aes(y = h_sum_30), linetype = "dotted")
+```
+
+Notice that the peak occurs at a different date for the smoothed averages, but
+they are less noisy than the raw counts.

@@ -1,0 +1,188 @@
+---
+title: "16. Time Series Data and Window Functions"
+output:
+  html_document:
+    theme: cosmo
+    highlight: zenburn
+    css: "../css/note-style.css"
+---
+
+```{r, include=FALSE, message=FALSE}
+source("../funs/funs.R")
+```
+
+## French COVID-19
+
+### Load the Data
+
+We will be using the same data sets from the previous notebook:
+
+```{r, message = FALSE}
+dept <- read_sf(file.path("..", "data", "france_departement.geojson"))
+pop <- read_csv(file.path("..", "data", "france_departement_population.csv"))
+covid <- read_csv(file.path("..", "data", "france_departement_covid.csv"))
+```
+
+This time, we will look into the temporal components of the data
+and see how they can be integrated into the spatial visualisations.
+
+### Plotting Dates
+
+Notice that the date variable in the `covid` dataset has a special data
+type called "date". One some reflection, it seems reasonable to have a
+seperate data type for dates because they act somewhat like a number
+(ordered, some meaning of distances) and somewhat like a categorical
+variable (fixed values). In this section we will explore how to work with
+these data objects.
+
+```{r}
+covid
+```
+
+We have already worked a bit for date objects in plotting. When used as the
+x-axis (or less commonly, y-axis), a date object will display okay with no
+additional work on our part.
+
+```{r}
+covid %>%
+  filter(departement == 69) %>%
+  ggplot(aes(date, deceased)) +
+    geom_line()
+```
+
+Often with dates, it is useful to manually modify the labels on the time-based
+axis. We do this with `scale_x_date` (or its y-equivalent if time is on the
+y-axis). Adding this scale to a plot on its own will have no effect, but we can
+change the default by changing three parameters:
+
+- `date_breaks` a string describing the frequency of the labels, such as
+   "month" or "2 years"
+- `date_minor_breaks` a string describing the frequency of the grid-lines
+- `date_labels` format string: [strptime](https://rdrr.io/r/base/strptime.html)
+
+You can set just a subset of these, depending on how much control you want over
+the plot. For example, let's label the previous plot by showing a label for
+every month, and using the pattern "%B" to show (just) the full month's name.
+
+```{r}
+covid %>%
+  filter(departement == 69) %>%
+  ggplot(aes(date, deceased)) +
+    geom_line() +
+    scale_x_date(date_breaks = "month", date_labels = "%B", date_minor_breaks = "month")
+```
+
+The R programming language is designed to be used in English, but often the
+output of plots will be distributed in other languages. You will note in the
+previous plot that the month names are in English. How do we change this? We
+can change the *locale* used within R by using the `Sys.setlocale` function.
+This data comes from France, so let's change our locale to French:
+
+```{r}
+Sys.setlocale(locale = "fr_FR.UTF-8") # macOS
+# Sys.setlocale(locale = "French_France.1252") # Windows
+```
+
+Running the plot again shows the month names in French:
+
+```{r}
+covid %>%
+  filter(departement == 69) %>%
+  ggplot(aes(date, deceased)) +
+    geom_line() +
+    scale_x_date(date_breaks = "month", date_labels = "%B")
+```
+
+For the rest of the notebook, we will move back to English:
+
+```{r}
+Sys.setlocale(locale = "en_US.UTF-8")
+```
+
+You will note that I actually included this line the header of the notebook for
+today in order to make sure that the notebook is running in an English/US locale.
+On your personal machine this may be different.
+
+### Working with date variables
+
+There are a number of functions that allow us to manipulate date objects, most
+frequently to extract a particular element of the date and save it as a new
+variable within a call to `mutate`. For example, `year()`, `month()` and
+`day()` return a numeric version of the corresponding date components:
+
+```{r}
+covid %>%
+  mutate(year = year(date), month = month(date), day = day(date)) %>%
+  select(date, year, month, day) %>%
+  unique()
+```
+
+We can also do mathematical operations on dates; adding or subtracting
+an integer changes the date by the specified amount of days:
+
+```{r}
+covid %>%
+  mutate(date_next = date + 2) %>%
+  select(date, date_next) %>%
+  unique()
+```
+
+It can also be useful to create a temporary date object, for example to select
+a subset of days. This is done with one of two functions, the `ymd` function,
+which takes a single string formatted as "YYYY-MM-DD":
+
+```{r}
+covid %>%
+  filter(between(date, ymd("2020-07-02"), ymd("2020-07-07"))) %>%
+  select(date) %>%
+  unique()
+```
+
+Or the `make_date` function, which takes seperate numeric arguments for the
+year, month, and date. Note that the year, month, and day default to 1970,
+1, and 1, respectively.
+
+```{r}
+covid %>%
+  filter(between(date, make_date(2020, 07), make_date(2020, 07, 15))) %>%
+  select(date) %>%
+  unique()
+```
+
+The functions `make_date` and `ymd` can also be used within a mutate function
+to create a date object when it is not automatically constructed.
+
+Another useful function is `isoweek`, which returns a numeric description
+of the week of the year.
+
+```{r}
+covid %>%
+  mutate(week = isoweek(date)) %>%
+  select(date, week) %>%
+  unique()
+```
+
+And `wday` returns the day of the week. Setting the options `label = TRUE`
+and `abbr = FALSE` returns these as an ordered factor:
+
+```{r}
+covid %>%
+  mutate(wday = wday(date, label = TRUE, abbr = FALSE)) %>%
+  select(date, wday) %>%
+  unique()
+```
+
+Note that the same options (label and abbr) also exist for the `month()`
+function. Also, we can set the locale of `wday` within the function itself
+like this:
+
+```{r}
+covid %>%
+  mutate(wday = wday(date, locale = "fr_FR.UTF-8", label = TRUE, abbr = FALSE)) %>%
+  select(date, wday) %>%
+  unique()
+```
+
+Otherwise, it uses the setting from `Sys.setlocale`. Note that setting the
+option inside the function does not change the locale for subsequent plots or
+functions.

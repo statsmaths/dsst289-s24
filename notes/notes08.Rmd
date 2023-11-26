@@ -1,0 +1,300 @@
+---
+title: "08. Data Feminism"
+output:
+  html_document:
+    theme: cosmo
+    highlight: zenburn
+    css: "../css/note-style.css"
+---
+
+```{r, include=FALSE, message=FALSE}
+source("../funs/funs.R")
+```
+
+### Introduction
+
+My goal for this course is to give an overview of the diverse range of 
+areas and subtasks that fall under the interdisciplinary field of data
+science. While much of our time is focused on technical details underlying
+exploratory analysis, in this second unit of the course we will also integrate
+other aspects that are important to consider when working with data. If you 
+are interested in exploring these further, there are many other UR courses
+that further expand on these questions, such as the inferential modeling
+covered in DSST189 and predictive modeling in DSST389. The latter course also
+spends much more time focused on the presentation and distribution of data.
+
+Another important part of data science is understanding the bigger
+picture of how to determine a research question in the first place and
+what to do with the result of an analysis once is has taken place. Many
+of these details are domain specific and you'll probably learn more about
+them in the methods classes offered such as digital humanities, econometrics,
+and quantitative psychology. In addition to these domain-specific elements,
+there are also larger questions about data ethics, data justice, and the
+role of data in our larger society that should be a part of any data science
+work we partake in. These issues are studied at length in the course RHCS345
+(part of the Data Science minor). Here, I want to spend some time discussing
+how these larger questions should influence the kinds of work we perform in
+DSST289.
+
+My notes for today are synthesis of two important pieces or scholarship
+which establish, respectively, the concepts of "Data Feminism" and "Data Sheets".
+Both are freely available online:
+
+- [D'Ignazio, C., & Klein, L. F. (2020). *Data Feminism*. MIT press.](https://data-feminism.mitpress.mit.edu/)
+- [Gebru, T., Morgenstern, J., Vecchione, B., Vaughan, J. W., Wallach, H., III, H. D., & Crawford, K. (2021). "Datasheets for Datasets." Communications of the ACM, 64(12), 86-92.](https://arxiv.org/pdf/1803.09010.pdf)
+
+You do not need to read the original book and article for this class (though
+both are well worth a read when you can find the time). For the purpose of
+this semester, we can rely on the notes I have prepared below. 
+
+
+# Data Feminism
+
+### Introduction
+
+The concept of Data Feminism was introduced in a recently published book with
+the same name by Catherine D'Ignazio and Lauren Klein. They describe the idea
+as follows:
+
+> A way of thinking about data, both their uses and their limits, that is
+> informed by direct experience, by a commitment to action, and by intersectional
+> feminist thought. The starting point for data feminism is something that goes
+> mostly unacknowledged in data science: power is not distributed equally in the
+> world.
+
+The book is filled with thought-provoking examples and hundreds of citations to
+scholarship across many fields. While very clear and well-written, I find it be
+a difficult text to read if you are not already somewhat familiar with the basic
+principals of intersectional feminist thought that the authors are drawing on.
+Even more difficult is the practice of taking the concepts in the text and
+turning them into actionable things that we can put into our own data science
+practice. My goal in the notes here is to try to summarize their ideas and
+turn them into concepts we can draw on in our work throughout the rest of the
+semester.
+
+The book defines a set of seven principles. I have grouped these into the three
+larger categories that are described below.
+
+### I. Use data to create more just, equitable, and livable futures
+
+If you have no prior background in intersectional feminist thought, you mighy
+presume that it has something to do with the study of gender and sex- or 
+gender-based inequalities. And, it is the case that these questions are a core
+part of the field. At the same time, D'Ignazio and Klein's use of the term
+feminism is intended to be even broader, which they explain as follows:
+
+> [W]e employ the term feminism as a shorthand for the diverse and wide-ranging
+> projects that name and challenge sexism and other forces of oppression, as
+> well as those which seek to create more just, equitable, and livable futures.
+
+As such, the principles are not so much a question specifically about gender but
+rather concerns about power. What structures create and reinforce power? How is
+power being used? How can we challenge unequal power and work toward reflixive
+and equitable systems of justice?
+
+The connection to our work comes from the fact that data is an ever-increasing
+structure of power in our society. Data affects our lives in many ways, from
+major life events such as college admissions and hiring practices, to day-to-day
+occurances such as the availability, pricing, and marketing of practically 
+every good and service that we spend money on. Insurance prices, home mortgage
+rates, and airline prices have long used complex algorithms built on large 
+datasets; these practices are now becoming the norm across almost every industry.
+
+While data has become an important source of power, it is not a source of 
+power equally available to everyone. A lot of data is expensive to produce and
+store and therefore is only available to large, rich institutions such as 
+certain government agencies, large companies, and research universities. Some
+forms of data, likewise, cannot be collected equally by everyone due to legal
+and legistical barriers. As an important example in our current moment, Google
+became what it is today by building a better search engine by crawling across
+the internet to analyze to content of individual websites. Today, it would be
+impossible for another company to start a competing service because of 
+barries Google has put up to re-collecting that kind of data. 
+
+Even when it possible for everyone to collect data, not all entities have the
+same level of power that they can wield with their datasets. Datasets created
+and published by institutions such as the United Nations instantly gain a
+level of credibility that is difficult or impossible for other groups to 
+establish for their own datasets. Similarly, when corporations and governments
+build algorithms with their own curated datasets, those data gain a special
+level of power that can rarely be questioned or easily challenged.
+
+So how can this principal lead us to better science practices? There is no
+simple answer to this question and it is something that we will return to 
+throughout the rest of the semester. Two things we can try to do, however,
+are to identify ways that the data and analysis that we are using and creating
+could be used as a form of power while also doing our best to avoid creating 
+and reinforcing unequal power structures. As an alternative, we should
+privilege projects, data sets, and analyses that are guided by principles
+that challenge these existing structures while working towards a more equal
+society. 
+
+### II. Recognize that data is never neutral or objective
+
+Our second summarized principle of Data Feminism is the concept that data is
+never neutral of objective. Depending our academic background, this concept
+may range from either surprising or cliché. Let's try to break this idea down a
+bit to see how it can lead us to better data scientists.
+
+Where the first principle focused on the unequal power structures created by
+the use of data, here we want to focus on the more specific (but closely
+related) role of the data itself. Here is a non-exhaustive list of some of
+the ways that we can understand data as never being neutral of objective:
+
+1. We can never collect an infinite amount of data; there is always a bias
+due to our selective decisions about what data to collect and store.
+2. Making certain kinds of data available, either freely or for a fee, can
+be a powerful action on its own. If the data contains personal or private
+information, releasing or selling the data can have potential negative 
+effects on the individuals involved. Likewise, withholding important medical
+research data to promote one's own career can have negative effects on 
+patients suffering from the disease being studied. Determining what to
+distribute is always a political choice that never has a perfect or neutral
+answer.
+3. Determining how to record and store data also involves choices that 
+never have an entirely neutral choice. For example, should we record the 
+gender of people on a binary scale? Provide an Other category? Ask everyone
+to fill in an open-ended box? The latter might sound like the "best" option.
+However, as a result in the data might become so messy it prevents using it
+study questions related to gender and sexuality.
+4. The unit of analysis, a concept we constantly return to in this class,
+is another choice that influences a datatset without a neutral or objective
+choice available. If we, for example, aggregate a dataset about individuals
+to the level of cities certain questions become inaccessible from the
+resulting dataset. If we release data at a very fine level of granularity,
+we run the risk of release sensitive data into the world or preventing our
+study from being reproducible. 
+
+Let's take one example that helps illustrate some of these points from
+two different angles. In 2018, a team from MIT led by Joy Buolamwini 
+produced a dataset of photographs from 1270 unique individuals from a
+diverse set of skin types and racial backgrounds. The team applied
+face detection and recognition algorithms from a variety of open-source
+and commercial providers and demonstrated that existing algorithms 
+performed significantly worse when applied to this set than when used
+to label a collection of individuals they perceived to be White. The
+implication was that the dataset used to train these algorithms
+consisted of overwhelmingly White faces and individuals living in the
+United States and Europe.
+
+The example from Joy Buolamwini is a great example of the first principle
+in action. A data scientist collected and analyzed data to identify and
+challenge a problematic power structure. Likewise, from her work it is not
+too difficulty to see that the previously existing datasets for face
+detection had some problematic biases and were far from neutral or
+objective. At the same time, what about Buolamwini's dataset? It is 
+not entirely neutral or objective either. It focuses primarily on the
+Black/White binary, with no representation of faces from Asian or 
+Indigenous communities. Also, the research group elected not to make their
+dataset freely available. On one hand this helps maintain it as a set that 
+can check biases in other algorithms and avoids potentially problematic issues
+of distributing human images, such as the potential tokenization of the 
+individuals involved in the study. On the other hand, holding back the data
+prevents others from using it to do the kind of diversification that their
+paper called for. Clearly there is no easy answer and I would not say that
+either option is truly neural or objective.
+
+So how can we put this principle into action in our data science practice? 
+Because there is no way to make our data and analysis neutral or objective, it
+is important for us to reflect and document all of the choices we make in 
+constructing and analyzing data. These choices should be done by taking into
+account the goals of our work, following field-specific best practice
+guidelines, the weighing the pros and cons of different communities that might
+be affected by our actions. Secondly, because no dataset of method will capture
+all perspectives, we should use a variety of approaches when addressing 
+our research questions. Options include using data from different sources, 
+analyzing data collected in different ways, and integrating insights from
+quantitative and qualitative analyses to gain a broader set of perspectives.
+
+### III. Make labor visible
+
+The final principle of Data Feminism highlighted by D'Ignazio and Klein 
+involves the importance of recognizing and that good data science involves the 
+work and collaboration of a large number of people. As they concisely explain:
+
+> When designing data products from a feminist perspective, we must similarly
+> aspire to show the work involved in the entire lifecycle of the project. This
+> remains true even as it can be difficult to name each individual involved or
+> when the work may be collective in nature and not able to be attributed to a
+> single source.
+
+Some diverse types of labor involved in data science work include participants
+who partake in human-based research studies, librarians and archivists who 
+curate and catalog vast collections of human knowledge, and students who 
+participate in the collection and analysis of large datasets. In
+*Data Feminism*, the authors interrogate an even larger set of possible roles
+involves in working with data and explore several particularly difficult
+examples of crediting work and possible solutions.
+
+How do we integrate this into our work? The short answer is that we should 
+try to surface all of the people that contribute to our work as data scientists.
+In terms of the more specific way that we should do this, we turn to the final
+section of these notes.
+
+# Datasheets for Datasets
+
+Many, though certainly not all, of the actionable ideas from Data Feminism
+involve doing a better job of reflecting and documenting the data science
+process. To consider a way of doing this, let's turn to the second reference 
+mentioned above. The goal of the "Datasheets for Datasets" article can be 
+summarized from the following quote:
+
+> Despite the importance of data to machine learning, there is currently no
+> standardized process for documenting machine learning datasets. To address
+> this gap, we propose datasheets for datasets... [W]e propose that every
+> dataset be accompanied with a datasheet that documents its motivation,
+> composition, collection process, recommended uses, and so on. Datasheets for
+> datasets have the potential to increase transparency and accountability within
+> the machine learning community, mitigate unwanted societal biases in machine
+> learning models, facilitate greater reproducibility of machine learning
+> results, and help researchers and practitioners to select more appropriate
+> datasets for their chosen tasks.
+
+The rest of the article describes the kinds of elements the authors suggest 
+should be included in a datasheet. Some of these are very technical and only
+applicable to the sub-field of machine learning. The core ideas, though, can
+be adapted to provide a framework for any dataset. 
+
+I have adapted and simplified the framework from "Datasheets for Datasets" to
+better align with the Data Feminism principles above. Here are the eight
+sections that I propose should be a part of our concept of a Feminist Datasheet:
+
+1. **Metadata**: A short section providing a clear title for the dataset, a
+publication date, a version number (if applicable), a standard format for
+citing the dataset, and (if possible) contact information for more information.
+2. **Motivation**: Clearly articulate their reasons for creating the dataset and
+explain how the creation of the dataset was funded. Implict in this section 
+should be a reflection of how these motivations align with the value systems of
+the people and organizations involved with its creation.
+3. **Composition**: This is essentially the data dictionary that we discussed 
+in the previous set of notes. Should include a short summary describing each
+table, its unit of observation, and the meaning behind every feature included
+in each table.
+4. **Narrative**: This section should include a description of how the data
+were collected and a reflection on all of the design choices that went into the
+data creation process. This would include what features to include, how to 
+code/measure them, and how to select the specific observations included in the
+dataset. 
+5. **Distribution**: A section describing how the data are distributed, which
+should include the format of the data, the licence it is being distributed
+under, and where (if possible) the data can be accessed. The section should 
+also include information about any ways that the data have been changed before
+being published, such as removing personal identifying information.
+6. **Attributions**: An as complete as possible description of all the people
+involved in the creation and conceptualization of the dataset. 
+7. **References**: A representative list of references to other resources and
+datasets with similar research motivations. This helps avoid the problems of
+putting too much focus on a single source or single way of knowing.
+8. **Notes**: An optional section describing any additional notes not covered
+above. Particularly useful to describe how a dynamic dataset changes over time.
+
+We will talk more in class about these concepts and how they might be put into
+action with a specific dataset. This will become the basis for the class final
+projects.
+
+## Homework Questions
+
+This is a long reading. Rather than a specific piece of homework, make sure that
+you really read the whole thing at a good level of detail. These concepts will
+permeate our work throughout the rest of the semester.
+

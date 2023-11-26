@@ -1,0 +1,168 @@
+---
+title: "19. Spatial Joins"
+output:
+  html_document:
+    theme: cosmo
+    highlight: zenburn
+    css: "../css/note-style.css"
+---
+
+```{r, include=FALSE, message=FALSE}
+source("../funs/funs.R")
+```
+
+The notes today introduce a few details about joining together spatial data
+sets. The notes are relatively short but dense, so make sure to read carefully.
+
+## Joining with a key
+
+To start, let's load the us cities data, taking just the year 2010 and cities
+with non-missing longitude and latitude.
+
+```{r}
+us <- read_csv("../data/us_city_population.csv") |>
+  filter(year == 2010) |>
+  filter(!is.na(lon), !is.na(lat))
+
+us
+```
+
+We will also read in the state polygon spatial data:
+
+```{r}
+state <- read_sf("../data/geo_states.geojson")
+state
+```
+
+Notice that both of these data sets have a state code and therefore it should
+be possible to join them using an ordinary `left_join` (or other join function).
+This works, but there is a catch:
+
+```{r}
+us |>
+  left_join(state, by = c("state" = "abb"))
+```
+
+Notice that while the output does combine the data, and does contain a geometry
+column, the data set has lost the metadata indicating that it is in fact a spatial
+data table. You would get an error, for example, for trying to use `geom_sf`
+on the output. There is, however, a simple fix; just add the `st_as_sf` function
+as an additional line:
+
+```{r}
+us |>
+  left_join(state, by = c("state" = "abb")) |>
+  st_as_sf() 
+```
+
+And now the spatial polygons have been preserved. Note that this problem only
+occurs when the geometry exists in the right table, though in my experience
+this is the most common situation.
+
+Also, note that you need to be careful when combining two spatial data tables
+with a regular key-based join. It is best to remove one of the geometries prior
+to the join to avoid issues using the  function `as_tibble()`
+
+## Spatial Joins
+
+A more interesting way to join spatial data is through a spatial join. This uses
+the spatial information itself to combine two datasets. There are several
+different spatial joins; here we will see how to join a points data set to a
+polygons data set by identifying which polygon each point appears inside.
+
+As an example, let's re-load the US cities data set but remove the state
+information. We will try to recreate this column using just the longitude and
+latitude.
+
+```{r}
+us <- read_csv("../data/us_city_population.csv") |>
+  filter(year == 2010) |>
+  filter(!is.na(lon), !is.na(lat)) |>
+  select(city, population, lon, lat, state)
+
+us
+```
+
+To identify, using the spatial information, which polygon each point exists
+inside we need to first convert the `us` data set into a spatial points data
+table using `st_as_sf`. We can then combine the two tables using the function
+`spatial_join` (this is a smaller wrapper function I wrote that called `st_join`
+with some useful post-processing options). No key needs to be specified because
+the function knows we want to join based on the spatial data.
+
+```{r}
+us |>
+  st_as_sf(coords = c("lon", "lat"), crs = 4326, remove = FALSE) |>
+  spatial_join(state)
+```
+
+The resulting data set has metadata joined from the state table with all of the
+city variables (including the geometry) intact. Copying the same join code, we
+can then use the geometry to plot the spatial data:
+
+```{r, warning=FALSE}
+us |>
+  st_as_sf(coords = c("lon", "lat"), crs = 4326, remove = FALSE) |>
+  spatial_join(state) |>
+  filter(abb %in% c("VA", "NC", "MD")) |>
+  ggplot() +
+    geom_sf(aes(color = name))
+```
+
+Note that `spatial_join` always retains the geometry of the first data set used
+in the join. So, if we flip the two data sets we will have a spatial dataset
+containing polygons:
+
+```{r}
+state |>
+  spatial_join(st_as_sf(us, coords = c("lon", "lat"), crs = 4326, remove = FALSE))
+```
+
+Most of the time, at least in this class, will find the points are the correct
+thing to retain. Be careful joining with polygons on the left because you can
+quickly create very large data sets that may exceed your machine's memory!
+
+## Raster Maps
+
+Another completely different way that we can visualize spatial points is by
+plotting the longitude and latitude points on top of a fixed map. There are a
+few R packages that do this. Finding them all a bit buggy, I wrote my own very
+minimal version. We did not install this at the start of the semester; if you
+would like to try it you, can download it using the first line in the code 
+below. The second line load the package for use.
+
+```{r}
+#remotes::install_github("statsmaths/ggmaptile", upgrade = "never")
+library(ggmaptile)
+```
+
+The **ggmaptile** package provides a new geometry layer called `stat_maptiles`.
+If you add it to a plot with a longitude and latitude, it will automatically
+grab map images that displays an image of a map corresponding to the points.
+
+```{r}
+us |> 
+  filter(state == "VA") |>
+  ggplot(aes(lon, lat)) +
+    stat_maptiles(quiet = TRUE, cache_dir = "cache") +
+    geom_point(color = "#fe8019", size = 2) +
+    theme_void()       # nice theme for a map
+```
+
+This technique is particularly useful when you are working with data with a
+small spatial range, such as data points inside of a city.
+
+### Homework
+
+In the code above we saw one way of combining a dataset of spatial points with
+a dataset of spatial polygons. Namely, we associated a point with the polygon
+that contains it (or a polygon with the points it contains). There are many
+other types of spatial joins that exist. Try to think up an example of one way
+we might do a spatial combination of:
+
+1. A spatial points dataset with another spatial points dataset.
+2. A spatial lines dataset with a spatial lines dataset.
+3. A spatial polygons dataset with another spatial points dataset.
+4. Another way of combining points and polygons than was given above.
+
+Then, try to come up with an application of each of these situations.

@@ -1,0 +1,102 @@
+---
+title: "Final Project Instructions"
+output:
+  html_document:
+    theme: simplex
+    highlight: pygments
+    css: ["../css/note-style.css", "../css/table.css"]
+    includes:
+      after_body: project_links.html
+---
+
+**Due Date**: 30 November 2022 (start of class)
+
+*Data is Plural* is a weekly newsletter that describes and links to a set o
+"useful/curious datasets" that have been posted online. Each newsletter gives
+descriptions and links to around 4-6 datasets. In the list at the bottom of this
+page, each student has been assigned one of these newsletters.
+
+For the final project, you will need to select one of the datasets from your
+assigned newsletter. I often use these as sources for data (particularly the
+exams); if you happen to see a dataset that we used in class, please do not
+choose it. If you find none of the datasets usable for the project, please let
+me know and I will assign you an alternative.
+
+With your chosen dataset, you need to do three things: (1) complete the Data
+Feminism adapted version of a datasheet and (2) make an attempt to read the 
+dataset into R and do something with the data, and (3) prepare one or two slides
+to present in class. You need to print out a copy of items (1) and (2) to
+bring to the last day of class. We'll explore each other's projects using a
+poster-session style setup with regards to (3), which you will share on your
+computer.
+
+## 1. Data Sheet
+
+For the datasheet, you need to produce a document with the following eight 
+sections. The requirements are slightly reduced from the notes in class in order
+to be respectful of your time. It is possible that you won't have all of the
+information available to complete all of these sections. That's okay; just
+explain that in your document.
+
+1. **Metadata**: A short section providing a clear title for the dataset, a
+publication date, a version number (if applicable), a standard format for
+citing the dataset, and (if possible) contact information for more information.
+2. **Motivation**: Clearly articulate the reasons that the dataset was created
+and/or what funded was used to collect the data. 
+3. **Composition**: Should include a short summary describing each table or data
+object. If the data is a single table, try to describe the features. If there
+are a large set of tables, just describe the main goal of each table. If the
+data are not even in tabular form, do your best!
+4. **Narrative**: This section should include a description of how the data
+were collected and a reflection on all of the design choices that went into the
+data creation process. This could be very long, but for this project please 
+keep to a maximum of three paragraphs.
+5. **Distribution**: A section describing how the data are distributed, which
+should include the format of the data, the licence it is being distributed
+under, and where (if possible) the data can be accessed. The section should 
+also include information about any ways that the data have been changed before
+being published, such as removing personal identifying information.
+
+You should aim for your datasheet to be between two and four pages long.
+
+## 2. Working with the data in R
+
+The second element of the project is try to read the data (or some subset of it)
+into R and do something with it. This will usually be the creation of 2-3 plots.
+These should include a full set of labels and a few sentences of context. You
+can do this as a knit RMarkdown file.
+
+I hope that most students will be able to read some of their data into R. If you
+are having trouble, please ask for help as soon as possible. In the event that
+it is truly not possible, in lieu of this analysis, write up a description of
+the challenges you had and what would need to be fixed. This should only be
+done after consultation with the instructor.
+
+## 3. For Presentation
+
+Finally, for the presentation day, you should prepare slides that you will
+display on your computer. The slide should include:
+
+- a title of the dataset
+- your name
+- citation for the dataset
+- a screenshot and/or description of the format the data was originally in and what it took to read into R
+- one or more plots from item 2.
+
+It's probably easiest to make these in PowerPoint or Google Slides. To give
+you an example of what this should look like, check on this one from the that
+I prepared from the exam data: [example slides](../pslides/zz_final_project.pdf).
+If you have more plots that you'd like to show, you are welcome to include
+additional slide(s).
+
+## Grades
+
+I assign grades to the final project holistically, based primarily on the effort
+you put into the project. To earn an A, you need only to have made an honest
+attempt at completing all of the elements as best as possible. The best way to
+do this is to start early so that you can come to the project workshops with
+meaningful questions.
+
+## Assignments
+
+Your assigned newsletter can be found by consulting the following chart:

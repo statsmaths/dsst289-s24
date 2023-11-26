@@ -1,0 +1,156 @@
+---
+title: "Notebook 07 -- Solutions"
+output:
+  html_document:
+    theme: cosmo
+    highlight: zenburn
+    css: "../css/note-style.css"
+---
+
+
+## Getting Started
+
+Before running this notebook, select "Session > Restart R and Clear Output" in
+the menu above to start a new R session. This will clear any old data sets and
+give us a blank slate to start with.
+
+After starting a new session, run the following code chunk to load the
+libraries and data that we will be working with today.
+
+```{r, include=FALSE, message=FALSE}
+source("../funs/funs.R")
+```
+
+I have set the options `include=FALSE` and `message=FALSE` to avoid cluttering
+the solutions with all the output from this code.
+
+## Practice
+
+### Movies data
+
+For this notebook, we will be creating a datasets, reading it into R, and
+producing a couple of different data visualizations.
+
+We will create a dataset as a class describing a set of movies. Each student
+will be tasked with creating three rows of data. We will record the following
+items in the GoogleSheets file linked to on the class website:
+
+- student number
+- title
+- year of release
+- budget
+- box-office, total amount of money
+- genre
+- personal rating of the film, from 1-5 stars
+
+Once you are finished, save the data set as a csv file, upload it to the "data"
+directory in RStudio, change its name, and read it into R in the following block
+of code:
+
+```{r, message=FALSE}
+movies <- read_csv("../data/movies.csv")
+movies
+```
+
+Then, produce a scatterplot below with the budget on the x-axis, box-office
+numbers on the y-axis, points colored by the year of release, and the size of
+the points corresponding to your personal rating. Use a text repel layer to
+label the movies by their title. 
+
+```{r, warning=FALSE, question-01}
+movies |>
+  ggplot(aes(budget, box_office)) +
+    geom_point(aes(color = year_release, size = personal_rating)) +
+    geom_text_repel(aes(label = title), size = 3) +
+    scale_x_log10() +
+    scale_y_log10() +
+    scale_color_viridis_b()
+```
+
+If you think it is needed, also include logarithmic scales for the x- and
+y-axes.
+
+### Labels and Themes
+
+For the last few questions, let's finish a few loose ends about how to make
+data visualizations in R. The function `labs()` is an important element that
+can be added to any ggplot graphic. Inside the `labs()` function, you can
+set aesthetics from the plot equal to a string to change the corresponding
+label in the plot. For example, adding `labs(x = "HELLO!")` will change the
+label of the x-axis to the string "HELLO!". In the code below, take the
+previous code from above and add an appropriate label to the x-axis.
+
+```{r, warning=FALSE, question-02}
+movies |>
+  ggplot(aes(budget, box_office)) +
+    geom_point(aes(color = year_release, size = personal_rating)) +
+    geom_text_repel(aes(label = title), size = 3) +
+    scale_x_log10() +
+    scale_y_log10() +
+    scale_color_viridis_b() +
+    labs(x = "Budget (USD)")
+```
+
+Now, copy the code above and in the next block add appropriate labels for
+the y-axis, the color aesthetic, and the size aesthetic.
+
+```{r, warning=FALSE, question-03}
+movies |>
+  ggplot(aes(budget, box_office)) +
+    geom_point(aes(color = year_release, size = personal_rating)) +
+    geom_text_repel(aes(label = title), size = 3) +
+    scale_x_log10() +
+    scale_y_log10() +
+    scale_color_viridis_b() +
+    labs(x = "Budget (USD)", y = "Box Office", color = "Release Year",
+         size = "Personal Rating")
+```
+
+There are three special additional elements that we can set inside of 
+`labs()` called `title` (the main title of the plot), `subtitle`,
+and `caption` (the description at the bottom of the plot). Take the
+code above and add a title, subtitle, and caption.
+
+```{r, warning=FALSE, question-04}
+movies |>
+  ggplot(aes(budget, box_office)) +
+    geom_point(aes(color = year_release, size = personal_rating)) +
+    geom_text_repel(aes(label = title), size = 3) +
+    scale_x_log10() +
+    scale_y_log10() +
+    scale_color_viridis_b() +
+    labs(x = "Budget (USD)", y = "Box Office", color = "Release Year",
+         size = "Personal Rating", title = "Class Movie Data",
+         subtitle = "A first attempt at creating our own dataset",
+         caption = "We had SOOOO much fun making this!")
+```
+
+As a final step, we can add another element called a theme to change
+the additional visual elements of the plot, such as what fonts are 
+used in the labels, and what colors are used in the interior parts
+of the graphic. The default that I have set for you in class is
+called `theme_minimal()`. It's great for a first-pass of some graphics.
+In the plot below, copy your graphic from above and add one final
+element called `theme_tufte()`.
+
+```{r, warning=FALSE, question-05}
+movies |>
+  ggplot(aes(budget, box_office)) +
+    geom_point(aes(color = year_release, size = personal_rating)) +
+    geom_text_repel(aes(label = title), size = 3) +
+    scale_x_log10() +
+    scale_y_log10() +
+    scale_color_viridis_b() +
+    labs(x = "Budget (USD)", y = "Box Office", color = "Release Year",
+         size = "Personal Rating", title = "Class Movie Data",
+         subtitle = "A first attempt at creating our own dataset",
+         caption = "We had SOOOO much fun making this!") +
+    theme_tufte()
+```
+
+I like this theme a lot for creating graphics for publication because 
+it is very clean and avoids using extra ink that I can make better use
+of with manual annotations. There are more other themes and theme
+options that you can read about the R documentation to change the way
+a ggplot object looks. Several other R packages also provide additional
+themes ready to use out of the box. 

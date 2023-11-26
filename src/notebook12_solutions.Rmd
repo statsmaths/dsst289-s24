@@ -1,0 +1,132 @@
+---
+title: "Notebook 12 -- Solutions"
+output:
+  html_document:
+    theme: cosmo
+    highlight: zenburn
+    css: "../css/note-style.css"
+---
+
+## Getting Started
+
+Before running this notebook, select "Session > Restart R and Clear Output" in
+the menu above to start a new R session. This will clear any old data sets and
+give us a blank slate to start with.
+
+After starting a new session, run the following code chunk to load the
+libraries and data that we will be working with today.
+
+```{r, include=FALSE, message=FALSE}
+source("../funs/funs.R")
+```
+
+## Penguin Practice
+
+Today we are going to look at the dataset features on the in-class portion of
+Exam 1. We will read the data in below:
+
+```{r}
+penguins <- read_csv("../data/penguins.csv") |>
+  filter(!is.na(sex))
+penguins
+```
+
+For the first question, create a scatterplot with body mass on the x-axis and
+bill length on the y-axis. Color the points based on the sex of the penguin.
+
+```{r, question-01}
+penguins |>
+  ggplot(aes(body_mass_g, bill_length_mm)) +
+    geom_point(aes(color = sex)) +
+    scale_color_viridis_d()
+```
+
+For the second question, we will again a scatterplot with body mass on the
+x-axis and bill length on the y-axis. Color the points based on the species of
+the penguin; use the shape aesthetic to indicate the sex of the penguin. Take
+a moment to understand the pattern(s) the arise in the data.
+
+```{r, question-02}
+penguins |>
+  ggplot(aes(body_mass_g, bill_length_mm)) +
+    geom_point(aes(color = species, shape = sex))
+```
+
+Now, let's create a similar scatter plot with mass on the x-axis, bill length
+on the y-axis, color designating species, and sex indicated by shape. However,
+instead of showing individual penguins, create a scatterplot showing the average
+body mass and bill length of all penguins from the same species and sex. Your
+plot should have exactly six points.
+
+```{r, question-03}
+penguins |>
+  group_by(species, sex) |>
+  summarize(avg_mass = mean(body_mass_g), avg_bill_length = mean(bill_length_mm)) |>
+  ggplot(aes(avg_mass, avg_bill_length)) +
+    geom_point(aes(color = species, shape = sex))
+```
+
+Let's create a small table in R that gives the scientific names of the penguins.
+
+```{r}
+latin_names <- tibble(
+  common_name = c("Adelie", "Chinstrap", "Gentoo"),
+  scientific_name = c("Pygoscelis adeliae", "Pygoscelis antarcticus", "Pygoscelis papua")
+)
+latin_names
+```
+
+For the next question, re-create the plot from question 3, but make the color
+legend correspond to the Latin name of each penguin species rather than the
+common name.
+
+```{r, question-04}
+penguins |>
+  group_by(species, sex) |>
+  summarize(avg_mass = mean(body_mass_g), avg_bill_length = mean(bill_length_mm)) |>
+  left_join(latin_names, by = c("species" = "common_name")) |>
+  ggplot(aes(avg_mass, avg_bill_length)) +
+    geom_point(aes(color = scientific_name, shape = sex))
+```
+
+In the next question, we want to visualize the same information as above but
+instead of using two differently shaped point to designate the two different
+sexes of penguins within a species, we want to have an arrow for each species
+going from the female point to the male point. This involves using a pivot;
+note that you can pass multiple columns to the `values_from` argument, and will
+likely need to do this to complete the question. You can keep the scientific
+names in the legend.
+
+```{r, question-05}
+penguins |>
+  group_by(species, sex) |>
+  summarize(avg_mass = mean(body_mass_g), avg_bill_length = mean(bill_length_mm)) |>
+  pivot_wider(names_from = sex, values_from = c(avg_mass, avg_bill_length)) |>
+  left_join(latin_names, by = c("species" = "common_name")) |>
+  ggplot(aes(avg_mass_female, avg_bill_length_female)) +
+    geom_segment(
+      aes(color = scientific_name, xend = avg_mass_male, yend = avg_bill_length_male),
+      arrow = arrow(length = unit(0.02, "npc"))
+    )
+```
+
+Finally, re-create the plot from question 5, but add labels giving an 
+appropriate title and names to all of the aesthetics.
+
+```{r, question-06}
+penguins |>
+  group_by(species, sex) |>
+  summarize(avg_mass = mean(body_mass_g), avg_bill_length = mean(bill_length_mm)) |>
+  pivot_wider(names_from = sex, values_from = c(avg_mass, avg_bill_length)) |>
+  left_join(latin_names, by = c("species" = "common_name")) |>
+  ggplot(aes(avg_mass_female, avg_bill_length_female)) +
+    geom_segment(
+      aes(color = scientific_name, xend = avg_mass_male, yend = avg_bill_length_male),
+      arrow = arrow(length = unit(0.02, "npc"))
+    ) +
+    labs(title = "Penguin Size Differences by Species and Sex",
+         subtitle = "Arrows start from the female averages and move towards male averages",
+         x = "Average Mass (grams)",
+         y = "Average Bill Length (mm)",
+         color = "Penguin Species")
+```

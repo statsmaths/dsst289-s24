@@ -1,0 +1,224 @@
+---
+title: "18. Spatial Data"
+output:
+  html_document:
+    theme: cosmo
+    highlight: zenburn
+    css: "../css/note-style.css"
+---
+
+```{r, include=FALSE, message=FALSE}
+source("../funs/funs.R")
+```
+
+This set of notes introduces methods for working with spatial data in R. We will
+see methods for creating spatial data from a data set with longitude and
+latitude, how to plot spatial data, how to project spatial data, and how to
+compute spatial summaries.
+
+### Spatial Points
+
+Let's start by reading in the familiar US cities population data. I will take 
+just a single year of data and remove rows without location information.
+
+```{r}
+us <- read_csv("../data/us_city_population.csv") |>
+  filter(year == 2010) |> 
+  filter(!is.na(lon), !is.na(lat))  |>
+  select(city, population, lon, lat, state)
+
+us
+```
+
+As we have seen, we can plot 
+
+```{r}
+us |> 
+  ggplot(aes(lon, lat)) +
+    geom_point()
+```
+
+The map above is not bad, we can do better by turning this into a "proper" 
+geospatial object. The code below creates a spatial points dataset by indicating
+that the columns "lon" and "lat" contain longitude and latitude records. The 
+CRS code (4326) indicates that these are "raw" longitude and latitude and the
+remove flag indicates that we do not want to lose all the other columns in the
+data. You can typically use these same values of these parameters in other
+tasks.
+
+```{r}
+us_geo <- us |>
+  st_as_sf(coords = c("lon", "lat"), crs = 4326, remove = FALSE)
+```
+
+Printing the `us_geo` data below shows how differs from other tabular datasets
+we have used this semester. There's extra metadata attached to the head of the
+data and a special column called `geometry` that has the spatial information
+attached to it.
+
+```{r, question-02}
+us_geo
+```
+
+
+In order to plot this data, we will use a special geometry called `geom_sf`. It
+knows to use the `geometry` aesthetic to plot the data.
+
+```{r, question-03}
+us_geo |> 
+  ggplot() +
+    geom_sf()
+```
+
+The x and y aesthetics do not need to be set for `geom_sf`, but we can set other
+aesthetics just as with any set of points. For example, in the code below I have
+changed the points to be a different (fixed) color and size.
+
+```{r}
+us_geo |> 
+  ggplot() +
+    geom_sf(color = "olivedrab", size = 3)
+```
+
+One nice thing that we can do with spatial data is change the projection before
+plotting. This create a better representation of the curved earth on a flat plot
+based on the region of the world that we are looking at. To change the
+projection, we can pipe the data to the function `st_transform()`. The function
+takes one  argument, a numeric code giving the CRS number of the projection.
+
+Above, you  have already saw that 4326 is the projection for longitude and
+latitude. Below, I will redo your plot of the data (with the default size and
+color) below, using the CRS projection 5069.
+
+```{r, question-05}
+us_geo |> 
+  st_transform(5069) |>
+  ggplot() +
+    geom_sf()
+```
+
+There are two other spatial geometries: `geom_sf_text` and `geom_sf_label`. They
+add textual annotations to the plot based on the location of each row. As with
+`geom_sf`, you do not need to set the x- and y-aesthetics. However, you do need
+to specify the label aesthetic. Below, I will a plot using the coordinate system
+with crs 5069 which uses `geom_sf_text` (rather than `geom_sf`) to label the
+cities. I'll remove Alaska and Hawaii to make it easier to read. 
+
+```{r, fig.height=8, question-06}
+us_geo |> 
+  filter(!(state %in% c("AK", "HI"))) |>
+  st_transform(5069) |>
+  ggplot() +
+    geom_sf_text(aes(label = city)) +
+    coord_sf()   # You need to add this to get the correct labels on the x and
+                 # y-axis if you use geom_sf_text without geom_sf
+```
+
+### Polygons
+
+Spatial data can also associate regions (polygons) with each row rather than a
+single point. It is less likely that you will create this type of spatial
+yourself, instead reading the data from a file that is already designed to store
+spatial information. The file type we will use is called GeoJSON. It has a
+standard format so we do not need to parse it ourselves. The function `read_sf`
+can read geojson, storing the data in R as a spatial data frame. [It can also
+read many other geospatial formats, such as ESRI shp files.]
+
+```{r}
+state <- read_sf("../data/state.geojson")
+state
+```
+
+As with spatial points, we can create a reasonable plot by piping the `state`
+data in to `ggplot` and using `geom_sf`, as we see here:
+
+```{r}
+state |> 
+  ggplot() +
+    geom_sf()
+```
+
+It is much more clear with polygons how distorted the default projection makes
+everything. Here is the plot modified using the projection with CRS 5069.
+
+```{r}
+state |> 
+  st_transform(5069) |>
+  ggplot() +
+    geom_sf()
+```
+
+We can modify spatial polygons just as with any other dataset and use
+`geom_sf_text` as with the spatial points. Here, we remove the Alaska and Hawaii
+polygons and add the state abbreviations as labels.
+
+```{r}
+state |> 
+  filter(!(abb %in% c("AK", "HI"))) |>
+  st_transform(5069) |>
+  ggplot() +
+    geom_sf() +
+    geom_sf_text(aes(label = abb), size = 2)
+```
+
+Representing the spatial regions as polygons is not just useful as a visual
+aid. We can also compute statistics that describes the regions through numerical
+summaries. For example, this code inside of a mutate function computes the area
+of the polygon in square kilometers:
+
+   area = as.numeric(st_area(geometry)) / 1e6
+
+Which can use here to compute the smallest and largest states by area:
+
+```{r}
+state |>
+  mutate(area = as.numeric(st_area(geometry)) / 1e6) |>
+  arrange(area)
+```
+
+One common technique is to add information to a spatial plot of polygons by
+using the fill aesthetic. Below, for example, we'll make the color of each 
+state correspond with its area (usually, we'd use something a bit more
+interesting, as we will see in the next two notebooks).
+
+```{r}
+state |>
+  filter(!(abb %in% c("AK", "HI"))) |>
+  mutate(area = as.numeric(st_area(geometry)) / 1e6) |>
+  st_transform(5069) |>
+  ggplot() +
+    geom_sf(aes(fill = area))
+```
+
+The default color scale is awful in general, and particularly bad for maps. 
+Since we need both the x- and y-aesthetics to represent space, color becomes
+particularly important with spatial applications. Here is a color scale that
+I find works very well with spatial data:
+
+  scale_fill_distiller(
+    trans = "log2", palette = "Spectral", guide = "legend", n.breaks = 10
+  )
+
+Which we can see in action here:
+
+```{r}
+state |>
+  filter(!(abb %in% c("AK", "HI"))) |>
+  mutate(area = as.numeric(st_area(geometry)) / 1e6) |>
+  st_transform(5069) |>
+  ggplot() +
+    geom_sf(aes(fill = area)) +
+    scale_fill_distiller(
+      trans = "log2", palette = "Spectral", guide = "legend", n.breaks = 10
+    )
+```
+
+We will see more applications of these techniques and more summary statistics,
+as well as a third type of spatial information (lines), in today's notebook.
+
+### Homework
+
+For homework, make your selection of which dataset you want to work with for
+the final project and be prepared to talk about the challenges (or not) of
+accessing the data and reading it into R.
+
