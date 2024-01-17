@@ -1,0 +1,144 @@
+:root {
+  --title-font: Arial, sans-serif;
+  --body-font: brown;
+}
+
+body {
+  font-size: min(16px, 2.4vw);
+  font-family: "Georgia", serif;
+}
+
+a:link, a:visited {
+  text-decoration: none;
+  color: #62ade3;
+  transition: 0.4s;
+}
+
+a:hover {
+  color: #196094;
+}
+
+#conteneur {
+  padding-top: 12px;
+  max-width: 700px;
+  padding-left: 50px;
+  padding-right: 50px;
+  margin: auto;
+  padding-bottom: 50px;
+  color: #222;
+}
+
+#tete {
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+  font-family: var(--title-font);
+}
+
+#titre {
+  font-size: 2em;
+  padding-top: 1em;
+  padding-bottom: 0.5em;
+}
+
+#soustitre {
+  font-size: 1.1em;
+  line-height: 1.3;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+}
+
+#liens {
+  text-align: right;
+  font-size: 1em;
+  line-height: 1.3;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+}
+
+#boitedetexte {
+  padding-bottom: 2em;
+}
+
+p {
+  padding-top: 1em;
+  hyphens: auto;
+  line-height: 1.35;
+  font-size: 1.1em;
+  font-weight: 500;
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+#lname {
+  resize: none;
+  border: solid 1px;
+  font-size: 1em;
+}
+
+#lname:disabled {
+   background: #dddddd;
+}
+
+#publications {
+  padding-top: 0em;
+  line-height: 1.35em;
+  font-size: 1.3em;
+}
+
+#buttons {
+  padding-left: 0em;
+  margin: 2em;
+}
+
+#downloadAnchorElem, #resetTexbox {
+  cursor: pointer;
+  background-color: #62ade3;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  transition: 0.4s;
+}
+
+#downloadAnchorElem:hover, #resetTexbox:hover {
+  background-color: #196094;
+}
+
+.pubtete {
+  font-family: var(--title-font);
+  font-weight: 500;
+  font-size: 1.1em;
+  line-height: 1em;
+  padding-top: 2em;
+  padding-bottom: 0.5em;
+}
+
+ul {
+  hyphens: auto;
+  line-height: 1.3em;
+  font-size: 0.9em;
+  font-weight: 500;
+  text-align: justify;
+  text-justify: inter-word;
+  list-style-type: disc;
+  margin: 0;
+  padding: 0;
+  padding-left: 1.5em;
+}
+
+li {
+  color: #444;
+  padding-top: 0.8em;
+  padding-right: 0.6em;
+}
+
+.en {
+  padding-right: 1.5em;
+}
+
+.fr {
+  padding-left: 1.5em;
+}
