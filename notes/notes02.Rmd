@@ -165,6 +165,3 @@ the labels giving the name of the animal.
 of a plot. List three things about the images in these notes that were NOT
 directly described by the aesthetics, data, and geometries. Do your best with
 this; we will discuss in class.
-
-Once you have finished reading and completing the items above, make sure to
-submit the pre-class form.
