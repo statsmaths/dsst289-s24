@@ -22,8 +22,8 @@ types <- stri_sub(clses[!is.na(clses)], 12L, -1L)
 
 # When should each link become available?
 avail <- dates
-avail[types == 'reading'] <- dates[types == 'reading']
-avail[types == 'slides'] <- dates[types == 'slides']
+avail[types == 'reading'] <- dates[types == 'reading'] - 2L
+avail[types == 'slides'] <- dates[types == 'slides'] - 2L
 avail[types == 'solutions'] <- dates[types == 'solutions'] + 1L
 avail[types == 'exam'] <- dates[types == 'exam']
 
