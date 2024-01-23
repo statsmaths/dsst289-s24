@@ -235,7 +235,7 @@ though, if you are searching through documentation or help pages.
 For this class assignment, find a data visualization somewhere online that
 is similar to the plots in these notes (in other words, do not pick something
 too complicated). Some examples of places to look include
-[FiveThirtyEight](https://fivethirtyeight.com/) and the 
+[The Pudding](https://pudding.cool/) and the 
 [Reddit Data is Beautful channel](https://www.reddit.com/r/dataisbeautiful/).
 You could even search through the archives of some of the popular techie webcomics,
 such [xkcd](https://www.google.com/search?q=phd+comics+plots&tbm=isch),
