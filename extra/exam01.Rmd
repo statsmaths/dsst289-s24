@@ -1,0 +1,54 @@
+---
+title: "Exam 01: Study Guide"
+output:
+  html_document:
+    theme: simplex
+    highlight: pygments
+    css: "../css/note-style.css"
+---
+
+### Take-home Content (100 points)
+
+As explained in the syllabus, the exam consists of two components. The
+first is a take-home exam that will be distributed by 3pm on Wednesday,
+February 7th. To access the exam, you will run the `notebook00.Rmd`
+file; that will download the file `exam01.Rmd`, which contains the 
+exam questions, and any associated datasets. Answer the questions as 
+you have done in the class notebooks, knit the notebook, and bring 
+your printed solutions to class on Monday, February 12th. You
+may use any static resources for the exam. You may not discuss the
+questions with anyone else nor use any adaptive question/answer 
+tools such as ChatGPT.
+
+The questions will be similar to those in notebooks 1-5. Since it
+is open book, all of the material there (whether it be in the notes,
+slides, or notebooks) is fair game for the exam. I will not ask
+questions regarding the 6th notes (the verb `mutate`). Pay close
+attention to the code formating rules in the first and second set of
+notes. You will lose points for formatting errors on the take-home exam. 
+
+### In-Class Content (100 points)
+
+The in-class exam will take place on Feburary 12th. It is a closed
+book exam that will be done entirely on paper. There will be ten
+questions:
+
+1. Hand write a small dataset according to some general rules, much as you did for the first homework.
+2. Draw a plot (a scatterplot I will describe to you) with your dataset.
+3. Write the R code, using `ggplot`, that would create the plot your drew.
+4. Given an image of a plot, describe it in terms of ggplot layers (i.e., describe the aesthetics, geometries, and data set)
+5. Given an image of a plot, write down the R code that will recreate the plot.
+6. Similar to the homework for the 4th and 5th notes, I will give you a dataset and ask you to use the data verbs to create a new version of the dataset.
+7. Same as 6.
+8. Same as 6.
+9. Same as 6.
+10. Same as 6.
+
+For the plots, you should be able to use the geometries `geom_point`, `geom_text_repel`
+and `geom_line`. For these, you should be able to apply the aesthetics `x`, `y`, `color`,
+`label`, `size`, and `shape`. I will not ask you to apply any scales to the plots.
+
+For the data verbs (questions 6-10), you will need to know the five verbs we have 
+covered (but not `mutate`), `group_by`, and how to use the helper functions
+`n()`, `mean()`, `%in%`, and `desc()`.
+
