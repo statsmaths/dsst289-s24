@@ -230,6 +230,7 @@ us |>
   arrange(desc(population)) |>
   slice(1) |>
   filter(lon > -125) |>
+  ungroup() |>
   arrange(desc(year)) |>          # puts the earliest years on top
   ggplot(aes(lon, lat)) +
     geom_point(aes(color = year)) +
