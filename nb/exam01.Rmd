@@ -1,0 +1,178 @@
+---
+title: "Exam 01: Takehome Portion (Solutions)"
+output:
+  html_document:
+    theme: cosmo
+    highlight: zenburn
+    css: "../css/note-style.css"
+---
+
+## Instructions
+
+Deadline: Monday, 12 February 2024 at the start of class
+
+This exam is the same format as the notebooks we have been completing in class.
+In order to complete it correctly, please keep in mind that:
+
+1. In each section there is exactly one plot that you need to create. It will
+often require using data verbs to create the plot, but it is up to you how 
+to do that.
+
+2. There are nine questions on this exam. Each is worth 10 points. An 
+additional 10 points is assigned based on your code formatting across the
+entire exam. This take-home exam will count for half of your Exam 01 grade.
+
+3. You must Knit the file to an HTML format, print the file, and then bring
+the exam to class on Wednesday. Some questions require you to build a plot 
+with specific colors; you do not need to print the HTML in color. I will be
+able to tell if you did the correct thing based on the code.
+
+4. You may use any static resources, such as course notes and external
+websites, but you may not discuss the exam with classmates anyone else.
+
+5. I am happy to answer clarifying questions about the exam or to help you
+with unexpected R errors. However, I will not answer content-based questions 
+after the exam is posted. Note that I may not be able to answer questions 
+sent after 8pm on Tuesday night. 
+
+6. The exam should take no more than 2 hours, but you may use as much time 
+as you need.
+
+7. Personal computer issues is not an excuse for not completing the exam on
+time. As a back up, you can use the computers in the Jepson computer lab or
+in the library. 
+
+Good luck!
+
+## Weather in NYC
+
+The data set for this exam consists of a single year of observed weather data
+from New York City. Read in the data set with this command:
+
+```{r}
+source("../funs/funs.R")
+weather <- read_csv("../data/weather-nyc.csv")
+```
+
+Here is a data dictionary for the features:
+
+- **date**:                  the date of the weather record, formatted YYYY-MM-DD
+- **actual_mean_temp**:      the measured average temperature for that day (Celsius)
+- **actual_min_temp**:       the measured minimum temperature for that day (Celsius)
+- **actual_max_temp**:       the measured maximum temperature for that day (Celsius)
+- **average_min_temp**:      the average minimum temperature on that day since 1880 (Celsius)
+- **average_max_temp**:      the average maximum temperature on that day since 1880 (Celsius)
+- **record_min_temp**:       the lowest ever temperature on that day since 1880 (Celsius)
+- **record_max_temp**:       the highest ever temperature on that day since 1880 (Celsius)
+- **record_min_temp_year**:  the year that the lowest ever temperature occurred
+- **record_max_temp_year**:  the year that the highest ever temperature occurred
+- **actual_precipitation**:  the measured amount of rain or snow for that day (cm)
+- **average_precipitation**: the average amount of rain or snow on that day since 1880 (cm)
+- **record_precipitation**:  the highest amount of rain or snow on that day since 1880 (cm)
+- **month**:                 month of the year as a string
+- **description**:           text description of the weather, either "dry", "rain", or "snow"
+
+If you have questions about what these features mean, please let me know.
+
+## 1. A straightforward line plot
+
+In the first plot, create a line plot (i.e., use `geom_line`) with date
+on the x-axis and the ACTUAL maximum temperature on the y-axis. 
+
+```{r, question-01}
+
+```
+
+## 2. Line plot with fixed color
+
+Now, create a line plot (i.e., use `geom_line`) with date on the x-axis and the
+AVERAGE maximum temperature on the y-axis. Make the line the color "red".
+
+```{r, question-02}
+
+```
+
+## 3. Two Lines
+
+Create a plot that layers your solutions to the first two questions into a 
+single plot. In other words, it will have date on the x-axis and two lines: one
+in black showing the actual maximum temperature and one in red showing the 
+average maximum temperature. 
+
+```{r, question-03}
+
+```
+
+## 4. Two lines on one plot with colors
+
+In this plot, layer two line geometries (in other words, there will two lines)
+that show the actual minimum temperature and the actual maximum temperature,
+with date on the x-axis. Color the minimum temperature with the color named
+"#5be5e5" (it's a pretty shade of blue) and the maximum temperature with
+the color "#ff6666" (a pretty shade of red). 
+
+```{r, question-04}
+
+```
+
+## 5. Variable Color
+
+Now, construct a scatter plot with average maximum temperature on the x-axis 
+and record maximum temperature on the y-axis. Color the points according to
+the month of the year using the color-blind friendly viridis scale.
+
+Note that the ordering of the months will be alphabetical; this is not ideal
+in general, but fine for now!
+
+```{r, question-05}
+
+```
+
+## 6. Snow: Text Labels on a Subset
+
+Create a scatter plot with with average maximum temperature on the x-axis 
+and record maximum temperature on the y-axis. Color all the points with the
+color "grey". Add a layer on top of this consisting of a scatter plot with only
+those days for which it was snowing colored in "blue".
+
+```{r, question-06}
+
+```
+
+## 7. Summer: Layer Call Out
+
+Create a scatter plot with with average maximum temperature on the x-axis 
+and record maximum temperature on the y-axis. Color all the points with the
+color "grey". Add another layer consisting of a scatter plot with only those
+days from the months "June", "July", and "August" using the color "#ff6666".
+
+```{r, question-07}
+
+```
+
+## 8. Segments
+
+In this plot you are going to make use of the geometry layer `geom_segment`. I 
+showed this in the slides, but you may not have used it yourself. It creates a
+set of short line segments and requires four aesthetics: the `x` and `y` aesthetics
+control where the segment begins and the `xend` and `yend` aesthetics describe
+what features determine where the segment ends. 
+
+The plot should have date again on the x-axis. Using a geom_segment layer, 
+create segments that start with a y-value of actual_max_temp and proceed down
+to the y-value of actual_min_temp. That is, each day will have a vertical line
+going from the high temperature to the low temperature. 
+
+```{r, question-08}
+
+```
+
+## 9. Coldest Days
+
+Create a line plot with date on the x-axis and actual maximum temperature on
+the y-axis. Add a point layer showing the coldest 15 days in the data. Color
+these points in the color "#5be5e5".
+
+```{r, question-09}
+
+```
