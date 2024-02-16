@@ -28,7 +28,7 @@ the solutions with all the output from this code.
 
 ### Movies data
 
-For this notebook, we will be creating a datasets, reading it into R, and
+For this notebook, we will be creating a dataset, reading it into R, and
 producing a couple of different data visualizations.
 
 We will create a dataset as a class describing a set of movies. Each student
