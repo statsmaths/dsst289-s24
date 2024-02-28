@@ -1,5 +1,5 @@
 ---
-title: "12. Review II"
+title: "12. Review & Application II"
 output:
   html_document:
     theme: cosmo
@@ -7,14 +7,3 @@ output:
     css: "../css/note-style.css"
 ---
 
-```{r, include=FALSE, message=FALSE}
-source("../funs/funs.R")
-
-food <- read_csv(file.path("..", "data", "food.csv"))
-food_prices <- read_csv(file.path("..", "data", "food_prices.csv"))
-diet <- read_csv(file.path("..", "data", "food_diet_restrictions.csv"))
-```
-
-For homework, please make an attempt to complete the questions in
-`notebook11.Rmd`. I will not be posting solutions until after Wednesday's
-class; we will discuss different approaches to the questions as a group.
