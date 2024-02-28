@@ -19,7 +19,7 @@ We do not focus much in this class on models. Those are covered fairly
 extensively in many of the other courses in our data science program. In these
 notes we will focus on a very specific part of modeling, namely how to create
 derived data tables that describe the output of a model in a way that respects
-the 3NF format we saw in the previous notes. As an example, we will use a 
+our rules for how data should be organized. As an example, we will use a 
 linear regression. If you have never come across this model, don't fear. The
 notes will introduce all of the details that you need.
 
