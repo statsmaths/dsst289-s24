@@ -1,0 +1,27 @@
+## Homework Answers
+
+For 1, the actual values for the first two columns of the `tidy` function is
+given by the following (you don't need to have the exact values; I would say
+from the plot the intercept is a bit larger than 70 and the slope is around
+3 / 10000):
+
+```{r, echo = FALSE}
+tidy(model)[,c(1, 2)]
+```
+
+For 2, here is the actual output of the augmented model:
+
+```{r, echo = FALSE}
+augment(model, newdata = hans_subset) |> select(country, gdp, life_exp, .fitted, .resid)
+```
+
+And the smallest and largest absolute residuals are given by:
+
+```{r, echo = FALSE}
+augment(model, newdata = hans_subset) |> 
+  arrange(abs(.resid)) |>
+  summarize(smallest = first(country), biggest = last(country))
+```
+
+It's hard to tell on the plot though, and you may have guessed El Salvidor
+and/or Trinidad and Tobago, respectively.
