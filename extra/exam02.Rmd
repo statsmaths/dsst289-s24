@@ -1,0 +1,39 @@
+---
+title: "Exam 02: Study Guide"
+output:
+  html_document:
+    theme: simplex
+    highlight: pygments
+    css: "../css/note-style.css"
+---
+
+### Take-home Content (100 points)
+
+As explained in the syllabus, the exam consists of two components. The
+first is a take-home exam that will be distributed by 3pm on Wednesday,
+March 20th. To access the exam, you will run the `notebook00.Rmd`
+file; that will download the file `exam02.Rmd`, which contains the 
+exam questions, and any associated datasets. Answer the questions as 
+you have done in the class notebooks, knit the notebook, and bring 
+your printed solutions to class on Monday, March 25th. You
+may use any static resources for the exam. You may not discuss the
+questions with anyone else nor use any adaptive question/answer 
+tools such as ChatGPT.
+
+The questions will be similar to those in notebooks 7-15. Since it
+is open book, all of the material there (whether it be in the notes,
+slides, or notebooks) is fair game for the exam. Pay close
+attention to the code formating rules in the first and second set of
+notes. You will lose points for formatting errors on the take-home exam. 
+
+### In-Class Content (100 points)
+
+The in-class exam will take place on March 25th. It is a closed
+book exam that will be done entirely on paper. You will be asked
+to write the R code corresponding to simple applications of the
+one-table data verbs. You will also be asked to describe the output
+(but not the code) of using a join and/or pivot.
+
+Finally, there will be one question asking you to list the four
+principles of Data Feminism as listed on the class form. Yes, just 
+memorize them.
