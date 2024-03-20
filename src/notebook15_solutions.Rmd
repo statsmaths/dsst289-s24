@@ -67,7 +67,7 @@ food |>
 ```
 
 Below, repeat the previous question but now include a linear regression line.
-Do this use the `lm` and `augement` functions (e.g., not with `geom_smooth`).
+Do this use the `lm` and `augment` functions (e.g., not with `geom_smooth`).
 Take note of any outliers.
 
 ```{r, question-03}
@@ -118,7 +118,7 @@ food |>
   left_join(meta, by = "food_code") |>
   left_join(demo, by = "id") |>
   group_by(gender, food_group) |>
-  summarize(kcal = sum(kcal) / nrow(demo) * 2, fat = sum(fat) / nrow(demo) * 2) |>
+  summarize(kcal = sum(kcal) / (nrow(demo) / 2), fat = sum(fat) / (nrow(demo) / 2)) |>
   pivot_wider(names_from = c(gender), values_from = c(kcal, fat)) |>
   ggplot(aes(kcal_Female, fat_Female)) +
     geom_text_repel(aes(label = food_group), color = "grey") +
@@ -154,6 +154,7 @@ tab1 <- food |>
   pivot_wider(names_from = c(meal_name), values_from = c(kcal), values_fill = 0) |>
   mutate(prop_breakfast = 100 * (Breakfast + Desayano) / total_kcal) |>
   select(age, prop_breakfast)
+
 tab1
 ```
 

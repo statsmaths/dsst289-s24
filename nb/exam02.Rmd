@@ -1,0 +1,218 @@
+---
+title: "Exam 02: Takehome Portion (Solutions)"
+output:
+  html_document:
+    theme: cosmo
+    highlight: zenburn
+    css: "../css/note-style.css"
+---
+
+## Instructions
+
+Deadline: Monday, 25 March 2024 (Start of Class)
+
+This exam is the same format as the notebooks we have been completing in class.
+In order to complete it correctly, please keep in mind that:
+
+1. In each section there is exactly one data set that you need to create. 
+You should not give this a name; instead just make sure the table prints out
+in the knit file.
+
+2. There are nine questions on this exam. Each is worth 10 points. An 
+additional 5 points is assigned based on your code formatting across the
+entire exam. 
+
+3. You must submit two files: the Rmarkdown file and a knit version of the
+file as an HTML document. These must be uploaded to Box by the deadline. Note
+that these will not preview correctly on Box, so be careful when uploading.
+
+4. You may use any static resources, such as course notes and external
+websites, but you may not discuss the exam with classmates anyone else.
+
+5. I am happy to answer clarifying questions about the exam or to help you
+with unexpected R errors. However, I will not answer content-based questions 
+after the exam is posted. Note that I may not be able to answer questions 
+sent after noon the day the exam is due.
+
+6. The exam should take no more than 3 hours, but you may use as much time 
+as you need.
+
+7. Personal computer issues is not an excuse for not completing the exam on
+time. As a back up, you can use the computers in the Jepson computer lab or
+in the library. 
+
+Good luck!
+
+## Tropical Storms
+
+The data for this exam consists of information about tropical storms in the 
+Atlantic Ocean between 1950 and 2020. The main data set is here; it gives one
+row each time a particular storm is measured (usually every 6 hours). Note that
+like the movies data, you will need to use both the year and name of the storm
+to uniquely describe it.
+
+```{r}
+source("../funs/funs.R")
+storms <- read_csv("../data/storms.csv")
+storms
+```
+
+The variables are:
+
+- **year**      the year of the record
+- **name**      a common name for the storm; these are sometimes used for different storms in different years
+- **letter**    the first letter of the name; storms are (usually) named in alphabetical order
+- **doy**       the day of the year (1-365) of the record
+- **hour**      the hour of the day (0-23) of the record in Eastern time 
+- **lat**       latitude of the record in degrees
+- **lon**       longitude of the record in degrees
+- **status**    a two-digit status code of the storm system; see "storm_codes.csv"
+- **category**  for hurricanes (status == "HU"), a number giving the category of the storm from 0-5
+- **wind**      the observed sustained wind speed in miles per hour
+
+There are also two metadata tables. One provides an automatically determined 
+estimate of the gender of a storm's name. The last column gives a confidence
+score.
+
+```{r}
+storm_gender <- read_csv("../data/storm_gender.csv")
+storm_gender
+```
+
+There is a column in the main data set called `status` that described the type
+of storm with a two letter code. The last table here provides a full name for
+each of these codes:
+
+```{r}
+storm_codes <- read_csv("../data/storm_codes.csv")
+storm_codes
+```
+
+If you have further questions about what these features mean, please let me know.
+
+## Questions
+
+### Question 1:
+
+Produce a new table with one row for each storm in the data set that provides
+the maximum wind speed the storm achieved over its lifetime.
+
+```{r, question-01}
+
+```
+
+### Question 2: 
+
+Hurricanes are labeled as being one of six different categories based on their
+sustained wind speed. There is a column in the `storms` dataset called
+`category` that provides this information. Create a new data set that has one
+row for each hurricane category (status is equal to "HU") that shows the minimum
+and maximum wind speed of all hurricanes in the data set with that category. 
+
+```{r, question-02}
+
+```
+
+### Question 3: 
+
+The data includes the day of the year (doy) and the hour of the day for each 
+measurement. Most storms have records every six hours, but there is some 
+variation here.
+
+Create a new data set that has a unit of observation equal to the day of the 
+year that counts the total number of storms since 1950 that were labelled as a
+hurricane (status is equal to "HU") on midnight (hour is equal to 0) for a given
+day. Note: You do **not** need to have rows in the dataeset representing days of
+the year for  which there were never recorded hurricanes.
+
+```{r, question-03}
+
+```
+
+### Question 4: 
+
+Named Atlantic storms are given names in alphabetical order. The specific names
+change from year to year. There is a column in the data that gives the letter
+associated with each storm. Create a new data set that has two columns, letter 
+and n, which indicate the number of years since 1950 for which the given letter
+was the last letter used in that year. For example, if there were 9 years where
+the last letter used was H, there should be a row with the letter H in one 
+column and the number 9 in the other.
+
+Note: my data has been filtered to exclude some storms, such as those with 
+Greek letters, so do not expect these results to exactly match other sources.
+
+```{r, question-04}
+
+```
+
+### Question 5:
+
+In addition to the storms data, I also provided a small metadata table with
+the predicted gender of each storm name (these are automatically generated
+and may be incorrect). A few storms are not listed in the set of gender names.
+
+I want you to create a table with two rows that shows the average maximum wind
+speeds of the female storms in one row and male storms in the other row. Note:
+By "average maximum", I mean that you should first compute each storm's maximum
+wind speed and *then* take the average of these maximum values.
+
+```{r, question-05}
+
+```
+
+### Question 6: 
+
+I also provided a metadata table describing the meaning of each of the status
+codes in the data (I already told you about "HU" being hurricane, but there are
+several others). For this question, you need to produce a table that counts the
+number of measurements with each status type with the full status names joined
+into the output. Also, arrange the table from the most frequent to the least
+frequent readings. Note: You must use a join function here for full credit.
+
+```{r, question-06}
+
+```
+
+### Question 7: 
+
+Produce a data set that is a subset of `storms` where we only have the
+measurement where each storm first attains its largest wind speed. The columns
+in the new data should be the same names as in the `storms` data. 
+
+```{r, question-07}
+
+```
+
+### Question 8:
+
+For this question, you need to produce a table with one row for each year in 
+the `storms` data. There will be a column for each starting letter in the data
+(note: the letters Q, U, X, Y, Z are not used). The values in the table should
+give the maximum wind speed of the corresponding storm for each year.
+
+As should be apparent from the question, this question requires a pivot. Add
+the optional argument `names_sort = TRUE` to the pivot function to make the
+columns easier to read. Your final table **should** have missing values.
+
+For example, the 1950 storm named Baker (letter "B") had a maximum wind speed
+of 90 mph. Therefore, the row corresponding to the year 1950 should have a 
+value 90 in the column named "B".
+
+```{r, question-08}
+
+```
+
+### Question 9:
+
+As in the previous question, you need to produce a data set with one row for
+each year in the storms data. Here, however, columns will align with the status
+codes. The values in the table will give the number of records for each status
+code in each year. This require another pivot. You do not need to add the
+`names_sort = TRUE` option but should add the option `values_fill = 0`
+to fill in the missing values with zeros.
+
+```{r, question-09}
+
+```
+

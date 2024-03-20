@@ -61,7 +61,7 @@ to only include those ages equal or greater than 21 years.
 temp <- food |>
   group_by(id) |>
   summarize(alcohol = sum(alcohol)) |>
-  inner_join(demo, by = "id") |>
+  left_join(demo, by = "id") |>
   filter(age >= 21) |>
   group_by(age) |>
   summarize(alcohol = mean(alcohol)) 
