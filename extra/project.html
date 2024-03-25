@@ -369,23 +369,17 @@ overflow-y: auto;
 border: 1px solid #ddd;
 border-radius: 4px;
 }
-.tabset-dropdown > .nav-tabs > li.active:before {
-content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+content: "\e259";
 font-family: 'Glyphicons Halflings';
 display: inline-block;
 padding: 10px;
 border-right: 1px solid #ddd;
 }
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-content: "";
-border: none;
-}
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-content: "";
+content: "\e258";
 font-family: 'Glyphicons Halflings';
-display: inline-block;
-padding: 10px;
-border-right: 1px solid #ddd;
+border: none;
 }
 .tabset-dropdown > .nav-tabs > li.active {
 display: block;
@@ -431,7 +425,7 @@ display: none;
 </div>
 
 
-<p><strong>Due Date</strong>: 30 November 2022 (start of class)</p>
+<p><strong>Due Date</strong>: 24 April 2024 (start of class)</p>
 <p><em>Data is Plural</em> is a weekly newsletter that describes and
 links to a set o “useful/curious datasets” that have been posted online.
 Each newsletter gives descriptions and links to around 4-6 datasets. In
@@ -453,7 +447,7 @@ regards to (3), which you will share on your computer.</p>
 <div id="data-sheet" class="section level2">
 <h2>1. Data Sheet</h2>
 <p>For the datasheet, you need to produce a document with the following
-eight sections. The requirements are slightly reduced from the notes in
+five sections. The requirements are slightly reduced from the notes in
 class in order to be respectful of your time. It is possible that you
 won’t have all of the information available to complete all of these
 sections. That’s okay; just explain that in your document.</p>
@@ -473,8 +467,8 @@ tabular form, do your best!</li>
 <li><strong>Narrative</strong>: This section should include a
 description of how the data were collected and a reflection on all of
 the design choices that went into the data creation process. This could
-be very long, but for this project please keep to a maximum of three
-paragraphs.</li>
+in theory be very long, but for this projec please keep to a maximum of
+three paragraphs.</li>
 <li><strong>Distribution</strong>: A section describing how the data are
 distributed, which should include the format of the data, the licence it
 is being distributed under, and where (if possible) the data can be
@@ -482,8 +476,8 @@ accessed. The section should also include information about any ways
 that the data have been changed before being published, such as removing
 personal identifying information.</li>
 </ol>
-<p>You should aim for your datasheet to be between two and four pages
-long.</p>
+<p>You should aim for your datasheet to be about two pages, single
+spaced with standard font sizes and margins.</p>
 </div>
 <div id="working-with-the-data-in-r" class="section level2">
 <h2>2. Working with the data in R</h2>
@@ -512,7 +506,7 @@ originally in and what it took to read into R</li>
 </ul>
 <p>It’s probably easiest to make these in PowerPoint or Google Slides.
 To give you an example of what this should look like, check on this one
-from the that I prepared from the exam data: <a href="../pslides/zz_final_project.pdf">example slides</a>. If you have
+from the that I prepared: <a href="../pslides/zz_final_project.pdf">example slides</a>. If you have
 more plots that you’d like to show, you are welcome to include
 additional slide(s).</p>
 </div>
@@ -531,140 +525,77 @@ chart:</p>
 </div>
 
 <table style="margin: 25px; margin-left: 200px; font-size: 1.2em">
-  <col style="width:20%">
-  <col style="width:20%">
-  <col style="width:40%">
+  <col style="width:30%">
+  <col style="width:60%">
   <thead>
     <tr>
-      <th><b>Section 1</b></th>
-      <th><b>Section 2</b></th>
+      <th><b>Student</b></th>
       <th><b>Link</b></th>
     </tr>
   </thead>
   <tr>
-    <td>Elliot</td>
-    <td>Mark</td>
-    <td><a href="https://www.data-is-plural.com/archive/2022-04-20-edition/">[Week of 2022-04-20]</a></td>
-  </tr>
-  <tr>
-    <td>Jack B.</td>
-    <td>Will</td>
-    <td><a href="https://www.data-is-plural.com/archive/2022-04-27-edition/">[Week of 2022-04-27]</a></td>
-  </tr>
-  <tr>
-    <td>Mike</td>
-    <td>Yasmin</td>
-    <td><a href="https://www.data-is-plural.com/archive/2022-05-04-edition/">[Week of 2022-05-04]</a></td>
-  </tr>
-  <tr>
-    <td>Jaden</td>
-    <td>Shira</td>
-    <td><a href="https://www.data-is-plural.com/archive/2022-05-11-edition/">[Week of 2022-05-11]</a></td>
-  </tr>
-  <tr>
-    <td>Ditrick</td>
-    <td>Arju</td>
-    <td><a href="https://www.data-is-plural.com/archive/2022-05-18-edition/">[Week of 2022-05-18]</a></td>
-  </tr>
-  <tr>
-    <td>Bailey</td>
-    <td>Ginny</td>
-    <td><a href="https://www.data-is-plural.com/archive/2022-05-25-edition/">[Week of 2022-05-25]</a></td>
-  </tr>
-  <tr>
-    <td>Josh</td>
-    <td>Jordann</td>
-    <td><a href="https://www.data-is-plural.com/archive/2022-06-01-edition/">[Week of 2022-06-01]</a></td>
-  </tr>
-  <tr>
-    <td>Travis</td>
-    <td>Sydney</td>
-    <td><a href="https://www.data-is-plural.com/archive/2022-06-08-edition/">[Week of 2022-06-08]</a></td>
+    <td>Kristi</td>
+    <td><a href="https://www.data-is-plural.com/archive/2023-11-22-edition/">[Week of 2023-11-22]</a></td>
   </tr>
   <tr>
     <td>Andrew</td>
-    <td>Yingzheng</td>
-    <td><a href="https://www.data-is-plural.com/archive/2022-06-15-edition/">[Week of 2022-06-15]</a></td>
+    <td><a href="https://www.data-is-plural.com/archive/2023-11-29-edition/">[Week of 2023-11-29]</a></td>
   </tr>
   <tr>
-    <td>Mads</td>
-    <td>Lu</td>
-    <td><a href="https://www.data-is-plural.com/archive/2022-06-22-edition/">[Week of 2022-06-22]</a></td>
+    <td>Caroline</td>
+    <td><a href="https://www.data-is-plural.com/archive/2023-12-06-edition/">[Week of 2023-12-06]</a></td>
   </tr>
   <tr>
-    <td>Jack D.</td>
-    <td>Riley</td>
-    <td><a href="https://www.data-is-plural.com/archive/2022-06-29-edition/">[Week of 2022-06-29]</a></td>
+    <td>Sisree</td>
+    <td><a href="https://www.data-is-plural.com/archive/2023-12-13-edition/">[Week of 2023-12-13]</a></td>
   </tr>
   <tr>
-    <td>Pengxu</td>
-    <td>Aris</td>
-    <td><a href="https://www.data-is-plural.com/archive/2022-07-06-edition/">[Week of 2022-07-06]</a></td>
+    <td>Gabby</td>
+    <td><a href="https://www.data-is-plural.com/archive/2023-12-20-edition/">[Week of 2023-12-20]</a></td>
   </tr>
   <tr>
-    <td>Grace</td>
-    <td>Kyle</td>
-    <td><a href="https://www.data-is-plural.com/archive/2022-07-13-edition/">[Week of 2022-07-13]</a></td>
+    <td>Julia</td>
+    <td><a href="https://www.data-is-plural.com/archive/2024-01-17-edition/">[Week of 2024-01-17]</a></td>
   </tr>
   <tr>
-    <td>Mamnuya</td>
-    <td>Akhil</td>
-    <td><a href="https://www.data-is-plural.com/archive/2022-07-20-edition/">[Week of 2022-07-20]</a></td>
+    <td>Will</td>
+    <td><a href="https://www.data-is-plural.com/archive/2024-01-24-edition/">[Week of 2024-01-24]</a></td>
   </tr>
   <tr>
-    <td>Justin</td>
-    <td>Becca</td>
-    <td><a href="https://www.data-is-plural.com/archive/2022-07-27-edition/">[Week of 2022-07-27]</a></td>
+    <td>Joseph</td>
+    <td><a href="https://www.data-is-plural.com/archive/2024-01-31-edition/">[Week of 2024-01-31]</a></td>
   </tr>
   <tr>
-    <td>Tolya</td>
-    <td>Yixuan</td>
-    <td><a href="https://www.data-is-plural.com/archive/2022-08-03-edition/">[Week of 2022-08-03]</a></td>
+    <td>Fernanda</td>
+    <td><a href="https://www.data-is-plural.com/archive/2024-02-07-edition/">[Week of 2024-02-07]</a></td>
   </tr>
   <tr>
-    <td>Charles</td>
-    <td>Juneseo</td>
-    <td><a href="https://www.data-is-plural.com/archive/2022-08-10-edition/">[Week of 2022-08-10]</a></td>
+    <td>Mo</td>
+    <td><a href="https://www.data-is-plural.com/archive/2024-02-07-edition/">[Week of 2024-02-07]</a></td>
   </tr>
   <tr>
-    <td>Katherine</td>
-    <td>Sophie</td>
-    <td><a href="https://www.data-is-plural.com/archive/2022-08-17-edition/">[Week of 2022-08-17]</a></td>
+    <td>Michael</td>
+    <td><a href="https://www.data-is-plural.com/archive/2024-02-14-edition/">[Week of 2024-02-14]</a></td>
   </tr>
   <tr>
-    <td>Joel</td>
-    <td>Jiayi</td>
-    <td><a href="https://www.data-is-plural.com/archive/2022-08-24-edition/">[Week of 2022-08-24]</a></td>
+    <td>Nora</td>
+    <td><a href="https://www.data-is-plural.com/archive/2024-02-21-edition/">[Week of 2024-02-21]</a></td>
   </tr>
   <tr>
-    <td>Jack Z.</td>
-    <td>Yanran</td>
-    <td><a href="https://www.data-is-plural.com/archive/2022-08-31-edition/">[Week of 2022-08-31]</a></td>
+    <td>Omar</td>
+    <td><a href="https://www.data-is-plural.com/archive/2024-02-28-edition/">[Week of 2024-02-28]</a></td>
   </tr>
   <tr>
-    <td>Kamryn</td>
-    <td>Leyao</td>
-    <td><a href="https://www.data-is-plural.com/archive/2022-09-07-edition/">[Week of 2022-09-07]</a></td>
+    <td>Lindsay</td>
+    <td><a href="https://www.data-is-plural.com/archive/2024-03-06-edition/">[Week of 2024-03-06]</a></td>
   </tr>
   <tr>
-    <td>Elmer</td>
-    <td>Angela</td>
-    <td><a href="https://www.data-is-plural.com/archive/2022-09-14-edition/">[Week of 2022-09-14]</a></td>
+    <td>Alana</td>
+    <td><a href="https://www.data-is-plural.com/archive/2024-03-13-edition/">[Week of 2024-03-13]</a></td>
   </tr>
   <tr>
-    <td>Kathryn</td>
-    <td>Leah</td>
-    <td><a href="https://www.data-is-plural.com/archive/2022-09-21-edition/">[Week of 2022-09-21]</a></td>
-  </tr>
-  <tr>
-    <td>Yibing</td>
-    <td>Thomas</td>
-    <td><a href="https://www.data-is-plural.com/archive/2022-09-28-edition/">[Week of 2022-09-28]</a></td>
-  </tr>
-  <tr>
-    <td></td>
-    <td>Yueyi</td>
-    <td><a href="https://www.data-is-plural.com/archive/2022-10-05-edition/">[Week of 2022-10-05]</a></td>
+    <td>Patryk</td>
+    <td><a href="https://www.data-is-plural.com/archive/2024-03-20-edition/">[Week of 2024-03-20]</a></td>
   </tr>
 </table>
 

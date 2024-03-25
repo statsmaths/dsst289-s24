@@ -9,7 +9,7 @@ output:
       after_body: project_links.html
 ---
 
-**Due Date**: 30 November 2022 (start of class)
+**Due Date**: 24 April 2024 (start of class)
 
 *Data is Plural* is a weekly newsletter that describes and links to a set o
 "useful/curious datasets" that have been posted online. Each newsletter gives
@@ -32,7 +32,7 @@ computer.
 
 ## 1. Data Sheet
 
-For the datasheet, you need to produce a document with the following eight 
+For the datasheet, you need to produce a document with the following five 
 sections. The requirements are slightly reduced from the notes in class in order
 to be respectful of your time. It is possible that you won't have all of the
 information available to complete all of these sections. That's okay; just
@@ -49,15 +49,16 @@ are a large set of tables, just describe the main goal of each table. If the
 data are not even in tabular form, do your best!
 4. **Narrative**: This section should include a description of how the data
 were collected and a reflection on all of the design choices that went into the
-data creation process. This could be very long, but for this project please 
-keep to a maximum of three paragraphs.
+data creation process. This could in theory be very long, but for this projec
+please keep to a maximum of three paragraphs.
 5. **Distribution**: A section describing how the data are distributed, which
 should include the format of the data, the licence it is being distributed
 under, and where (if possible) the data can be accessed. The section should 
 also include information about any ways that the data have been changed before
 being published, such as removing personal identifying information.
 
-You should aim for your datasheet to be between two and four pages long.
+You should aim for your datasheet to be about two pages, single spaced with
+standard font sizes and margins.
 
 ## 2. Working with the data in R
 
@@ -85,7 +86,7 @@ display on your computer. The slide should include:
 
 It's probably easiest to make these in PowerPoint or Google Slides. To give
 you an example of what this should look like, check on this one from the that
-I prepared from the exam data: [example slides](../pslides/zz_final_project.pdf).
+I prepared: [example slides](../pslides/zz_final_project.pdf).
 If you have more plots that you'd like to show, you are welcome to include
 additional slide(s).
 
