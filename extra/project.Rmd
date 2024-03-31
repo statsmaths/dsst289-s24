@@ -98,6 +98,32 @@ attempt at completing all of the elements as best as possible. The best way to
 do this is to start early so that you can come to the project workshops with
 meaningful questions.
 
+## Code Hints
+
+I will put some code here to help with common issues that you might have.
+One thing that often comes up is dealing with messy column names. If you
+have a dataset called `df`, you can change the names manually with something
+like the following (just edit the numbers and names as needed):
+
+```
+names(df)[1] <- "first_name"
+names(df)[3] <- "third_name"
+names(df)[10] <- "tenth_name"
+```
+
+An automated way to do this is with the following:
+
+```
+names(df) <- stri_trans_tolower(names(df))
+names(df) <- stri_replace_all(names(df), "", regex = "[^\\w ]+")
+names(df) <- stri_replace_all(names(df), " ", fixed = " ")
+names(df) <- stri_sub(names(df), 1, 20)
+```
+
+You only need the last line if some of the names are very long. You can also
+combine these techniques, using the second to automatically fix the set and
+then the first to manually adjust any remaining issues.
+
 ## Assignments
 
 Your assigned newsletter can be found by consulting the following chart:
