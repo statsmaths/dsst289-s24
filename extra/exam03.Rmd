@@ -1,0 +1,57 @@
+---
+title: "Exam 03: Study Guide"
+output:
+  html_document:
+    theme: simplex
+    highlight: pygments
+    css: "../css/note-style.css"
+---
+
+### Take-home Content (100 points)
+
+As explained in the syllabus, the exam consists of two components. The
+first is a take-home exam that will be distributed by noon on Monday,
+November 14th. To access the exam, you will run the `notebook00.Rmd`
+file; that will download the file `exam03.Rmd`, which contains the 
+exam questions, and any associated datasets. Answer the questions as 
+you have done in the class notebooks, knit the notebook, and bring 
+your printed solutions to class on Wednesday, November 16th. You
+may use any static resources for the exam but cannot discuss the
+questions with anyone else.
+
+The dataset for the exam has a spatial component and a temporal component.
+The temporal information is given as a date; there are no questions related
+to datetimes, times, or timezones. The questions will most closely resemble
+Notebooks 17-20. Pay close attention to the code formating rules in the first
+and second set of notes. You will lose points for formatting errors on the
+take-home exam. 
+
+### In-Class Content (100 points)
+
+The in-class exam will take place on October 16th. It is a closed
+book exam that will be done entirely on paper. There will be ten
+questions. It will be closer to the first exam, requiring you to be
+able to hand-write some R code. The questions, however, will generally
+be less involved than those on the take-home exam.
+
+For the in-class exam, I will be asking you to work with the same dataset
+from one of the previous noteboooks. Similar to the second exam, I will
+give you a sheet of paper that shows the first few rows, names, and column
+types of the three tables. I will ask you 10 questions that are similar in
+style of the easier questions on the notebooks.
+
+I don't expect you to have memorized all of the functions we have used this
+semester. Even after using R for the past 15+ years, with the more involved
+functions or those I only use occasionally (such as `pivot_longer` or the
+various scale functions), I often need to quickly look at the help pages to
+remember all of the options. For this exam, you will only need to be able
+to use the following functions:
+
+- **basic plotting functions**: `ggplot()`, `aes()`, `geom_point()`, `geom_text_repel()`, `geom_line()`
+- **one-table verbs**: `filter()`, `mutate`, `slice()`, `arrange()`, `desc()`, `group_by()`, `summarize()`, 
+- **two-table verbs**: `left_join()` (you'll need to use the "by" argument, but nothing else)
+- **date functions**: `year()`, `month()`, `day()` (no need to use any of the options for month)
+- **spatial functions**: `spatial_join()`, `geom_sf()`
+- **helper functions**: `fct_inorder()`, `if_else()`, `mean()`, `n()` `>=`, `<=`, `>`, `<`, `%>%`
+
+Each question should require at most four data verbs to complete.

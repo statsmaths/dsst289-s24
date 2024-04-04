@@ -72,7 +72,7 @@ dataset should retain all of the spatial information.
 covid |>
   filter(date == "2020-05-01") |>
   left_join(geo_fr, by = "departement") |>
-  st_as_sf()
+  st_as_sf() 
 ```
 
 Now, starting with the code that you created above, plot a map of the French

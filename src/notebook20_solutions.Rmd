@@ -20,210 +20,235 @@ libraries and data that we will be working with today.
 source("../funs/funs.R")
 ```
 
-## Tropical Storms
+## Bird Observations in France
 
-The data for this notebook consists of information about tropical storms in the 
-Atlantic Ocean between 1950 and 2020. It gives one row each time a particular
-storm is measured (usually every 6 hours). Note that you will need to use both
-the year and name of the storm to uniquely describe it. I will add the code 
-here to convert the dataset to a spatial points data table.
+The data for this notebook consists of a subset of bird observations from France
+between 2010 and 2019. The data comes from https://doi.org/10.15468/dl.bwuax7.
+I have taken a random subsample that takes a random sample of 100k sightings
+from the 100 most common species of bird. 
 
-```{r}
-storms <- read_csv("../data/storms2.csv") |>
-  st_as_sf(coords = c("lon", "lat"), crs = 4326, remove = FALSE)
-storms
-```
-
-The variables are:
-
-- **year**    the year of the record
-- **month**   the month of the year
-- **day**     the day of the year
-- **hour**    the hour of the day (0-23) of the record in Eastern time 
-- **name**    a common name for the storm; these are sometimes used for different storms in different years
-- **letter**  the first letter of the name; storms are (usually) named in alphabetical order
-- **doy**     the day of the year (1-365) of the record
-- **lat**     latitude of the record in degrees
-- **lon**     longitude of the record in degrees
-- **status**  a two-digit status code of the storm system; see "storm_codes.csv"
-- **category**  for hurricanes (status == "HU"), a number giving the category of the storm from 0-5
-- **wind**    the observed sustained wind speed in miles per hour
-
-There are also two metadata tables. The first provides a full name for
-each of these codes:
+Below, is the main dataset, with one row per observation of a bird. It includes
+the time, location, and scientific name of the bird. I will add a geospatial
+attribute for you to the dataset as it will be needed in the questions below.
 
 ```{r}
-storm_codes <- read_csv("../data/storm_codes.csv")
-storm_codes
+source("../funs/funs.R")
+
+birds <- read_csv("../data/french_birds_small.csv.bz2")
+birds <- st_as_sf(birds, coords = c("lon", "lat"), crs = 4326, remove = FALSE)
+birds
 ```
 
-Secondly, we also have a geographic data set of the states from the southeastern
-U.S.
+We also have a metadata table describing each of the bird species. You can join
+to the `birds` data using the key "scientific_name". Most important for the questions
+questions are the columns `species_common` (a common name for this bird species)
+and `order_common` (a common name for a larger grouping of birds that this 
+species is a part of).
 
 ```{r}
-state_se <- read_sf("../data/state_se.geojson")
-state_se
+species <- read_csv("../data/french_bird_species.csv.bz2")
+species
 ```
 
-If you have further questions about what these features mean, please let me know.
+We also have a spatial polygon dataset describing the 96 French Départements
+(roughly the equivalent of a state/county). Below, I am taking a subset to only
+include those regions in France within Europe, which is the extent of the birds
+data from above.
 
-## Questions
+```{r}
+france <- read_sf("../data/france_departement.geojson")
+france <- slice(france, 1:96)
+france
+```
 
-### Question 1: Make datetime object [temporal]
+Finally, we also have a dataset describing the population of each departement.
 
-Take the `storms` data and create a new column called `time` that is a date
-time object created by the year, month, day, and hour of the storm's
-measurement. You will need this variable in the following questions, so
-overwrite the data  `storms` with the new  version that contains the `time`
-column.
+```{r}
+population <- read_csv("../data/france_departement_population.csv")
+population <- slice(population, 1:96)
+population
+```
+
+## 1. Observations per day of the week [temporal]
+
+For the first question, produce a bar plot with day of the week on the x-axis
+and a count of the number of bird sightings in our dataset on the y-axis. Use
+full names for the days of the week.
 
 ```{r, question-01}
-storms <- storms |>
-  mutate(time = make_datetime(year, month, day, hour))
-
-storms
+birds %>%
+  mutate(weekday = wday(date, label = TRUE, abbr = FALSE)) %>%
+  group_by(weekday) %>%
+  summarize(n = n()) %>%
+  ggplot(aes(weekday, n)) +
+    geom_col()
 ```
 
-### Question 2: Plot datetime objects [temporal]
+## 2. Observations over 2015 [temporal]
 
-Take the storms data and take just the hurricanes (status code "HU") from the
-year 2017. Group by the time variable you created in question 1 and count the
-number of readings for each unique time. Create a plot with the data in which
-the x-axis gives the time and the y-axis gives the number of hurricane readings
-in 2017 at that time. Set the `date_breaks` and `date_minor_breaks` to both be
-"1 week" and the date labels to be "%d %b".
+Create a scatterplot with one point for each day of the year in 2015. On the
+x-axis put the date and on the y-axis put the number of observations of birds
+found on that day in 2015. Have the x-axis use the abbreviated month names with
+breaks and minor breaks given once per month.
 
-```{r, warning = FALSE, question-02}
-storms |>
-  filter(year == 2017) |>
-  filter(status == "HU") |>
-  group_by(time) |>
-  summarize(n = n()) |>
-  ggplot(aes(time, n)) +
+Hint: Use the formatting code "%b".
+
+```{r, question-02}
+birds %>%
+  filter(year(date) == 2015) %>%
+  group_by(date) %>%
+  summarize(n = n()) %>%
+  ggplot(aes(date, n)) +
     geom_point() +
-    scale_x_datetime(
-      date_breaks = "1 week",
-      date_minor_breaks = "1 week",
-      date_labels = "%d %b"
+    scale_x_date(
+      date_breaks = "month",
+      date_minor_breaks = "month",
+      date_labels = "%b"
     )
 ```
 
+## 3. Observations by order
 
-### Question 3: Create and plot date data [temporal]
-
-Filter the data to include only category 5 hurricanes. Group the data by year
-and hurricane name and compute the maximum wind speed of each storm. Create a
-plot that has year on x-axis and max-wind speed on the y-axis. Use both a points
-layer and a `geom_text_repel` with the name of the storm. Make sure that the 
-x-axis is a date object and set `date_breaks` to be '5 year' and the date
-labels to "%Y".
+Create a bar plot with common order names on the y-axis and a count of the 
+number of birds across the whole dataset from each order. Arrange the y-axis
+categories in descending or ascending order (your choice).
 
 ```{r, question-03}
-storms |>
-  filter(status == "HU") |>
-  filter(category == 5) |>
-  group_by(year, name) |>
-  summarize(max_wind = max(wind)) |>
-  mutate(year = make_date(year)) |>
-  ggplot(aes(year, max_wind)) +
-    geom_point() +
-    geom_text_repel(aes(label = name)) +
-    scale_x_date(date_breaks = "5 year", date_labels = "%Y")
+birds %>%
+  inner_join(species, by = "scientific_name") %>%
+  group_by(order_common) %>%
+  summarize(n = n()) %>%
+  ungroup() %>%
+  arrange(n) %>%
+  mutate(order_common = fct_inorder(order_common)) %>%
+  ggplot(aes(n, order_common)) +
+    geom_col()
 ```
 
-### Question 4: Create and plot date data [temporal]
+## 4. Spatial distribution of observations [spatial] (easy)
 
-Take the storms data, using all records, and group by year and name. Summarize
-the data by taking the difference between the maximum and minimum times for 
-readings of each storm. Ungroup the data and arrange in descending order, with
-the longes    t lasting storms at the top. You should see one outlier at the top of
-the list resulting from a bad data point.
+For this question, plot the spatial locations of the `birds` data using the 
+CRS projection 27561. Set the size of the points to 0.3 to make the plot easier
+to read. 
 
-```{r, question-04}
-storms |>
-  group_by(year, name) |>
-  summarize(duration = max(time) - min(time)) |>
-  ungroup() |>
-  arrange(desc(duration))
-```
+Note: Feel free to change the figure height to make the plot look best on your
+screen.
 
-### Question 5: Spatial polygons [temporal]
-
-Create a plot of the states in `state_se` in the coordinate system with CRS
-code 5069. 
-
-```{r, question-05}
-state_se |>
-  st_transform(5069) |>
+```{r, fig.height=6, question-04}
+birds %>%
+  st_transform(27561) %>%
   ggplot() +
-    geom_sf()
+    geom_sf(size = 0.3)
 ```
 
-### Question 6: Spatial points [spatial]
+## 5. Spatial distribution of observations [spatial] (easy)
 
-Select the storms data from the 2004 storm "Jeanne". Create a spatial plot with
-the measurements of the storm's wind speed overlaid over the state boundaries.
-Color the points based on the status code and use the 5069 coordinate system.
+For this question, plot the spatial dataset of French departements from the 
+dataset `france`, coloring the points based on their population and using the 
+CRS projection 27561. Use the following color scale in the plot:
 
-```{r, question-06}
-storms |>
-  filter(year == 2004) |>
-  filter(name == "Jeanne") |>
-  st_transform(5069) |>
+   scale_fill_distiller(
+      trans = "log2", palette = "Spectral", guide = "legend", n.breaks = 5
+    )
+
+```{r, fig.height=6, question-05}
+france %>%
+  left_join(population, by = "departement") %>%
+  st_transform(27561) %>%
   ggplot() +
-    geom_sf(data = state_se) +
-    geom_sf(aes(color = status))
-```
-
-### Question 7: Spatial join [spatial]
-
-Filter the storms data to include only hurricanes (status code "HU"). Perform a
-spatial join with the states data, group by the state names, and summarize to
-count the number of hurricane readings in each state. Sort from the state with
-the most readings to the state with the fewest. After the spatial join, use the
-`as_tibble()` function to remove the spatial information (this would be helpful
-if the dataset were larger). You should see a large set of NA's corresponding
-to points that were out in the ocean.
-
-Save this dataset as a table called `storm_obs_per_state`
-
-```{r, question-07}
-storm_obs_per_state <- storms |>
-  filter(status == "HU") |>
-  spatial_join(state_se) |>
-  as_tibble() |>
-  group_by(state) |>
-  summarize(n = n()) |>
-  arrange(desc(n))
-
-storm_obs_per_state
-```
-
-### Question 8: Spatial join plot [spatial]
-
-Below, create a plot of the Southeastern U.S. states, using the color of the
-states to show how many hurricane readings there were in each state in the
-dataset. Do this by doing an inner join of `state_se` with the dataset 
-`storm_obs_per_state` you created in the previous question. Use the color scale:
-
-  scale_fill_distiller(
-    palette = 8, guide = "legend", n.breaks = 10, direction = 1
-  )
-
-```{r, question-08}
-state_se |>
-  inner_join(storm_obs_per_state, by = "state") |>
-  ggplot() +
-    geom_sf(aes(fill = n), size = 0)  +
+    geom_sf(aes(fill = population), size = 0) +
     scale_fill_distiller(
-      palette = 8, guide = "legend", n.breaks = 10, direction = 1
+      trans = "log2", palette = "Spectral", guide = "legend", n.breaks = 5
     )
 ```
 
-We could have done this with a single pipe without first creating the dataset
-in question 7 as an intermediate step. Why is the approach above preferred?
-The benefit is that it does not force us to create lots of copies of the
-(relatively large) spatial polygons that a single pipe would require. The data
-on the actual exam is large enough that not splitting this into two steps would
-be a problem for most of your machines.
+## 6. Birds in Paris [spatial]
+
+In this question, do a spatial join of `birds` into `france`. Then, for each
+bird species, compute the proportion of total sightings that occurred where
+`departement == "75"` (that's the code for Paris). Order the results in
+descending order and display the common species name for each species to show
+those birds most commonly associated with Paris.
+
+If your code is running very slow, note that you can (optionally) use
+`as_tibble()` after the spatial join to speed things up.
+
+Hint: You should find that the most strongly associated bird with Paris is the
+"Rock dove". It sounds beautiful, but if you do an image search online you'll
+see that this is the nasty pigeon-type bird that have invaded large cities all
+over the world.
+
+```{r, question-06}
+birds %>%
+  spatial_join(france) %>%
+  as_tibble() %>%
+  left_join(species, by = "scientific_name") %>%
+  group_by(species_common) %>%
+  summarize(avg_paris = mean(departement == "75")) %>%
+  arrange(desc(avg_paris))
+```
+
+## 7. Distribution of bird sightings [spatial]
+
+For this question, apply a spatial join of `birds` into `france`. 
+For each unique value of `species_common` (from the `species` data), compute
+the total number of departements for which each bird was observed in. Order the
+table in descending order to see those species that are most pervasive across
+the entire country.
+
+```{r, question-07}
+birds %>%
+  spatial_join(france) %>%
+  as_tibble() %>%
+  inner_join(species, by = "scientific_name") %>%
+  group_by(species_common, departement) %>%
+  summarize(n = n()) %>%
+  summarize(n_departement = n()) %>%
+  arrange(desc(n_departement))
+```
+
+## 8. Spatial distribution of observations [spatial]
+
+Create a dataset called `bird_cnt` describing the number of birds observed in
+each departement. Make sure you apply the `as_tibble()` function right after 
+the join to remove spatial information from this intermediate dataset.
+
+Make sure to both save the dataset `bird_cnt` and print out the data in the
+solutions (just as I did with solution to Question 7 in Notebook 20).
+
+```{r, fig.height=5, question-08}
+bird_cnt <- birds %>%
+  spatial_join(france) %>%
+  as_tibble() %>%
+  group_by(departement) %>%
+  summarize(n = n())
+
+bird_cnt
+```
+
+## 9. Spatial distribution of observations, cont. [spatial]
+
+Finally, create a plot of the French departements, using the color of the 
+departement to show the number of birds that were observed in each area.
+Do this by doing an inner join of `france` with the dataset 
+`bird_cnt` you created in the previous question. Use the CRS 27561 projection
+for the plot and the following fill scale:
+
+  scale_fill_distiller(palette = "Spectral", guide = "legend", n.breaks = 10)
+  
+Note: You should see that the areas with the most sightings are in the popular
+birding areas of (1) the Camargue Natural Park in the South of France where the
+Rhône river meets the Mediterranean Sea, (2) the Médoc and Marais Poitevin
+Natural Park in the West where the Garonne and Sèvre rivers flow into the
+Atlantic Ocean, and (3) the Gâtinais Park, a large natural forst just to the
+southeast of Paris. 
+
+```{r, fig.height=5, question-09}
+france %>%
+  inner_join(bird_cnt, by = "departement") %>%
+  st_transform(27561) %>%
+  ggplot() +
+    geom_sf(aes(fill = n), size = 0) +
+    scale_fill_distiller(palette = "Spectral", guide = "legend", n.breaks = 10)
+```
 
