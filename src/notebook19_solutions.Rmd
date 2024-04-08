@@ -139,7 +139,7 @@ precinct |>
   left_join(casino, by = "pnum") |>
   ggplot() +
     geom_sf(aes(fill = percent)) +
-    geom_sf(data = roads, size = 0.25) +
+    geom_sf(data = roads, linewidth = 0.25) +
     scale_fill_distiller(
       palette = 8, guide = "legend", n.breaks = 10, direction = 1
     )
