@@ -34,7 +34,7 @@ attribute for you to the dataset as it will be needed in the questions below.
 ```{r}
 source("../funs/funs.R")
 
-birds <- read_csv("../data/french_birds_small.csv.bz2")
+birds <- read_csv("../data/french_birds.csv.bz2")
 birds <- st_as_sf(birds, coords = c("lon", "lat"), crs = 4326, remove = FALSE)
 birds
 ```
@@ -76,10 +76,10 @@ and a count of the number of bird sightings in our dataset on the y-axis. Use
 full names for the days of the week.
 
 ```{r, question-01}
-birds %>%
-  mutate(weekday = wday(date, label = TRUE, abbr = FALSE)) %>%
-  group_by(weekday) %>%
-  summarize(n = n()) %>%
+birds |>
+  mutate(weekday = wday(date, label = TRUE, abbr = FALSE)) |>
+  group_by(weekday) |>
+  summarize(n = n()) |>
   ggplot(aes(weekday, n)) +
     geom_col()
 ```
@@ -94,10 +94,10 @@ breaks and minor breaks given once per month.
 Hint: Use the formatting code "%b".
 
 ```{r, question-02}
-birds %>%
-  filter(year(date) == 2015) %>%
-  group_by(date) %>%
-  summarize(n = n()) %>%
+birds |>
+  filter(year(date) == 2015) |>
+  group_by(date) |>
+  summarize(n = n()) |>
   ggplot(aes(date, n)) +
     geom_point() +
     scale_x_date(
@@ -114,13 +114,13 @@ number of birds across the whole dataset from each order. Arrange the y-axis
 categories in descending or ascending order (your choice).
 
 ```{r, question-03}
-birds %>%
-  inner_join(species, by = "scientific_name") %>%
-  group_by(order_common) %>%
-  summarize(n = n()) %>%
-  ungroup() %>%
-  arrange(n) %>%
-  mutate(order_common = fct_inorder(order_common)) %>%
+birds |>
+  inner_join(species, by = "scientific_name") |>
+  group_by(order_common) |>
+  summarize(n = n()) |>
+  ungroup() |>
+  arrange(n) |>
+  mutate(order_common = fct_inorder(order_common)) |>
   ggplot(aes(n, order_common)) +
     geom_col()
 ```
@@ -135,8 +135,8 @@ Note: Feel free to change the figure height to make the plot look best on your
 screen.
 
 ```{r, fig.height=6, question-04}
-birds %>%
-  st_transform(27561) %>%
+birds |>
+  st_transform(27561) |>
   ggplot() +
     geom_sf(size = 0.3)
 ```
@@ -152,9 +152,9 @@ CRS projection 27561. Use the following color scale in the plot:
     )
 
 ```{r, fig.height=6, question-05}
-france %>%
-  left_join(population, by = "departement") %>%
-  st_transform(27561) %>%
+france |>
+  left_join(population, by = "departement") |>
+  st_transform(27561) |>
   ggplot() +
     geom_sf(aes(fill = population), size = 0) +
     scale_fill_distiller(
@@ -179,12 +179,12 @@ see that this is the nasty pigeon-type bird that have invaded large cities all
 over the world.
 
 ```{r, question-06}
-birds %>%
-  spatial_join(france) %>%
-  as_tibble() %>%
-  left_join(species, by = "scientific_name") %>%
-  group_by(species_common) %>%
-  summarize(avg_paris = mean(departement == "75")) %>%
+birds |>
+  spatial_join(france) |>
+  as_tibble() |>
+  left_join(species, by = "scientific_name") |>
+  group_by(species_common) |>
+  summarize(avg_paris = mean(departement == "75")) |>
   arrange(desc(avg_paris))
 ```
 
@@ -197,13 +197,13 @@ table in descending order to see those species that are most pervasive across
 the entire country.
 
 ```{r, question-07}
-birds %>%
-  spatial_join(france) %>%
-  as_tibble() %>%
-  inner_join(species, by = "scientific_name") %>%
-  group_by(species_common, departement) %>%
-  summarize(n = n()) %>%
-  summarize(n_departement = n()) %>%
+birds |>
+  spatial_join(france) |>
+  as_tibble() |>
+  inner_join(species, by = "scientific_name") |>
+  group_by(species_common, departement) |>
+  summarize(n = n()) |>
+  summarize(n_departement = n()) |>
   arrange(desc(n_departement))
 ```
 
@@ -217,10 +217,10 @@ Make sure to both save the dataset `bird_cnt` and print out the data in the
 solutions (just as I did with solution to Question 7 in Notebook 20).
 
 ```{r, fig.height=5, question-08}
-bird_cnt <- birds %>%
-  spatial_join(france) %>%
-  as_tibble() %>%
-  group_by(departement) %>%
+bird_cnt <- birds |>
+  spatial_join(france) |>
+  as_tibble() |>
+  group_by(departement) |>
   summarize(n = n())
 
 bird_cnt
@@ -244,9 +244,9 @@ Atlantic Ocean, and (3) the Gâtinais Park, a large natural forst just to the
 southeast of Paris. 
 
 ```{r, fig.height=5, question-09}
-france %>%
-  inner_join(bird_cnt, by = "departement") %>%
-  st_transform(27561) %>%
+france |>
+  inner_join(bird_cnt, by = "departement") |>
+  st_transform(27561) |>
   ggplot() +
     geom_sf(aes(fill = n), size = 0) +
     scale_fill_distiller(palette = "Spectral", guide = "legend", n.breaks = 10)

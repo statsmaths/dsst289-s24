@@ -34,7 +34,7 @@ attribute for you to the dataset as it will be needed in the questions below.
 ```{r}
 source("../funs/funs.R")
 
-birds <- read_csv("../data/french_birds_small.csv.bz2")
+birds <- read_csv("../data/french_birds.csv.bz2")
 birds <- st_as_sf(birds, coords = c("lon", "lat"), crs = 4326, remove = FALSE)
 birds
 ```

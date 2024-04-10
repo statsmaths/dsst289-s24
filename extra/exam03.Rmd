@@ -1,57 +1,216 @@
 ---
-title: "Exam 03: Study Guide"
+title: "Exam 03: Takehome Portion"
 output:
   html_document:
-    theme: simplex
-    highlight: pygments
+    theme: cosmo
+    highlight: zenburn
     css: "../css/note-style.css"
 ---
 
-### Take-home Content (100 points)
 
-As explained in the syllabus, the exam consists of two components. The
-first is a take-home exam that will be distributed by noon on Monday,
-November 14th. To access the exam, you will run the `notebook00.Rmd`
-file; that will download the file `exam03.Rmd`, which contains the 
-exam questions, and any associated datasets. Answer the questions as 
-you have done in the class notebooks, knit the notebook, and bring 
-your printed solutions to class on Wednesday, November 16th. You
-may use any static resources for the exam but cannot discuss the
-questions with anyone else.
+## Instructions
 
-The dataset for the exam has a spatial component and a temporal component.
-The temporal information is given as a date; there are no questions related
-to datetimes, times, or timezones. The questions will most closely resemble
-Notebooks 17-20. Pay close attention to the code formating rules in the first
-and second set of notes. You will lose points for formatting errors on the
-take-home exam. 
+Deadline: Monday, 15 April 2024 at the start of class
 
-### In-Class Content (100 points)
+This exam is the same format as the notebooks we have been completing in class.
+In order to complete it correctly, please keep in mind that:
 
-The in-class exam will take place on October 16th. It is a closed
-book exam that will be done entirely on paper. There will be ten
-questions. It will be closer to the first exam, requiring you to be
-able to hand-write some R code. The questions, however, will generally
-be less involved than those on the take-home exam.
+1. In each section there is exactly one plot that you need to create. It will
+often require using data verbs to create the plot, but it is up to you how 
+to do that.
 
-For the in-class exam, I will be asking you to work with the same dataset
-from one of the previous noteboooks. Similar to the second exam, I will
-give you a sheet of paper that shows the first few rows, names, and column
-types of the three tables. I will ask you 10 questions that are similar in
-style of the easier questions on the notebooks.
+2. There are nine questions on this exam. Each is worth 10 points. An 
+additional 10 points is assigned based on your code formatting across the
+entire exam. This take-home exam will count for half of your Exam 01 grade.
 
-I don't expect you to have memorized all of the functions we have used this
-semester. Even after using R for the past 15+ years, with the more involved
-functions or those I only use occasionally (such as `pivot_longer` or the
-various scale functions), I often need to quickly look at the help pages to
-remember all of the options. For this exam, you will only need to be able
-to use the following functions:
+3. You must Knit the file to an HTML format, print the file, and then bring
+the exam to class on Wednesday. Some questions require you to build a plot 
+with specific colors; you do not need to print the HTML in color. I will be
+able to tell if you did the correct thing based on the code.
 
-- **basic plotting functions**: `ggplot()`, `aes()`, `geom_point()`, `geom_text_repel()`, `geom_line()`
-- **one-table verbs**: `filter()`, `mutate`, `slice()`, `arrange()`, `desc()`, `group_by()`, `summarize()`, 
-- **two-table verbs**: `left_join()` (you'll need to use the "by" argument, but nothing else)
-- **date functions**: `year()`, `month()`, `day()` (no need to use any of the options for month)
-- **spatial functions**: `spatial_join()`, `geom_sf()`
-- **helper functions**: `fct_inorder()`, `if_else()`, `mean()`, `n()` `>=`, `<=`, `>`, `<`, `%>%`
+4. You may use any static resources, such as course notes and external
+websites, but you may not discuss the exam with classmates anyone else.
 
-Each question should require at most four data verbs to complete.
+5. I am happy to answer clarifying questions about the exam or to help you
+with unexpected R errors. However, I will not answer content-based questions 
+after the exam is posted. Note that I may not be able to answer questions 
+sent after 8pm on Tuesday night. 
+
+6. The exam should take no more than 2 hours, but you may use as much time 
+as you need.
+
+7. Personal computer issues is not an excuse for not completing the exam on
+time. As a back up, you can use the computers in the Jepson computer lab or
+in the library. 
+
+Good luck!
+
+## Tropical Storms
+
+The data for this exam consists of information about tropical storms in the 
+Atlantic Ocean between 1950 and 2020. It is a slightly revised version of 
+the data from Exam II. It gives one row each time a particular storm is measured
+(usually every 6 hours). Note that you will need to use both the year and name
+of the storm to uniquely describe it.
+
+```{r}
+source("../funs/funs.R")
+storms <- read_csv(file.path("../data", "storms2.csv"))
+storms
+```
+
+The variables are:
+
+- **year**    the year of the record
+- **month**   the month of the year
+- **day**     the day of the year
+- **hour**    the hour of the day (0-23) of the record in Eastern time 
+- **name**    a common name for the storm; these are sometimes used for different storms in different years
+- **letter**  the first letter of the name; storms are (usually) named in alphabetical order
+- **doy**     the day of the year (1-365) of the record
+- **lat**     latitude of the record in degrees
+- **lon**     longitude of the record in degrees
+- **status**  a two-digit status code of the storm system; see "storm_codes.csv"
+- **category**  for hurricanes (status == "HU"), a number giving the category of the storm from 0-5
+- **wind**    the observed sustained wind speed in miles per hour
+
+There are also three metadata tables. One provides an automatically
+determined  estimate of the gender of a storm's name. The last column
+gives a confidence score.
+
+```{r}
+storm_gender <- read_csv(file.path("../data", "storm_gender.csv"))
+storm_gender
+```
+
+There is a column in the main data set called `status` that described the type
+of storm with a two letter code. The last table here provides a full name for
+each of these codes:
+
+```{r}
+storm_codes <- read_csv(file.path("../data", "storm_codes.csv"))
+storm_codes
+```
+
+Finally, we also have a geographic data set of the states from the southeastern
+U.S.
+
+```{r}
+state_se <- read_sf(file.path("../data", "state_se.geojson"))
+state_se
+```
+
+
+If you have further questions about what these features mean, please let me know.
+
+## Questions
+
+### Question 1: Make datetime object [temporal]
+
+Take the `storms` data and create a new column called `time` that is a date
+time object created by the year, month, day, and hour of the storm's
+measurement. The times are all given in the "America/New_York" timezone and
+you should set this timezone in the code below. You will need this variable
+in the following questions, so overwrite the data  `storms` with the new 
+version that contains the `time` column.
+
+```{r, question-01}
+
+```
+
+### Question 2: Plot datetime objects [temporal]
+
+Take the storms data and take just the hurricanes (status code "HU") from the
+year 2017. Group by the time variable you created in question 1 and count the
+number of readings for each unique time. Create a plot with the data in which
+the x-axis gives the time and the y-axis gives the number of hurricane readings
+in 2017 at that time. Set the `date_breaks` and `date_minor_breaks` to both be
+"1 week" and the date labels to be "%b %d".
+
+```{r, warning = FALSE, question-02}
+
+```
+
+
+### Question 3: Create and plot date data [temporal]
+
+Filter the data to include only category 5 hurricanes. Group the data by year
+and hurricane name and compute the maximum wind speed of each storm. Create a
+plot that has year on x-axis and max-wind speed on the y-axis. Use both a points
+layer and a `geom_text_repel` with the name of the storm. Make sure that the 
+x-axis is a date object and set `date_breaks` to be '5 year' and the date labels
+to "%Y".
+
+```{r, question-03}
+
+```
+
+### Question 4: Create and plot date data [temporal]
+
+Take the storms data, using all records, and group by year and name. Summarize
+the data by taking the difference between the maximum and minimum times for 
+readings of each storm. Arrange in descending order, with the longest lasting
+storms at the top. You should see one outlier at the top of the list resulting
+from a bad data point.
+
+```{r, question-04}
+
+```
+
+### Question 5: Rolling mean [temporal]
+
+Group the storms data by the day of the year (`doy`) and count the number of
+storms on each day of the year. Create a smoothed version of the count using
+`roll_meanr` with a window size of 15. Plot the data with doy on the x-axis and
+the count on the y-axis. Draw a solid line for the smoothed data and a dotted
+(linetype = "dotted") for the raw data.
+
+```{r, warning = FALSE, question-05}
+
+```
+
+### Question 6: Window functions [temporal]
+
+Filter the storms data to include only readings from the 1995 storm "Felix". 
+Take the lag of the variable `wind` and create a new variable called `color`
+that is equal to "red" if a row of the data has an increased wind speed from the
+previous row and to "navy" if the wind speed is the same or less. Plot the data
+with time on the x-axis and the wind speed on the y-axis using a `geom_point` 
+layer. Color the points based on the color variable (using `scale_color_identity`
+to get the colors correct). Set the scale of the x-axis so that there are date
+breaks and date minor breaks every day. Set `date_labels` equal to "%d". 
+
+```{r, warning = FALSE, question-06}
+
+```
+
+### Question 7: Spatial polygons [temporal]
+
+Create a plot of the states in `state_se` in the coordinate system 5069. Yes,
+this is an easy question.
+
+```{r, question-07}
+
+```
+
+
+### Question 8: Spatial points [spatial]
+
+Select the storms data from the 2004 storm "Jeanne". Create a spatial plot with
+the measurements of the storm's wind speed overlaid over the state boundaries.
+Color the points based on the status code and use the 5069 coordinate system.
+
+```{r, question-08}
+
+```
+
+### Question 9: Spatial join [spatial]
+
+Filter the storms data to include only hurricanes (status code "HU"). Perform a
+spatial join with the states data, group by the state names, and summarize to
+count the number of hurricane readings in each state. Sort from the state with
+the most readings to the state with the fewest.
+
+```{r, question-09}
+
+```
