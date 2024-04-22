@@ -64,3 +64,4 @@ path,date
 "data/storms2.csv","2024-04-10"
 "data/storm_codes.csv","2024-04-10"
 "data/state_se.geojson","2024-04-10"
+"data/state.geojson","2024-04-10"
